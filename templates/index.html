@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load int_comma %}
+
+{% block content%}
+    <!-- STYLE BOXES -->
+    <style>
+        .div1 {
+            width: 350px;
+            padding: 10px;
+            border: 5px solid gray;
+            margin: 0;
+            }
+        .div2 {
+            width: 350px;
+            padding: 10px;
+            border: 5px solid dodgerblue;
+            margin: 0;
+            }
+        {#.content_center {#}
+        {#    position: fixed;#}
+        {#    top: 50%;#}
+        {#    left: 50%;#}
+        {#    -webkit-transform: translate(-50%, -50%);#}
+        {#    transform: translate(-50%, -50%);#}
+        {#}#}
+        {#.div3{#}
+        {#    width: 93%;#}
+        {#    padding: 10px;#}
+        {#    border: 5px solid dodgerblue;#}
+        {#    margin: 0;#}
+        {#}#}
+    </style>
+
+    <div id="main-div" >
+
+
+    <h1>Welcome to Covid-19 Tracker</h1>
+{#    <p>{{ data_all}} </p>#}
+
+    <!-- DATA ALL -->
+    {% for a in data_all %}
+        <div class="div1">
+            <p> Total Cases: {{ a.cases.total|int_comma }}</p>
+            <p> New Cases: + {{ a.cases.new|int_comma }}</p>
+        </div>
+        <p></p>
+        <div class="div1">
+            <p> Total Active: {{ a.cases.active|int_comma }}</p>
+            <p> Total Recovered: {{ a.cases.recovered|int_comma }}</p>
+            <p> Critical Cases: {{ a.cases.critical|int_comma }}</p>
+        </div>
+        <p></p>
+        <div class="div1">
+            <p> Total Deaths: {{ a.deaths.total|int_comma }}</p>
+            <p> New Deaths: + {{ a.deaths.new|int_comma }}</p>
+        </div>
+    {% endfor %}
+
+    <p></p>
+
+    <!-- COUNTRY SELECT -->
+    <div class="div2">
+        <form method="post">
+            {% csrf_token %}
+            <select name="region">
+                {% for region in regions %}
+                    <option
+                            value="{{ region }}"
+                            {% if selected_region == region %}
+                            selected="selected"
+                            {% endif %}>{{ region }}</option>
+                {% endfor %}
+        </select>
+        <input type="submit" value="Select">
+    </form>
+    </div>
+
+    <p></p>
+    <p>Showing data for: {{ selected_region }}</p>
+
+    <!-- DATA COUNTRY-->
+    {% for a in regional_data %}
+        <div class="div1">
+            <p> Total Cases: {{ a.cases.total|int_comma }}</p>
+            <p> New Cases: + {{ a.cases.new|int_comma }}</p>
+        </div>
+        <p></p>
+        <div class="div1">
+            <p> Total Active: {{ a.cases.active|int_comma }}</p>
+            <p> Total Recovered: {{ a.cases.recovered|int_comma }}</p>
+            <p> Critical Cases: {{ a.cases.critical|int_comma }}</p>
+        </div>
+        <p></p>
+        <div class="div1">
+            <p> Total Deaths: {{ a.deaths.total|int_comma }}</p>
+            <p> New Deaths: + {{ a.deaths.new|int_comma }}</p>
+        </div>
+    {% endfor %}
+
+    </div>
+
+{% endblock %}

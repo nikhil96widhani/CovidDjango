@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load int_comma %}
+
+{% block content%}
+    <style>
+        .div1 {
+            width: 320px;
+            padding: 10px;
+            border: 5px solid gray;
+            margin: 0;
+            }
+        .div2 {
+            width: 320px;
+            padding: 10px;
+            border: 5px solid dodgerblue;
+            margin: 0;
+            }
+    </style>
+
+    <h1>Welcome to Covid-19 Tracker</h1>
+
+    <form method="post">
+    {% csrf_token %}
+        <select name="region">
+             {% for region in regions %}
+                 <option
+                  value="{{ region }}"
+                  {% if selected_region == region %}
+                      selected="selected"
+                  {% endif %}
+                 >{{ region }}</option>
+             {% endfor %}
+        </select>
+        <input type="submit" value="Select">
+    </form>
+    {% if selected_region %}
+      <p>
+        Selected Region: {{ selected_region }}
+      </p>
+      <p>
+        Restaurants in this region:
+      </p>
+      <ul>
+         {% for restaurant in restaurants %}
+           <li>{{ restaurant.restName }}</li>
+         {% endfor %}
+      </ul>
+    {% endif %}
+
+
+{% endblock %}
