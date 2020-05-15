@@ -1,5 +1,8 @@
+from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .services import *
+import requests
+import json
 
 
 # Create your views here.
@@ -10,13 +13,14 @@ def indexView(request):
     selected_region = 'India'
 
     if request.method == "POST":
+        print(request.POST.get("region"))
         # Filter restaurants by selected region, but only on a POST
         selected_region = request.POST.get("region")
 
     regional_data = get_country_data(selected_region)
 
     data = {
-        'regions': ['India', 'Canada', 'USA'],
+        'regions': ['India', 'Canada', 'USA', 'Germany'],
         'selected_region': selected_region,
         'data_all': data_all,
         'regional_data': regional_data,
@@ -42,3 +46,4 @@ def test_View(request):
     }
 
     return render(request, 'test.html', context)
+

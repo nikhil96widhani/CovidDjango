@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load int_comma %}
 
+
 {% block content%}
 
 
@@ -26,7 +27,7 @@
                     {% for a in data_all %}
 
                         <li class="list-group-item">Total Cases: {{ a.cases.total|int_comma }} |
-                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" color="red" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"></path>
                               <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8 3.707 5.354 6.354a.5.5 0 11-.708-.708l3-3z" clip-rule="evenodd"></path>
                             </svg>
@@ -35,8 +36,8 @@
 
                         <li class="list-group-item">Total Recovered: {{ a.cases.recovered|int_comma }}</li>
 
-                        <li class="list-group-item">Total Deaths: {{ a.deaths.total|int_comma }}
-                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <li class="list-group-item">Total Deaths: {{ a.deaths.total|int_comma }} |
+                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" color="red" xmlns="http://www.w3.org/2000/svg">
                                   <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"></path>
                                   <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8 3.707 5.354 6.354a.5.5 0 11-.708-.708l3-3z" clip-rule="evenodd"></path>
                                 </svg>
@@ -58,6 +59,7 @@
 
 
 
+
     <div class="w container h-100 pt-4">
         <div class="row h-100 justify-content-center align-items-center">
             <div class="card" style="width: 20rem;">
@@ -65,7 +67,7 @@
                     <form method="post">
                     {% csrf_token %}
                     <label>
-                        <select name="region">
+                        <select name="region" onchange="this.form.submit();">
                             {% for region in regions %}
                                 <option
                                     value="{{ region }}"
@@ -76,12 +78,12 @@
                             {% endfor %}
                         </select>
                     </label>
-                    <input type="submit" value="Select">
                 </form>
                 </div>
             </div>
         </div>
     </div>
+
 
     <div class="w container h-100 p-1">
         <div class="row h-100 justify-content-center align-items-center">
@@ -91,6 +93,7 @@
             </svg>
         </div>
     </div>
+
 
 
     <!-- Stats Selected countries total-->
@@ -104,7 +107,7 @@
                     {% for a in regional_data %}
 
                         <li class="list-group-item">Total Cases: {{ a.cases.total|int_comma }} |
-                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" color="red" xmlns="http://www.w3.org/2000/svg">
                               <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"></path>
                               <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8 3.707 5.354 6.354a.5.5 0 11-.708-.708l3-3z" clip-rule="evenodd"></path>
                             </svg>
@@ -113,8 +116,8 @@
 
                         <li class="list-group-item">Total Recovered: {{ a.cases.recovered|int_comma }}</li>
 
-                        <li class="list-group-item">Total Deaths: {{ a.deaths.total|int_comma }}
-                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <li class="list-group-item">Total Deaths: {{ a.deaths.total|int_comma }} |
+                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" color="red" xmlns="http://www.w3.org/2000/svg">
                                   <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"></path>
                                   <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8 3.707 5.354 6.354a.5.5 0 11-.708-.708l3-3z" clip-rule="evenodd"></path>
                                 </svg>
@@ -130,5 +133,7 @@
             </div>
         </div>
     </div>
+
+
 
 {% endblock %}

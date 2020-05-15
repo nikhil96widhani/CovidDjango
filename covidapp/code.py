@@ -87,9 +87,17 @@ print(data1.get_total_cases())
 
 #%%
 
-querystring = {"country": "All"}
-response = requests.request("GET", API_URL, headers=API_HEADERS, params=querystring)
+import requests
+import json
+
+url = "https://covid-193.p.rapidapi.com/countries"
+
+headers = {
+    'x-rapidapi-host': "covid-193.p.rapidapi.com",
+    'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
+    }
+
+response = requests.request("GET", url, headers=headers)
 data = json.loads(response.text)['response']
-for content in data:
-    print(content)
-    print(content['cases']['new'])
+
+print(response.text)
