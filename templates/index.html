@@ -31,72 +31,131 @@
         {#}#}
     </style>
 
-    <div id="main-div" >
 
-
-    <h1>Welcome to Covid-19 Tracker</h1>
-{#    <p>{{ data_all}} </p>#}
-
-    <!-- DATA ALL -->
-    {% for a in data_all %}
-        <div class="div1">
-            <p> Total Cases: {{ a.cases.total|int_comma }}</p>
-            <p> New Cases: + {{ a.cases.new|int_comma }}</p>
-        </div>
-        <p></p>
-        <div class="div1">
-            <p> Total Active: {{ a.cases.active|int_comma }}</p>
-            <p> Total Recovered: {{ a.cases.recovered|int_comma }}</p>
-            <p> Critical Cases: {{ a.cases.critical|int_comma }}</p>
-        </div>
-        <p></p>
-        <div class="div1">
-            <p> Total Deaths: {{ a.deaths.total|int_comma }}</p>
-            <p> New Deaths: + {{ a.deaths.new|int_comma }}</p>
-        </div>
-    {% endfor %}
-
-    <p></p>
-
-    <!-- COUNTRY SELECT -->
-    <div class="div2">
-        <form method="post">
-            {% csrf_token %}
-            <select name="region">
-                {% for region in regions %}
-                    <option
-                            value="{{ region }}"
-                            {% if selected_region == region %}
-                            selected="selected"
-                            {% endif %}>{{ region }}</option>
-                {% endfor %}
-        </select>
-        <input type="submit" value="Select">
-    </form>
+    <!-- TITLE and last updated row -->
+    <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="mt-5">Corona World : Coronavirus Tracker</h1>
+        <p class="lead">Last Updated: 15 minutes ago</p>
+      </div>
+    </div>
     </div>
 
-    <p></p>
-    <p>Showing data for: {{ selected_region }}</p>
+    <!-- Stats All countries total-->
+    <div class="container h-100 pt-4">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="card" style="width: 20rem;">
+                <div class="card-header text-center font-weight-bold">
+                    Worldwide Total
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for a in data_all %}
 
-    <!-- DATA COUNTRY-->
-    {% for a in regional_data %}
-        <div class="div1">
-            <p> Total Cases: {{ a.cases.total|int_comma }}</p>
-            <p> New Cases: + {{ a.cases.new|int_comma }}</p>
-        </div>
-        <p></p>
-        <div class="div1">
-            <p> Total Active: {{ a.cases.active|int_comma }}</p>
-            <p> Total Recovered: {{ a.cases.recovered|int_comma }}</p>
-            <p> Critical Cases: {{ a.cases.critical|int_comma }}</p>
-        </div>
-        <p></p>
-        <div class="div1">
-            <p> Total Deaths: {{ a.deaths.total|int_comma }}</p>
-            <p> New Deaths: + {{ a.deaths.new|int_comma }}</p>
-        </div>
-    {% endfor %}
+                        <li class="list-group-item">Total Cases: {{ a.cases.total|int_comma }} |
+                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"></path>
+                              <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8 3.707 5.354 6.354a.5.5 0 11-.708-.708l3-3z" clip-rule="evenodd"></path>
+                            </svg>
+                            {{ a.cases.new|int_comma }}
+                        </li>
 
+                        <li class="list-group-item">Total Recovered: {{ a.cases.recovered|int_comma }}</li>
+
+                        <li class="list-group-item">Total Deaths: {{ a.deaths.total|int_comma }}
+                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"></path>
+                                  <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8 3.707 5.354 6.354a.5.5 0 11-.708-.708l3-3z" clip-rule="evenodd"></path>
+                                </svg>
+                                {{ a.deaths.new|int_comma }}
+                        </li>
+
+                        <li class="list-group-item">Active Cases: {{ a.cases.active|int_comma }}</li>
+
+                        <li class="list-group-item">Critical Cases: {{ a.cases.critical|int_comma }}</li>
+{#                    <li class="list-group-item">Vestibulum at eros</li>#}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- COUNTRY SELECT DROPDOWN -->
+
+
+
+    <div class="w container h-100 pt-4">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="card" style="width: 20rem;">
+                <div class="card-header text-center">
+                    <form method="post">
+                    {% csrf_token %}
+                    <label>
+                        <select name="region">
+                            {% for region in regions %}
+                                <option
+                                    value="{{ region }}"
+                                    {% if selected_region == region %}
+                                    selected="selected"
+                                    {% endif %}>{{ region }}
+                                </option>
+                            {% endfor %}
+                        </select>
+                    </label>
+                    <input type="submit" value="Select">
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w container h-100 p-1">
+        <div class="row h-100 justify-content-center align-items-center">
+            <svg class="bi bi-arrow-bar-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M11.354 10.146a.5.5 0 010 .708l-3 3a.5.5 0 01-.708 0l-3-3a.5.5 0 01.708-.708L8 12.793l2.646-2.647a.5.5 0 01.708 0z" clip-rule="evenodd"></path>
+                <path fill-rule="evenodd" d="M8 6a.5.5 0 01.5.5V13a.5.5 0 01-1 0V6.5A.5.5 0 018 6zM2 3.5a.5.5 0 01.5-.5h11a.5.5 0 010 1h-11a.5.5 0 01-.5-.5z" clip-rule="evenodd"></path>
+            </svg>
+        </div>
+    </div>
+
+
+    <!-- Stats Selected countries total-->
+    <div class="w container h-100 ">
+        <div class="row h-100 justify-content-center align-items-center">
+            <div class="card" style="width: 20rem;">
+                <div class="card-header text-center font-weight-bold">
+                    {{ selected_region }} Total
+                </div>
+                <ul class="list-group list-group-flush">
+                    {% for a in regional_data %}
+
+                        <li class="list-group-item">Total Cases: {{ a.cases.total|int_comma }} |
+                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                              <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"></path>
+                              <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8 3.707 5.354 6.354a.5.5 0 11-.708-.708l3-3z" clip-rule="evenodd"></path>
+                            </svg>
+                            {{ a.cases.new|int_comma }}
+                        </li>
+
+                        <li class="list-group-item">Total Recovered: {{ a.cases.recovered|int_comma }}</li>
+
+                        <li class="list-group-item">Total Deaths: {{ a.deaths.total|int_comma }}
+                            <svg class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v9a.5.5 0 01-1 0V4a.5.5 0 01.5-.5z" clip-rule="evenodd"></path>
+                                  <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 01.708 0l3 3a.5.5 0 01-.708.708L8 3.707 5.354 6.354a.5.5 0 11-.708-.708l3-3z" clip-rule="evenodd"></path>
+                                </svg>
+                                {{ a.deaths.new|int_comma }}
+                        </li>
+
+                        <li class="list-group-item">Active Cases: {{ a.cases.active|int_comma }}</li>
+
+                        <li class="list-group-item">Critical Cases: {{ a.cases.critical|int_comma }}</li>
+{#                    <li class="list-group-item">Vestibulum at eros</li>#}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
