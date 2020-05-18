@@ -17,3 +17,16 @@ def get_country_data(country):
     return data
 
 
+def get_country_name():
+    url = "https://covid-193.p.rapidapi.com/countries"
+
+    headers = {
+        'x-rapidapi-host': "covid-193.p.rapidapi.com",
+        'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
+    }
+
+    response = requests.request("GET", url, headers=headers)
+    data = json.loads(response.text)['response']
+    data.insert(0, 'World')
+
+    return data

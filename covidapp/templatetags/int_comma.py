@@ -16,3 +16,8 @@ def int_comma(value):
             return '{:,}'.format(int(value))
         except:
             return 'N/A'
+
+
+@register.filter(name='get_percentage')
+def get_percentage(a, b):
+    return '{0:.1f}%'.format((int(a) / int(a + b) * 100))

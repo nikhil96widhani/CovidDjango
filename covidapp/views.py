@@ -1,32 +1,80 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 from .services import *
+from django.views import View
 import requests
 import json
 
 
-# Create your views here.
+#Create your views here.
 
 def indexView(request):
-    data_all = get_country_data('All')
 
-    selected_region = 'India'
+    selected_region = 'All'
 
-    if request.method == "POST":
-        print(request.POST.get("region"))
+    if request.method == "GET":
+        # print(request.POST.get("region"))
         # Filter restaurants by selected region, but only on a POST
-        selected_region = request.POST.get("region")
+        print(request.GET.get("region"))
+        selected_region = request.GET.get("region")
+        if selected_region is None:
+            selected_region = 'All'
+        elif selected_region == '':
+            selected_region = 'All'
+        elif selected_region == 'World':
+            selected_region = 'All'
+        else:
+            pass
 
     regional_data = get_country_data(selected_region)
 
+    if selected_region == "All":
+        selected_region = 'World'
+    else:
+        pass
+
     data = {
-        'regions': ['India', 'Canada', 'USA', 'Germany'],
+        'regions': get_country_name(),
         'selected_region': selected_region,
-        'data_all': data_all,
         'regional_data': regional_data,
     }
 
     return render(request, 'index.html', data)
+
+
+# class indexView(View):
+#     data_all = get_country_data('All')
+#
+#     selected_region = 'India'
+#
+#     template_name = 'index.html'
+#
+#     def get(self, request, *args, **kwargs):
+#         regional_data = get_country_data(self.selected_region)
+#
+#         data = {
+#             'regions': ['India', 'Canada', 'USA', 'Germany'],
+#             'selected_region': self.selected_region,
+#             'data_all': self.data_all,
+#             'regional_data': regional_data,
+#         }
+#         return render(request, self.template_name, data)
+#
+#     def post(self, request, *args, **kwargs):
+#         selected_region = request.POST.get("region")
+#         regional_data = get_country_data(selected_region)
+#         if regional_data:
+#             regional_data = get_country_data(selected_region)
+#
+#             data = {
+#                 'regions': ['India', 'Canada', 'USA', 'Germany'],
+#                 'selected_region': selected_region,
+#                 'data_all': self.data_all,
+#                 'regional_data': regional_data,
+#             }
+#
+#         return render(request, self.template_name, data)
+
 
 
 def test_View(request):
@@ -46,4 +94,3 @@ def test_View(request):
     }
 
     return render(request, 'test.html', context)
-
