@@ -6,10 +6,9 @@ import requests
 import json
 
 
-#Create your views here.
+# Create your views here.
 
 def indexView(request):
-
     selected_region = 'All'
 
     if request.method == "GET":
@@ -28,15 +27,19 @@ def indexView(request):
 
     regional_data = get_country_data(selected_region)
 
+    news = GetNews(selected_region, 5)
+    news.get_articles()
+
     if selected_region == "All":
         selected_region = 'World'
     else:
         pass
 
     data = {
-        'regions': get_country_name(),
+        'regions': get_country_names(),
         'selected_region': selected_region,
         'regional_data': regional_data,
+        'news': news.get_articles()
     }
 
     return render(request, 'index.html', data)
@@ -74,7 +77,6 @@ def indexView(request):
 #             }
 #
 #         return render(request, self.template_name, data)
-
 
 
 def test_View(request):
