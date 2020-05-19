@@ -31,7 +31,7 @@ def indexView(request):
     continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
                        'All', 'Australia']
 
-    news = GetNews(selected_region, 5)
+    news = GetNews(selected_region, 6)
     news.get_articles()
 
     if selected_region == "All":
