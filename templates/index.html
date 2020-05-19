@@ -23,9 +23,9 @@
         {% for n in news %}
             <a class="dropdown-item d-flex align-items-center" target="_blank" href={{ n.url }}>
                 <div class="mr-3">
-                    <div class="icon-circle bg-primary">
-                        <img class="rounded-circle img-thumbnail" src="{{ n.urlToImage }}">
-                    </div>
+{#                    <div class="icon-circle bg-primary">#}
+{#                        <img class="rounded-circle img-thumbnail" width="100px" height="100px" src="{{ n.urlToImage }}">#}
+{#                    </div>#}
                 </div>
                 <div>
                     <div class="small text-gray-500">From: {{ n.source.name }}</div>
