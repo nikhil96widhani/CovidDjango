@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 {% load int_comma %}
+{% load static %}
 
+{% block css %}
+
+    <!-- bootstrap SELECT 2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet"> <!-- for live demo page -->
+    <!-- bootstrap END SELECT 2 -->
+    <link href="{% static 'datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+{% endblock %}
 
 {% block news %}
                   <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
@@ -20,7 +30,7 @@
                   </div>
                 </a>
                       {% endfor %}
-{#                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>#}
+                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
 {% endblock %}
 
@@ -152,7 +162,104 @@
               {% endfor %}
           </div>
 
-        <div class="container-fluid select2-dropdown333  py-5">
+
+
+
+
+
+        <!-- Content Row -->
+
+          <div class="row">
+
+            <!-- Data table -->
+            <div class="col-xl-8 col-lg-7 py-3">
+              <div class="card shadow">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Cases by Country & Continent DataTable</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Country</th>
+                      <th>Cases</th>
+                      <th>New Cases</th>
+                      <th>Deaths</th>
+                      <th>New Deaths</th>
+                      <th>Recovered</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Country</th>
+                      <th>Cases</th>
+                      <th>New Cases</th>
+                      <th>Deaths</th>
+                      <th>New Deaths</th>
+                      <th>Recovered</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    {% for countries in world_data %}
+                    <tr>
+                      <td>{{ countries.country}}</td>
+                      <td>{{ countries.cases.total|int_comma }}</td>
+                      <td>+ {{ countries.cases.new|int_comma }}</td>
+                      <td>{{ countries.deaths.total|int_comma }}</td>
+                      <td>+ {{ countries.deaths.new|int_comma }}</td>
+                      <td>{{ countries.cases.recovered|int_comma }}</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+            </div>
+
+            <!-- Pie Chart -->
+            <div class="col-xl-4 col-lg-5 py-3">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>
+                  <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+                      <div class="dropdown-header">Dropdown Header:</div>
+                      <a class="dropdown-item" href="#">Action</a>
+                      <a class="dropdown-item" href="#">Another action</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                  </div>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2">
+                    <canvas id="myPieChart"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-primary"></i> Recovered
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> Death
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-info"></i> Pending
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        <!-- More features comming soon -->
+                <div class="container-fluid select2-dropdown333  py-5">
             <div class="card bg-secondary text-white shadow text-center">
                     <div class="card-body">
                       More Charts and Tables coming soon...
@@ -161,12 +268,6 @@
                   </div>
 
           </div>
-
-
-        <div class="aligncol-xl-7 col-md-4 py-4">
-
-        </div>
-
 
 {#          <!-- Content Row -->#}
 {##}
@@ -239,13 +340,13 @@
 {#              </div>#}
 {#            </div>#}
 {#          </div>#}
-
-          <!-- Content Row -->
+{##}
+{#          <!-- Content Row -->#}
 {#          <div class="row">#}
-
-            <!-- Content Column -->
+{##}
+{#            <!-- Content Column -->#}
 {#            <div class="col-lg-6 mb-4">#}
-
+{##}
 {#              <!-- Project Card Example -->#}
 {#              <div class="card shadow mb-4">#}
 {#                <div class="card-header py-3">#}
@@ -274,7 +375,7 @@
 {#                  </div>#}
 {#                </div>#}
 {#              </div>#}
-
+{##}
 {#              <!-- Color System -->#}
 {#              <div class="row">#}
 {#                <div class="col-lg-6 mb-4">#}
@@ -355,12 +456,43 @@
 {#                  <p class="mb-0">Before working with this theme, you should become familiar with the Bootstrap framework, especially the utility classes.</p>#}
 {#                </div>#}
 {#              </div>#}
-
+{##}
 {#            </div>#}
 {#          </div>#}
 
         </div>
 
         <!-- /.container-fluid -->
+
+{% endblock %}
+
+
+{% block js %}
+
+    <!-- select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
+{#      <script>#}
+{#      $(function () {#}
+{#        $('select').each(function () {#}
+{#          $(this).select2({#}
+{#            theme: 'bootstrap4',#}
+{#            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',#}
+{#            placeholder: $(this).data('placeholder'),#}
+{#            allowClear: Boolean($(this).data('allow-clear')),#}
+{#          });#}
+{#        });#}
+{#      });#}
+{#      </script>#}
+      <!-- SELECT 2 END -->
+    <script src="{% static 'js/select2script.js' %}"></script>
+
+      <!-- Data Table START -->
+
+    <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script src="{% static 'datatables/datatables-demo.js' %}"></script>
+
+
 
 {% endblock %}

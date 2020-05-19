@@ -15,6 +15,7 @@ def get_country_data(country):
     querystring = {"country": country}
     response = requests.request("GET", API_URL, headers=API_HEADERS, params=querystring)
     data = json.loads(response.text)['response']
+
     # data = {'data': data}
     # print(data)
     return data
@@ -54,8 +55,11 @@ class GetNews:
         response = requests.request("GET", url, headers=headers, params=querystring)
 
         for x in response.json():
-            if x['name'].lower() == self.country:
-                self.country_code = x['alpha2code'].lower()
+            try:
+                if x['name'].lower() == self.country:
+                    self.country_code = x['alpha2code'].lower()
+            except:
+                self.country_code = ''
 
     def get_articles(self):
         try:

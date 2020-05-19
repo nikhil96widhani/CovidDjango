@@ -14,7 +14,6 @@ def indexView(request):
     if request.method == "GET":
         # print(request.POST.get("region"))
         # Filter restaurants by selected region, but only on a POST
-        print(request.GET.get("region"))
         selected_region = request.GET.get("region")
         if selected_region is None:
             selected_region = 'All'
@@ -26,6 +25,8 @@ def indexView(request):
             pass
 
     regional_data = get_country_data(selected_region)
+
+    world_data = get_country_data(None)
 
     news = GetNews(selected_region, 5)
     news.get_articles()
@@ -39,6 +40,7 @@ def indexView(request):
         'regions': get_country_names(),
         'selected_region': selected_region,
         'regional_data': regional_data,
+        'world_data': world_data,
         'news': news.get_articles()
     }
 
