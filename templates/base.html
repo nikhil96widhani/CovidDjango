@@ -5,219 +5,246 @@
 
 <head>
 
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-  <title>Covid-19 World Tracker</title>
+    <title>Covid-19 World Tracker</title>
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="{% static '/favicon/apple-icon-57x57.png' %}">
+    <link rel="apple-touch-icon" sizes="60x60" href="{% static '/favicon/apple-icon-60x60.png' %}">
+    <link rel="apple-touch-icon" sizes="72x72" href="{% static '/favicon/apple-icon-72x72.png' %}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{% static '/favicon/apple-icon-76x76.png' %}">
+    <link rel="apple-touch-icon" sizes="114x114" href="{% static '/favicon/apple-icon-114x114.png' %}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static '/favicon/apple-icon-120x120.png' %}">
+    <link rel="apple-touch-icon" sizes="144x144" href="{% static '/favicon/apple-icon-144x144.png' %}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{% static '/favicon/apple-icon-152x152.png' %}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/favicon/apple-icon-180x180.png' %}">
+    <link rel="icon" type="image/png" sizes="192x192" href="{% static '/favicon/android-icon-192x192.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/favicon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="96x96" href="{% static '/favicon/favicon-96x96.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/favicon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static '/favicon/manifest.json' %}">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="{% static '/favicon/ms-icon-144x144.png' %}">
+    <meta name="theme-color" content="#ffffff">
 
 
-{% block css %}
+    {% block css %}
 
-{% endblock %}
+    {% endblock %}
 
 
-  <!-- Custom fonts for this template-->
-  <script src="https://kit.fontawesome.com/ad14bd368c.js" crossorigin="anonymous"></script>
-  <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
-  <!-- <link href="vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" type="text/css"> -->
-  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <!-- Custom fonts for this template-->
+    <script src="https://kit.fontawesome.com/ad14bd368c.js" crossorigin="anonymous"></script>
+    <!-- <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- <link href="vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" type="text/css"> -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link href="{% static 'css/sb-admin-2-modified.min.css' %}" rel="stylesheet">
-
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2-modified.min.css' %}" rel="stylesheet">
 
 
 </head>
 
 <body id="page-top">
 
-  <!-- Page Wrapper -->
-  <div id="wrapper">
+<!-- Page Wrapper -->
+<div id="wrapper">
 
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
-      <!-- Main Content -->
-      <div id="content">
+        <!-- Main Content -->
+        <div id="content">
 
-        <!-- Topbar -->
-        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+            <!-- Topbar -->
+            <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
 
-          <!-- Sidebar - Brand -->
-          <a class="sidebar-brand d-flex align-items-center justify-content-center" href={% url 'home' %}>
-            <div class="sidebar-brand-icon rotate-n-15">
-              <i class="fas fa-virus fa-2x text-danger fa-blink2"></i>
-            </div>
-            <div class="sidebar-brand-text mx-3 font-weight-bold">Covid Tracker<sup class='text-danger'> Live</sup></div>
-          </a>
-          <!-- Topbar Navbar -->
-          <ul class="navbar-nav ml-auto">
-
-            <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-            <!-- <li class="nav-item dropdown no-arrow d-sm-none">
-              <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-search fa-fw"></i>
-              </a> -->
-              <!-- Dropdown - Messages -->
-              <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                <form class="form-inline mr-auto w-100 navbar-search">
-                  <div class="input-group">
-                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary" type="button">
-                        <i class="fas fa-search fa-sm"></i>
-                      </button>
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href={% url 'home' %}>
+                    <div class="sidebar-brand-icon rotate-n-15">
+                        <i class="fas fa-virus fa-2x text-danger fa-blink2"></i>
                     </div>
-                  </div>
-                </form>
-              </div>
-            </li> -->
-
-            <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
-              <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i class="fas fa-newspaper fa-fw"></i>
-                <!-- Counter - Alerts -->
-                <span class="badge badge-danger badge-counter">5+</span>
-              </a>
-              <!-- Dropdown - Alerts -->
-                {% block news %}
-
-                {%  endblock %}
-            </li>
-
-{#            <!-- Nav Item - Messages -->#}
-{#            <li class="nav-item dropdown no-arrow mx-1">#}
-{#              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-{#                <i class="fas fa-envelope fa-fw"></i>#}
-{#                <!-- Counter - Messages -->#}
-{#                <span class="badge badge-danger badge-counter">7</span>#}
-{#              </a>#}
-{#              <!-- Dropdown - Messages -->#}
-{#              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">#}
-{#                <h6 class="dropdown-header">#}
-{#                  Message Center#}
-{#                </h6>#}
-{#                <a class="dropdown-item d-flex align-items-center" href="#">#}
-{#                  <div class="dropdown-list-image mr-3">#}
-{#                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">#}
-{#                    <div class="status-indicator bg-success"></div>#}
-{#                  </div>#}
-{#                  <div class="font-weight-bold">#}
-{#                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>#}
-{#                    <div class="small text-gray-500">Emily Fowler · 58m</div>#}
-{#                  </div>#}
-{#                </a>#}
-{#                <a class="dropdown-item d-flex align-items-center" href="#">#}
-{#                  <div class="dropdown-list-image mr-3">#}
-{#                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">#}
-{#                    <div class="status-indicator"></div>#}
-{#                  </div>#}
-{#                  <div>#}
-{#                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>#}
-{#                    <div class="small text-gray-500">Jae Chun · 1d</div>#}
-{#                  </div>#}
-{#                </a>#}
-{#                <a class="dropdown-item d-flex align-items-center" href="#">#}
-{#                  <div class="dropdown-list-image mr-3">#}
-{#                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">#}
-{#                    <div class="status-indicator bg-warning"></div>#}
-{#                  </div>#}
-{#                  <div>#}
-{#                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>#}
-{#                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>#}
-{#                  </div>#}
-{#                </a>#}
-{#                <a class="dropdown-item d-flex align-items-center" href="#">#}
-{#                  <div class="dropdown-list-image mr-3">#}
-{#                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">#}
-{#                    <div class="status-indicator bg-success"></div>#}
-{#                  </div>#}
-{#                  <div>#}
-{#                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>#}
-{#                    <div class="small text-gray-500">Chicken the Dog · 2w</div>#}
-{#                  </div>#}
-{#                </a>#}
-{#                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>#}
-{#              </div>#}
-{#            </li>#}
-{##}
-{#            <div class="topbar-divider d-none d-sm-block"></div>#}
-
-            <!-- Nav Item - User Information -->
-            <li class="nav-item dropdown no-arrow">
-              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
-                <i class="fas fa-ellipsis-v text-primary"></i>
-              </a>
-              <!-- Dropdown - User Information -->
-              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href={% url 'home' %}>
-                  <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Home
+                    <div class="sidebar-brand-text mx-3 font-weight-bold">Covid Tracker<sup class='text-danger'>
+                        Live</sup></div>
                 </a>
-                <a class="dropdown-item" href="#">
-                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Settings
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" target="_blank" href="https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics">
-                  <i class="fas fa-database fa-sm fa-fw mr-2 text-gray-400"></i>
-                  Data Source
-                </a>
-                <a class="dropdown-item" target="_blank" href="https://newsapi.org">
-                  <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                  News Data Source
-                </a>
-                  <a class="dropdown-item" target="_blank" href="https://github.com/nikhil96widhani/CovidDjango">
-                  <i class="fab fa-github mr-2 text-gray-400"></i>
-                  GitHub
-                </a>
-{#                <a class="dropdown-item" target="_blank" href="https://github.com/nikhil96widhani/CovidDjango" data-toggle="modal" data-target="#logoutModal">#}
-{#                  <i class="fab fa-github mr-2 text-gray-400"></i>#}
-{#                  GitHub#}
-{#                </a>#}
-                  <a class="dropdown-item text-center small text-gray-500" href="#">AN OPEN SOURCED PROJECT</a>
-              </div>
-            </li>
+                <!-- Topbar Navbar -->
+                <ul class="navbar-nav ml-auto">
 
-          </ul>
+                    <!-- Nav Item - Search Dropdown (Visible Only XS) -->
+                    <!-- <li class="nav-item dropdown no-arrow d-sm-none">
+                      <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-search fa-fw"></i>
+                      </a> -->
+                    <!-- Dropdown - Messages -->
+                    <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
+                      <form class="form-inline mr-auto w-100 navbar-search">
+                        <div class="input-group">
+                          <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                            <button class="btn btn-primary" type="button">
+                              <i class="fas fa-search fa-sm"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </li> -->
 
-        </nav>
-        <!-- End of Topbar -->
+                    <!-- Nav Item - Alerts -->
+                    <li class="nav-item dropdown no-arrow mx-1">
+                        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fas fa-newspaper fa-fw"></i>
+                            <!-- Counter - Alerts -->
+                            <span class="badge badge-danger badge-counter">5+</span>
+                        </a>
+                        <!-- Dropdown - Alerts -->
+                        {% block news %}
 
-        {% block content %}
-        {% endblock %}
+                        {% endblock %}
+                    </li>
 
-      </div>
-      <!-- End of Main Content -->
+                    {#            <!-- Nav Item - Messages -->#}
+                    {#            <li class="nav-item dropdown no-arrow mx-1">#}
+                    {#              <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+                    {#                <i class="fas fa-envelope fa-fw"></i>#}
+                    {#                <!-- Counter - Messages -->#}
+                    {#                <span class="badge badge-danger badge-counter">7</span>#}
+                    {#              </a>#}
+                    {#              <!-- Dropdown - Messages -->#}
+                    {#              <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">#}
+                    {#                <h6 class="dropdown-header">#}
+                    {#                  Message Center#}
+                    {#                </h6>#}
+                    {#                <a class="dropdown-item d-flex align-items-center" href="#">#}
+                    {#                  <div class="dropdown-list-image mr-3">#}
+                    {#                    <img class="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="">#}
+                    {#                    <div class="status-indicator bg-success"></div>#}
+                    {#                  </div>#}
+                    {#                  <div class="font-weight-bold">#}
+                    {#                    <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>#}
+                    {#                    <div class="small text-gray-500">Emily Fowler · 58m</div>#}
+                    {#                  </div>#}
+                    {#                </a>#}
+                    {#                <a class="dropdown-item d-flex align-items-center" href="#">#}
+                    {#                  <div class="dropdown-list-image mr-3">#}
+                    {#                    <img class="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="">#}
+                    {#                    <div class="status-indicator"></div>#}
+                    {#                  </div>#}
+                    {#                  <div>#}
+                    {#                    <div class="text-truncate">I have the photos that you ordered last month, how would you like them sent to you?</div>#}
+                    {#                    <div class="small text-gray-500">Jae Chun · 1d</div>#}
+                    {#                  </div>#}
+                    {#                </a>#}
+                    {#                <a class="dropdown-item d-flex align-items-center" href="#">#}
+                    {#                  <div class="dropdown-list-image mr-3">#}
+                    {#                    <img class="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="">#}
+                    {#                    <div class="status-indicator bg-warning"></div>#}
+                    {#                  </div>#}
+                    {#                  <div>#}
+                    {#                    <div class="text-truncate">Last month's report looks great, I am very happy with the progress so far, keep up the good work!</div>#}
+                    {#                    <div class="small text-gray-500">Morgan Alvarez · 2d</div>#}
+                    {#                  </div>#}
+                    {#                </a>#}
+                    {#                <a class="dropdown-item d-flex align-items-center" href="#">#}
+                    {#                  <div class="dropdown-list-image mr-3">#}
+                    {#                    <img class="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="">#}
+                    {#                    <div class="status-indicator bg-success"></div>#}
+                    {#                  </div>#}
+                    {#                  <div>#}
+                    {#                    <div class="text-truncate">Am I a good boy? The reason I ask is because someone told me that people say this to all dogs, even if they aren't good...</div>#}
+                    {#                    <div class="small text-gray-500">Chicken the Dog · 2w</div>#}
+                    {#                  </div>#}
+                    {#                </a>#}
+                    {#                <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>#}
+                    {#              </div>#}
+                    {#            </li>#}
+                    {##}
+                    {#            <div class="topbar-divider d-none d-sm-block"></div>#}
 
-      <!-- Footer -->
-      <footer class="sticky-footer bg-white">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright 2020 &copy; Developed by: <a href="http://nikhilwidhani.com"> Nikhil Widhani</a></span>
-          </div>
+                    <!-- Nav Item - User Information -->
+                    <li class="nav-item dropdown no-arrow">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <!-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                            <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
+                            <i class="fas fa-ellipsis-v text-primary"></i>
+                        </a>
+                        <!-- Dropdown - User Information -->
+                        <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+                             aria-labelledby="userDropdown">
+                            <a class="dropdown-item" href={% url 'home' %}>
+                                <i class="fas fa-home fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Home
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Settings
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" target="_blank"
+                               href="https://rapidapi.com/KishCom/api/covid-19-coronavirus-statistics">
+                                <i class="fas fa-database fa-sm fa-fw mr-2 text-gray-400"></i>
+                                Data Source
+                            </a>
+                            <a class="dropdown-item" target="_blank" href="https://newsapi.org">
+                                <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
+                                News Data Source
+                            </a>
+                            <a class="dropdown-item" target="_blank"
+                               href="https://github.com/nikhil96widhani/CovidDjango">
+                                <i class="fab fa-github mr-2 text-gray-400"></i>
+                                GitHub
+                            </a>
+                            {#                <a class="dropdown-item" target="_blank" href="https://github.com/nikhil96widhani/CovidDjango" data-toggle="modal" data-target="#logoutModal">#}
+                            {#                  <i class="fab fa-github mr-2 text-gray-400"></i>#}
+                            {#                  GitHub#}
+                            {#                </a>#}
+                            <a class="dropdown-item text-center small text-gray-500" href="#">AN OPEN SOURCED
+                                PROJECT</a>
+                        </div>
+                    </li>
+
+                </ul>
+
+            </nav>
+            <!-- End of Topbar -->
+
+            {% block content %}
+            {% endblock %}
+
         </div>
-      </footer>
-      <!-- End of Footer -->
+        <!-- End of Main Content -->
+
+        <!-- Footer -->
+        <footer class="sticky-footer bg-white">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Copyright 2020 &copy; Developed by: <a
+                            href="http://nikhilwidhani.com"> Nikhil Widhani</a></span>
+                </div>
+            </div>
+        </footer>
+        <!-- End of Footer -->
 
     </div>
     <!-- End of Content Wrapper -->
 
-  </div>
-  <!-- End of Page Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
 
-  <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
-  </a>
+</a>
 
 {#  <!-- Logout Modal-->#}
 {#  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">#}
@@ -239,57 +266,47 @@
 {#  </div>#}
 
 
+<!-- Bootstrap core JavaScript-->
 
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 
+<!-- Core plugin JavaScript-->
+<script src="{% static 'jquery/jquery.min.js' %}"></script>
+<script src="{% static 'jquery/jquery.easing.min.js' %}"></script>
 
+<!-- Custom scripts for all pages-->
+<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
 
-
-  <!-- Bootstrap core JavaScript-->
-  <!-- <script src="vendor/jquery/jquery.min.js"></script> -->
-  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="{% static 'jquery/jquery.easing.min.js' %}"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
-
-  <!-- Page level plugins -->
+<!-- Page level plugins -->
 {#  <script src="{% static 'js/chartjs/Chart.min.js' %}"></script>#}
 
-  <!-- Page level custom scripts -->
+<!-- Page level custom scripts -->
 {#  <script src="{% static 'js/chartjs/chart-area-demo.js' %}"></script>#}
 {#  <script src="{% static 'js/chartjs/chart-pie-demo.js' %}"></script>#}
 
 
-
-  <!-- Page level plugins -->
+<!-- Page level plugins -->
 {#  <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>#}
 {#  <script src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>#}
 {#  <script src="vendor/datatables/jquery.dataTables.min.js"></script>#}
 {#  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>#}
 
-  <!-- Page level custom scripts -->
+<!-- Page level custom scripts -->
 {#  <script src="{% static 'js/chartjs/datatables-demo.js' %}"></script>#}
 
 
-
-
-
-  <!-- SELECT2 -->
+<!-- SELECT2 -->
 {#  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>#}
-  <script src="{% static 'jquery/jquery-3.3.1.slim.min.js' %}"></script>
+<script src="{% static 'jquery/jquery-3.3.1.slim.min.js' %}"></script>
 {#  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>#}
-  <script src="{% static 'js/popper.min.js' %}"></script>
+<script src="{% static 'js/popper.min.js' %}"></script>
 {#  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>#}
-  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 
-    {% block js %}
+{% block js %}
 
-    {% endblock %}
-
-
+{% endblock %}
 
 
 </body>

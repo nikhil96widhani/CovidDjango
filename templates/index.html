@@ -210,9 +210,9 @@
                                         <tr>
                                             <td class="text-primary">{{ countries.country }}</td>
                                             <td>{{ countries.cases.total|int_comma }}</td>
-                                            <td class="text-danger">+ {{ countries.cases.new|int_comma }}</td>
+                                            <td class="text-danger">+{{ countries.cases.new|int_comma }}</td>
                                             <td>{{ countries.deaths.total|int_comma }}</td>
-                                            <td class="text-danger">+ {{ countries.deaths.new|int_comma }}</td>
+                                            <td class="text-danger">+{{ countries.deaths.new|int_comma }}</td>
                                             <td>{{ countries.cases.recovered|int_comma }}</td>
                                         </tr>
                                     {% endif %}
@@ -224,9 +224,9 @@
                                         <tr>
                                             <th>Total</th>
                                             <th>{{ countries.cases.total|int_comma }}</th>
-                                            <th>+ {{ countries.cases.new|int_comma }}</th>
+                                            <th>+{{ countries.cases.new|int_comma }}</th>
                                             <th>{{ countries.deaths.total|int_comma }}</th>
-                                            <th>+ {{ countries.deaths.new|int_comma }}</th>
+                                            <th>+{{ countries.deaths.new|int_comma }}</th>
                                             <th>{{ countries.cases.recovered|int_comma }}</th>
                                         </tr>
                                     {% endif %}
@@ -287,6 +287,8 @@
             </div>
 
         </div>
+
+
 
         {#          <!-- Content Row -->#}
         {##}
