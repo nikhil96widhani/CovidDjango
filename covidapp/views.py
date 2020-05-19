@@ -31,8 +31,8 @@ def indexView(request):
     continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
                        'All', 'Australia']
 
-    news = GetNews(selected_region, 6)
-    news.get_articles()
+    # news = GetNews(selected_region, 6)
+    # news.get_articles()
 
     if selected_region == "All":
         selected_region = 'World'
@@ -45,7 +45,7 @@ def indexView(request):
         'regional_data': regional_data,
         'world_data': world_data,
         'continents_list': continents_list,
-        'news': news.get_articles()
+        # 'news': news.get_articles()
     }
 
     return render(request, 'index.html', data)
