@@ -1,6 +1,7 @@
 import requests
 import json
 from newsapi import NewsApiClient
+import datetime
 
 newsapi = NewsApiClient(api_key='39970353050840afa44ca78302ff74c4')
 
@@ -75,12 +76,15 @@ class GetNews:
 
         response = requests.request("GET", url, headers=headers, params=querystring)
 
-        for x in response.json():
-            try:
-                if x['name'].lower() == self.country:
-                    self.country_code = x['alpha2code'].lower()
-            except:
-                self.country_code = ''
+        try:
+            for x in response.json():
+                try:
+                    if x['name'].lower() == self.country:
+                        self.country_code = x['alpha2code'].lower()
+                except:
+                    self.country_code = ''
+        except:
+            self.country_code = ''
 
     def get_articles(self):
         try:
@@ -108,14 +112,27 @@ class GetNews:
 
 
 
-# news = GetNews('China', 10)
-# # print(news.get_articles())
-# for n in news.get_articles():
-#     print(n['title'])
-
+# def linechart_data():
+#     import requests
 #
-# top_headlines = newsapi.get_everything(q='Covid-19 China',
-#                                                       # language='en',
-#                                                       # country='cn'
-#                                                       )
-# print(top_headlines['articles'])
+#     url = "https://covid-193.p.rapidapi.com/history"
+#
+#     querystring = {
+#         # "day": "2020-04-05",
+#         "country": "All"
+#     }
+#
+#     headers = {
+#         'x-rapidapi-host': "covid-193.p.rapidapi.com",
+#         'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
+#     }
+#
+#     response = requests.request("GET", url, headers=headers, params=querystring)
+#     data = json.loads(response.text)['response']
+#     for entry in data:
+#         print(entry['day'])
+#
+#
+# response = requests.get('https://api.covid19data.cloud/v1/jh/daily-reports?last_update_from=2020-04-01&last_update_to=2020-04-03&country=Total')
+# print(response.json())
+

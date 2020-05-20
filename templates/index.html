@@ -385,23 +385,19 @@
                 defaultColor: '#f8f8f8',
 
             };
+            function resize () {
+                var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
-            var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
-            google.visualization.events.addListener(chart, 'ready', function () {
-                var countries = container.getElementsByTagName('path');
-                Array.prototype.forEach.call(countries, function (path) {
-                    path.setAttribute('stroke', 'red');
-                });
-            });
-
-            chart.draw(data, options);
-            window.addEventListener('resize', drawRegionsMap, false);
-
+                chart.draw(data, options);
+            }
+            window.onload = resize;
+            window.onresize = resize;
+            {#window.addEventListener('resize', drawRegionsMap, false);#}
 
         }
 
     </script>
+
         <!-- GOOGLE Geo CHART STYLING -->
     <style xmlns="http://www.w3.org/2000/svg">
         path {
