@@ -36,6 +36,27 @@ def get_country_names():
     return data
 
 
+def choropleth_data(world_data):
+    continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
+                       'All']
+    # country_to_fix = ['USA', 'Saudi-Arabia', 'UK', 'South-Africa', 'DRC', 'South-Sudan', 'Papua-New-Guinea',
+    #                   'New-Zealand', 'Sri-Lanka']
+    country_fix = {"USA": "United States", "Saudi-Arabia": "Saudi Arabia", "UK": "United Kingdom",
+                   "South-Africa": "South Africa", "DRC": "CD", "South-Sudan": "SS", "Papua-New-Guinea": "PG",
+                   "New-Zealand": "New Zealand", "Sri-Lanka": "Sri Lanka"}
+
+    data = [['Country', 'Cases']]
+
+    for country in world_data:
+        if country['country'] not in continents_list:
+            if country['country'] in country_fix:
+                data.append(['{}'.format(country_fix.get(country['country'])), country['cases']['total']])
+            else:
+                data.append(['{}'.format(country['country']), country['cases']['total']])
+
+    return data
+
+
 class GetNews:
     def __init__(self, country, no_of_articles):
         self.country = country.lower()
@@ -83,12 +104,6 @@ class GetNews:
                                                    # country=country_code
                                                    )
             return top_headlines['articles'][:self.no_of_articles]
-
-
-
-
-
-
 
 
 

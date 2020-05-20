@@ -29,10 +29,12 @@ def indexView(request):
     world_data = get_country_data(None)
 
     continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
-                       'All', 'Australia']
+                       'All']
 
     news = GetNews(selected_region, 6)
     news.get_articles()
+
+    data_google = choropleth_data(world_data)
 
     if selected_region == "All":
         selected_region = 'World'
@@ -45,6 +47,7 @@ def indexView(request):
         'regional_data': regional_data,
         'world_data': world_data,
         'continents_list': continents_list,
+        'data_google': json.dumps(data_google),
         'news': news.get_articles()
     }
 
