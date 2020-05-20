@@ -25,7 +25,7 @@ SECRET_KEY = '2drrr$e*12%16b+ckyn^i0mnzk-n_=4gfat)*45zl$l_j9boyx'
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['covidworld.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['covid.nikhilwidhani.com', 'covidworld.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
