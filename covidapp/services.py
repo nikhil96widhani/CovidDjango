@@ -11,6 +11,10 @@ API_HEADERS = {
     'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
 }
 
+# Load Country Json
+with open('country_codes.json') as f:
+    country_codes = json.load(f)
+
 
 def get_country_data(country):
     querystring = {"country": country}
@@ -65,19 +69,8 @@ class GetNews:
         self.get_country_code()
 
     def get_country_code(self):
-        url = "https://covid-19-data.p.rapidapi.com/help/countries"
-
-        querystring = {"format": "json"}
-
-        headers = {
-            'x-rapidapi-host': "covid-19-data.p.rapidapi.com",
-            'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
-        }
-
-        response = requests.request("GET", url, headers=headers, params=querystring)
-
         try:
-            for x in response.json():
+            for x in country_codes:
                 try:
                     if x['name'].lower() == self.country:
                         self.country_code = x['alpha2code'].lower()
@@ -109,9 +102,6 @@ class GetNews:
                                                    )
             return top_headlines['articles'][:self.no_of_articles]
 
-
-
-
 # def linechart_data():
 #     import requests
 #
@@ -135,4 +125,3 @@ class GetNews:
 #
 # response = requests.get('https://api.covid19data.cloud/v1/jh/daily-reports?last_update_from=2020-04-01&last_update_to=2020-04-03&country=Total')
 # print(response.json())
-
