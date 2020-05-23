@@ -11064,3 +11064,8 @@ body.sidebar-toggled footer.sticky-footer {
 .select2-dropdown333 {
   max-width: 400px !important;
 }
+
+#regions_div svg>g>g>g>g>rect[stroke="#ffffff"][stroke-width="1"] {
+  stroke: black !important;
+  stroke-width: 2px !important;
+}

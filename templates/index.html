@@ -20,19 +20,9 @@
         <h6 class="dropdown-header">
             Latest News
         </h6>
-        {% for n in news %}
-            <a class="dropdown-item d-flex align-items-center" target="_blank" href={{ n.url }}>
-                <div class="mr-3">
-                    {#                    <div class="icon-circle bg-primary">#}
-                    {#                        <img class="rounded-circle img-thumbnail" width="100px" height="100px" src="{{ n.urlToImage }}">#}
-                    {#                    </div>#}
-                </div>
-                <div>
-                    <div class="small text-gray-500">From: {{ n.source.name }}</div>
-                    <span class="font-weight-bold">{{ n.title }}</span>
-                </div>
-            </a>
-        {% endfor %}
+    <div id="latest_news">
+        <!-- News will be filled here -->
+    </div>
         <a class="dropdown-item text-center small text-gray-500" href="#">Show All News</a>
     </div>
 {% endblock %}
@@ -51,31 +41,33 @@
 
 
     <div class="container-fluid select2-dropdown333  pt-2 pb-3">
-        <form method="get">
-            {% csrf_token %}
             <div class="form-group">
                 <h1 class="h3 mb-0 text-gray-800 text-center p-2">Showing stats for</h1>
+
                 <!-- <label>Corona Virus Stats for : WORLD</label> -->
-                <select data-placeholder="Select a Country" data-allow-clear="1" name="region"
-                        onchange="this.form.submit();">
+                <select id="region_selector" data-placeholder="Select a Country" data-allow-clear="1" name="region">
                     <option></option>
                     {% for region in regions %}
                         <option
                                 value="{{ region }}"
-                                {% if selected_region == region %}
+                                {% if region == 'World' %}
                                 selected="selected"
                                 {% endif %} >{{ region }}
                         </option>
                     {% endfor %}
                 </select>
+
+
+                <div id="spinner" class="text-center py-2">
+                    <div class="spinner-border text-primary" role="status"></div>
+                </div>
+
             </div>
 
-        </form>
-
     </div>
+
     <!-- Content Row -->
     <div class="row">
-        {% for a in regional_data %}
 
             <!-- Total Cases Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -85,17 +77,22 @@
                             <div class="col mr-2">
                                 <div class="text-s font-weight-bold text-primary text-uppercase mb-1">Total Cases
                                 </div>
-                                <div class="h4 mb-0 font-weight-bold text-gray-800">{{ a.cases.total|int_comma }}
-                                    <sub class="text-xs font-weight-bold text-grey ml-1"><i
-                                            class="fas fa-long-arrow-alt-up text-danger"></i> {{ a.cases.new|int_comma }}
-                                    </sub>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div id="total_cases" class="h4 mb-0 mr-3 font-weight-bold text-gray-800">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <sub id="new_total_cases" class="text-s font-weight-bold text-gray-800">
+                                            </sub>
+
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-head-side-virus fa-2x text-gray-300"></i>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -110,19 +107,19 @@
                                 </div>
                                 <div class="row no-gutters align-items-center">
                                     <div class="col-auto">
-                                        <div class="h4 mb-0 mr-3 font-weight-bold text-gray-800">{{ a.deaths.total|int_comma }}
-                                            {#                            <sub class='text-xs font-weight-bold ml-1 text-danger'> 50%</sub>#}
-                                            <sub class="text-xs font-weight-bold text-grey ml-1"><i
-                                                    class="fas fa-long-arrow-alt-up text-danger"></i> {{ a.deaths.new|int_comma }}
-                                            </sub>
+                                        <div id="total_deaths" class="h4 mb-0 mr-3 font-weight-bold text-gray-800">
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div class="text-xs text-danger">{{ a.deaths.total|get_percentage:a.cases.recovered }}</div>
+                                    <div class="col-auto">
+                                        <sub id="new_total_deaths" class="text-xs font-weight-bold text-grey-800 ml-1">
+                                            </sub>
+                                    </div>
+                                    <div class="col ml-3">
+                                        <div class="text-xs text-danger">11%</div>
                                         <div class="progress progress-sm mr-2">
                                             <div class="progress-bar bg-danger" role="progressbar"
-                                                 style="width: {{ a.deaths.total|get_percentage:a.cases.recovered }}"
-                                                 aria-valuenow={{ a.deaths.total|get_percentage:a.cases.recovered }} aria-valuemin="0"
+                                                 style="width: 11%"
+                                                 aria-valuenow=11% aria-valuemin="0"
                                                  aria-valuemax="100"></div>
                                         </div>
                                     </div>
@@ -145,9 +142,25 @@
                                 <div class="text-s font-weight-bold text-success text-uppercase mb-1">Total
                                     Recovered
                                 </div>
-                                <div class="h4 mb-0 font-weight-bold text-gray-800">{{ a.cases.recovered|int_comma }}
-                                    <sub class="text-xs font-weight-bold text-grey ml-1"><i
-                                            class="fas fa-long-arrow-alt-up text-danger"></i> N/A</sub>
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col-auto">
+                                        <div id="total_recovered" class="h4 mb-0 mr-3 font-weight-bold text-gray-800">
+                                        </div>
+                                    </div>
+{#                                    <div class="col-auto">#}
+{#                                        <sub id="new_total_recovered" class="text-s font-weight-bold text-gray-800"><i#}
+{#                                                    class="fas fa-long-arrow-alt-up text-danger"></i>#}
+{#                                            </sub>#}
+{#                                    </div>#}
+                                    <div class="col ml-3">
+                                        <div class="text-xs text-success">89%</div>
+                                        <div class="progress progress-sm mr-2">
+                                            <div class="progress-bar bg-success" role="progressbar"
+                                                 style="width: 89%"
+                                                 aria-valuenow=89% aria-valuemin="0"
+                                                 aria-valuemax="100"></div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -166,19 +179,18 @@
                             <div class="col">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">Active Cases
                                 </div>
-                                <div class="h4 mb-0 font-weight-bold text-gray-800">{{ a.cases.active|int_comma }}</div>
+                                <div id="total_active" class="h4 mb-0 font-weight-bold text-gray-800"></div>
                             </div>
                             <div class="col">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">Critical
                                     Cases
                                 </div>
-                                <div class="h4 mb-0 font-weight-bold text-gray-800">{{ a.cases.critical|int_comma }}</div>
+                                <div id="total_critical" class="h4 mb-0 font-weight-bold text-gray-800"></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        {% endfor %}
     </div>
 
 
@@ -264,35 +276,38 @@
             </div>
             <!-- Card Body -->
             <div class="card-body">
-                <div id="regions_div" ></div>
+                <div id="regions_div"></div>
+
 
             </div>
         </div>
         <!-- Line Chart -->
-{#        <div class="card shadow mb-4">#}
-{#            <!-- Card Header - Dropdown -->#}
-{#            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">#}
-{#                <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>#}
-{#                <div class="dropdown no-arrow">#}
-{#                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"#}
-{#                       aria-haspopup="true" aria-expanded="false">#}
-{#                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
-{#                    </a>#}
-{#                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"#}
-{#                         aria-labelledby="dropdownMenuLink">#}
-{#                        <div class="dropdown-header">Dropdown Header:</div>#}
-{#                        <a class="dropdown-item" href="#">Action</a>#}
-{#                        <a class="dropdown-item" href="#">Another action</a>#}
-{#                        <div class="dropdown-divider"></div>#}
-{#                        <a class="dropdown-item" href="#">Something else here</a>#}
-{#                    </div>#}
-{#                </div>#}
-{#            </div>#}
-{#            <!-- Card Body -->#}
-{#            <div class="card-body">#}
-{#                <div id="linechart_material"></div>#}
-{##}
-{#            </div>#}
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>
+                <div class="dropdown no-arrow">
+                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false">
+                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                         aria-labelledby="dropdownMenuLink">
+                        <div class="dropdown-header">Dropdown Header:</div>
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Card Body -->
+            <div class="card-body">
+                <div id="linechart_material"></div>
+
+            </div>
+
+
 {##}
 {##}
 {##}
@@ -347,8 +362,8 @@
 {#        </div>#}
     </div>
 
-
-
+    </div>
+    </div>
     <!-- More features comming soon -->
     <div class="container-fluid select2-dropdown333  py-5">
         <div class="card bg-secondary text-white shadow text-center">
@@ -360,7 +375,210 @@
 
     </div>
 
+    </div>
     <!-- /.container-fluid -->
+
+
+
+    <!-- World Stats Ajax-->
+        <script>
+
+        function number_format(number, decimals, dec_point, thousands_sep) {
+            // *     example: number_format(1234.56, 2, ',', ' ');
+            // *     return: '1 234,56'
+            number = (number + '').replace(',', '').replace(' ', '');
+            var n = !isFinite(+number) ? 0 : +number,
+                prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
+                sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
+                dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
+                s = '',
+                toFixedFix = function (n, prec) {
+                    var k = Math.pow(10, prec);
+                    return '' + Math.round(n * k) / k;
+                };
+            // Fix for IE parseFloat(0.55).toFixed(0) = 0;
+            s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
+            if (s[0].length > 3) {
+                s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
+            }
+            if ((s[1] || '').length < prec) {
+                s[1] = s[1] || '';
+                s[1] += new Array(prec - s[1].length + 1).join('0');
+            }
+            return s.join(dec);
+        }
+
+
+        $('#region_selector').change(function () {
+            $("#spinner").show()
+            loadWorldStats();
+        });
+
+        function loadWorldStats() {
+            var region_name = document.getElementById('region_selector').value;
+
+            if (region_name === '') {
+                region_name = 'World'
+
+            } else {
+                //pass
+            }
+
+            var getworldstats = '/api/worldstats';
+
+            $.ajax({
+                methood: "GET",
+                url: getworldstats,
+                data: {'region': region_name},
+                success: function (data) {
+
+                    document.getElementById("total_cases").innerHTML = number_format(data[0].cases.total);
+                    var case_increase = number_format(data[0].cases.new);
+
+                    document.getElementById("new_total_cases").innerHTML =
+                        '<i class="fas fa-long-arrow-alt-up text-danger"></i>' + ' ' + case_increase;
+
+                    document.getElementById("total_deaths").innerHTML = number_format(data[0].deaths.total);
+                    var case_increase2 = number_format(data[0].deaths.new);
+
+                    document.getElementById("new_total_deaths").innerHTML =
+                        '<i class="fas fa-long-arrow-alt-up text-danger"></i>' + ' ' + case_increase2;
+
+                    document.getElementById("total_recovered").innerHTML = number_format(data[0].cases.recovered);
+
+                    document.getElementById("total_active").innerHTML = number_format(data[0].cases.active);
+
+                    document.getElementById("total_critical").innerHTML = number_format(data[0].cases.critical);
+
+                },
+                error: function (error_data) {
+                    console.log("error");
+                    console.log(error_data)
+                }
+
+            }).done(function() {
+               //on return, add here
+               $("#spinner").hide()
+          });
+        }
+
+        $(document).ready(function loadPage() {
+            loadWorldStats();
+        });
+
+
+    </script>
+
+{#        <!-- Table SCRIPT -->#}
+{##}
+{#    <script>#}
+{##}
+{#        function loadTable() {#}
+{##}
+{#            var getNewsData = '/api/tabledata';#}
+{##}
+{#            $.ajax({#}
+{#                methood: "GET",#}
+{#                url: getNewsData,#}
+{#                success: function (data) {#}
+{#                    console.log(data)#}
+{#                    for (var article in data) {#}
+{#                        $("#latest_news").append(#}
+{#                            '<a class="dropdown-item d-flex align-items-center" target="_blank" href=' + data[article].url + '>' +#}
+{#                            '<div class="mr-3">' +#}
+{#                            '<div class="icon-circle bg-primary">' +#}
+{#                            '<img class="rounded-circle img-thumbnail" width="100px" height="100px" src="' + data[article].urlToImage + '">' +#}
+{#                            '</div>' +#}
+{#                            '</div>' +#}
+{#                            '<div>' +#}
+{#                            '<div class="small text-gray-500">From: ' + data[article].source.name + ' </div>' +#}
+{#                            '<span class="font-weight-bold">' + data[article].title +'</span>' +#}
+{#                            '</div>' +#}
+{#                            '</a>'#}
+{#                        );#}
+{#                    }#}
+{#                },#}
+{#                error: function (error_data) {#}
+{#                    console.log("error");#}
+{#                    console.log(error_data)#}
+{#                }#}
+{##}
+{#            }).done(function () {#}
+{#                //on return, add here#}
+{#                $("#spinner").hide()#}
+{#            });#}
+{#        }#}
+{##}
+{#        $(document).ready(function loadPage() {#}
+{#        loadTable();#}
+{#        });#}
+{##}
+{#    </script>#}
+
+
+    <!-- api/news SCRIPT -->
+
+    <script>
+
+        $("#news_button").click(function(){
+            $("#latest_news").empty()
+            $("#spinner").show()
+            loadNews();
+         });
+
+        $('#region_selector').change(function () {
+            $("#latest_news").empty()
+            $("#spinner").show()
+            loadNews();
+        });
+
+        function loadNews() {
+            var region_name = document.getElementById('region_selector').value;
+
+            if (region_name === '') {
+                region_name = 'World'
+
+            } else {
+                //pass
+            }
+
+            var getNewsData = '/api/news';
+
+            $.ajax({
+                methood: "GET",
+                url: getNewsData,
+                data: {'region': region_name},
+                success: function (data) {
+                    console.log(data)
+                    for (var article in data) {
+                        $("#latest_news").append(
+                            '<a class="dropdown-item d-flex align-items-center" target="_blank" href=' + data[article].url + '>' +
+                            '<div class="mr-3">' +
+                            '<div class="icon-circle bg-primary">' +
+                            '<img class="rounded-circle img-thumbnail" width="100px" height="100px" src="' + data[article].urlToImage + '">' +
+                            '</div>' +
+                            '</div>' +
+                            '<div>' +
+                            '<div class="small text-gray-500">From: ' + data[article].source.name + ' </div>' +
+                            '<span class="font-weight-bold">' + data[article].title +'</span>' +
+                            '</div>' +
+                            '</a>'
+                        );
+                    }
+                },
+                error: function (error_data) {
+                    console.log("error");
+                    console.log(error_data)
+                }
+
+            }).done(function () {
+                //on return, add here
+                $("#spinner").hide()
+            });
+        }
+
+    </script>
+
 
 
     <!-- GOOGLE CHART SCRIPT -->
@@ -375,14 +593,30 @@
         google.charts.setOnLoadCallback(drawRegionsMap);
 
         function drawRegionsMap() {
-            var data_googles = {{ data_google|safe }};
-            var data = google.visualization.arrayToDataTable(data_googles);
+            var data_geochart = $.ajax({
+              url: "/api/geochart",
+              dataType: "json",
+              async: false
+              }).responseJSON;
+            console.log(data_geochart)
+
+            var data = google.visualization.arrayToDataTable(data_geochart);
 
             var options = {
                 legend: 'none',
-                colorAxis: {colors: ['#C9D5F5', '#2E4585']},
+                colorAxis: {
+                    {#Custom scale and colour https://www.colorhexa.com/2e4585 #}
+                    values:[3000, 10000, 30000, 50000, 100000, 150000, 200000, 1000000],
+                    colors: ['#d5dcf1', '#c7d0eb', '#b8c4e6', '#9bacdc', '#7e94d2', '#617cc8', '#3d5cb1', '#334d94'],
+                    {#Set Scale#}
+                    {#colors: ['#C9D5F5', '#2E4585']#}
+                },
                 datalessRegionColor: '#f8f8f8',
                 defaultColor: '#f8f8f8',
+
+
+                {#show region based on selection#}
+                {#region: 'US'#}
 
             };
             function resize () {
@@ -396,65 +630,61 @@
 
         }
 
+
     </script>
 
+
+
         <!-- GOOGLE Geo CHART STYLING -->
-    <style xmlns="http://www.w3.org/2000/svg">
-        path {
+{#    <style>#}
+{#        path {#}
             {#fill: #ffac;#}
-            stroke: #fff;
-            stroke-width: 0.5;
-        }
-
-        :hover {
-            {#fill: #fcafff;#}
-            stroke: #000;
-        }
-    </style>
-
-
-
-{#    <script>#}
-{#        google.charts.load('current', {'packages': ['line']});#}
-{#        google.charts.setOnLoadCallback(drawChart);#}
-{##}
-{#        function drawChart() {#}
-{##}
-{#            var data = new google.visualization.DataTable();#}
-{#            data.addColumn('number', 'Day');#}
-{#            data.addColumn('number', 'Guardians of the Galaxy');#}
-{#            data.addColumn('number', 'The Avengers');#}
-{#            data.addColumn('number', 'Transformers: Age of Extinction');#}
-{##}
-{#            data.addRows([#}
-{#                [1, 37.8, 80.8, 41.8],#}
-{#                [2, 30.9, 69.5, 32.4],#}
-{#                [3, 25.4, 57, 25.7],#}
-{#                [4, 11.7, 18.8, 10.5],#}
-{#                [5, 11.9, 17.6, 10.4],#}
-{#                [6, 8.8, 13.6, 7.7],#}
-{#                [7, 7.6, 12.3, 9.6],#}
-{#                [8, 12.3, 29.2, 10.6],#}
-{#                [9, 16.9, 42.9, 14.8],#}
-{#                [10, 12.8, 30.9, 11.6],#}
-{#                [11, 5.3, 7.9, 4.7],#}
-{#                [12, 6.6, 8.4, 5.2],#}
-{#                [13, 4.8, 6.3, 3.6],#}
-{#                [14, 4.2, 6.2, 3.4]#}
-{#            ]);#}
-{##}
-{#            var options = {#}
-{#                legend: {position: 'none'}#}
-{##}
-{##}
-{#            };#}
-{##}
-{#            var chart = new google.charts.Line(document.getElementById('linechart_material'));#}
-{##}
-{#            chart.draw(data, google.charts.Line.convertOptions(options));#}
-{#            window.addEventListener('resize', drawRegionsMap, false);#}
+{#            stroke: #fff;#}
+{#            stroke-width: 0.5;#}
 {#        }#}
-{#    </script>#}
+{##}
+{#        :hover {#}
+            {#fill: #fcafff;#}
+{#            stroke: #000;#}
+{#        }#}
+{#    </style>#}
+{##}
+
+
+    <script>
+        google.charts.load('current', {'packages': ['line']});
+        google.charts.setOnLoadCallback(drawChart);
+
+
+        function drawChart() {
+            var data_linechart = $.ajax({
+              url: "/api/linechart",
+              dataType: "json",
+              async: false
+              }).responseJSON;
+
+            var data = new google.visualization.DataTable();
+
+            data.addColumn('string', 'day');
+            data.addColumn('number', 'cases');
+            data.addColumn('number', 'recovered');
+            data.addColumn('number', 'deaths');
+
+            data.addRows(data_linechart);
+
+            var options = {
+                legend: {position: 'none'}
+
+
+            };
+
+            var chart = new google.charts.Line(document.getElementById('linechart_material'));
+
+            chart.draw(data, google.charts.Line.convertOptions(options));
+
+        }
+        window.addEventListener('resize', drawChart, false);
+    </script>
 
 
 {% endblock %}
@@ -463,8 +693,8 @@
 {% block js %}
 
     <!-- select2 -->
-    {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>#}
-    <script src="{% static 'js/select2.min.js' %}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+{#    <script src="{% static 'js/select2.min.js' %}"></script>#}
 
     {#      <script>#}
     {#      $(function () {#}
