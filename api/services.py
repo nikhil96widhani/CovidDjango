@@ -46,8 +46,7 @@ def choropleth_data():
     world_data = get_country_data(None)
     continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
                        'All']
-    # country_to_fix = ['USA', 'Saudi-Arabia', 'UK', 'South-Africa', 'DRC', 'South-Sudan', 'Papua-New-Guinea',
-    #                   'New-Zealand', 'Sri-Lanka']
+
     country_fix = {"USA": "United States", "Saudi-Arabia": "Saudi Arabia", "UK": "United Kingdom",
                    "South-Africa": "South Africa", "DRC": "CD", "South-Sudan": "SS", "Papua-New-Guinea": "PG",
                    "New-Zealand": "New Zealand", "Sri-Lanka": "Sri Lanka"}

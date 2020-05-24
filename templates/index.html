@@ -20,9 +20,9 @@
         <h6 class="dropdown-header">
             Latest News
         </h6>
-    <div id="latest_news">
-        <!-- News will be filled here -->
-    </div>
+        <div id="latest_news">
+            <!-- News will be filled here -->
+        </div>
         <a class="dropdown-item text-center small text-gray-500" href="#">Show All News</a>
     </div>
 {% endblock %}
@@ -33,14 +33,14 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
-    <!-- Page Heading -->
-    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-      <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-      <a ="#" class="d-none2 d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
-    </div> -->
+        <!-- Page Heading -->
+        <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+          <a ="#" class="d-none2 d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+        </div> -->
 
 
-    <div class="container-fluid select2-dropdown333  pt-2 pb-3">
+        <div class="container-fluid select2-dropdown333  pt-2 pb-3">
             <div class="form-group">
                 <h1 class="h3 mb-0 text-gray-800 text-center p-2">Showing stats for</h1>
 
@@ -64,10 +64,10 @@
 
             </div>
 
-    </div>
+        </div>
 
-    <!-- Content Row -->
-    <div class="row">
+        <!-- Content Row -->
+        <div class="row">
 
             <!-- Total Cases Card Example -->
             <div class="col-xl-3 col-md-6 mb-4">
@@ -84,7 +84,7 @@
                                     </div>
                                     <div class="col">
                                         <sub id="new_total_cases" class="text-s font-weight-bold text-gray-800">
-                                            </sub>
+                                        </sub>
 
                                     </div>
                                 </div>
@@ -112,15 +112,13 @@
                                     </div>
                                     <div class="col-auto">
                                         <sub id="new_total_deaths" class="text-xs font-weight-bold text-grey-800 ml-1">
-                                            </sub>
+                                        </sub>
                                     </div>
                                     <div class="col ml-3">
-                                        <div class="text-xs text-danger">11%</div>
+                                        <div id="deathpercentage1" class="text-xs text-danger"></div>
                                         <div class="progress progress-sm mr-2">
-                                            <div class="progress-bar bg-danger" role="progressbar"
-                                                 style="width: 11%"
-                                                 aria-valuenow=11% aria-valuemin="0"
-                                                 aria-valuemax="100"></div>
+                                            <div id="deathpercentage2" class="progress-bar bg-danger" role="progressbar"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -147,18 +145,11 @@
                                         <div id="total_recovered" class="h4 mb-0 mr-3 font-weight-bold text-gray-800">
                                         </div>
                                     </div>
-{#                                    <div class="col-auto">#}
-{#                                        <sub id="new_total_recovered" class="text-s font-weight-bold text-gray-800"><i#}
-{#                                                    class="fas fa-long-arrow-alt-up text-danger"></i>#}
-{#                                            </sub>#}
-{#                                    </div>#}
-                                    <div class="col ml-3">
-                                        <div class="text-xs text-success">89%</div>
+                                    <div class="col ml-4">
+                                        <div id="recoveredpercentage1" class="text-xs text-success"></div>
                                         <div class="progress progress-sm mr-2">
-                                            <div class="progress-bar bg-success" role="progressbar"
-                                                 style="width: 89%"
-                                                 aria-valuenow=89% aria-valuemin="0"
-                                                 aria-valuemax="100"></div>
+                                            <div id="recoveredpercentage2" class="progress-bar bg-success" role="progressbar"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -191,189 +182,190 @@
                     </div>
                 </div>
             </div>
-    </div>
-
-
-    <!-- Content Row -->
-
-    <div class="row">
-    <!-- Data table -->
-    <div class="col-xl-7 col-lg-7 py-3">
-        <div class="card shadow">
-            <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">DataTable: Cases by Country</h6>
-            </div>
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-bordered" id="dataTable">
-                        <thead>
-                        <tr>
-                            <th>Country</th>
-                            <th>Cases</th>
-                            <th>New Cases</th>
-                            <th>Deaths</th>
-                            <th>New Deaths</th>
-                            <th>Recovered</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for countries in world_data %}
-                            {% if countries.country not in continents_list %}
-                                <tr>
-                                    <td class="text-primary">{{ countries.country }}</td>
-                                    <td>{{ countries.cases.total|int_comma }}</td>
-                                    <td class="text-danger">+{{ countries.cases.new|int_comma }}</td>
-                                    <td>{{ countries.deaths.total|int_comma }}</td>
-                                    <td class="text-danger">+{{ countries.deaths.new|int_comma }}</td>
-                                    <td>{{ countries.cases.recovered|int_comma }}</td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                        </tbody>
-                        <tfoot>
-                        {% for countries in world_data %}
-                            {% if countries.country == 'All' %}
-                                <tr>
-                                    <th>Total</th>
-                                    <th>{{ countries.cases.total|int_comma }}</th>
-                                    <th>+{{ countries.cases.new|int_comma }}</th>
-                                    <th>{{ countries.deaths.total|int_comma }}</th>
-                                    <th>+{{ countries.deaths.new|int_comma }}</th>
-                                    <th>{{ countries.cases.recovered|int_comma }}</th>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                        </tfoot>
-                    </table>
-                </div>
-            </div>
         </div>
-    </div>
 
 
+        <!-- Content Row -->
 
-    <!-- Charts -->
-    <div class="col-xl-5 col-lg-5 py-3">
-        <!-- Geo Chart -->
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>
-{#                <div class="dropdown no-arrow">#}
-{#                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"#}
-{#                       aria-haspopup="true" aria-expanded="false">#}
-{#                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
-{#                    </a>#}
-{#                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"#}
-{#                         aria-labelledby="dropdownMenuLink">#}
-{#                        <div class="dropdown-header">Dropdown Header:</div>#}
-{#                        <a class="dropdown-item" href="#">Action</a>#}
-{#                        <a class="dropdown-item" href="#">Another action</a>#}
-{#                        <div class="dropdown-divider"></div>#}
-{#                        <a class="dropdown-item" href="#">Something else here</a>#}
-{#                    </div>#}
-{#                </div>#}
-            </div>
-            <!-- Card Body -->
-            <div class="card-body">
-                <div id="regions_div"></div>
-
-
-            </div>
-        </div>
-        <!-- Line Chart -->
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>
-                <div class="dropdown no-arrow">
-                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                         aria-labelledby="dropdownMenuLink">
-                        <div class="dropdown-header">Dropdown Header:</div>
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
+        <div class="row">
+            <!-- Data table -->
+            <div class="col-xl-7 col-lg-7 py-3">
+                <div class="card shadow">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">DataTable: Cases by Country</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable">
+                                <thead>
+                                <tr>
+                                    <th>Country</th>
+                                    <th>Cases</th>
+                                    <th>New Cases</th>
+                                    <th>Deaths</th>
+                                    <th>New Deaths</th>
+                                    <th>Recovered</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <!-- CONTENT GOES HERE -->
+                                {% for countries in world_data %}
+                                    {% if countries.country not in continents_list %}
+                                        <tr>
+                                            <td class="text-primary">{{ countries.country }}</td>
+                                            <td>{{ countries.cases.total|int_comma }}</td>
+                                            <td class="text-danger">+{{ countries.cases.new|int_comma }}</td>
+                                            <td>{{ countries.deaths.total|int_comma }}</td>
+                                            <td class="text-danger">+{{ countries.deaths.new|int_comma }}</td>
+                                            <td>{{ countries.cases.recovered|int_comma }}</td>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tbody>
+                                <tfoot>
+                                {% for countries in world_data %}
+                                    {% if countries.country == 'All' %}
+                                        <tr>
+                                            <th>Total</th>
+                                            <th>{{ countries.cases.total|int_comma }}</th>
+                                            <th>+{{ countries.cases.new|int_comma }}</th>
+                                            <th>{{ countries.deaths.total|int_comma }}</th>
+                                            <th>+{{ countries.deaths.new|int_comma }}</th>
+                                            <th>{{ countries.cases.recovered|int_comma }}</th>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
+                                </tfoot>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Card Body -->
-            <div class="card-body">
-                <div id="linechart_material"></div>
-
-            </div>
 
 
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-{##}
-            {#            <div class="col-xl-5 col-lg-5 py-3">#}
-            {#                <div class="card shadow mb-4">#}
-            {#                    <!-- Card Header - Dropdown -->#}
-            {#                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">#}
-            {#                        <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>#}
-            {#                  <div class="dropdown no-arrow">#}
-            {#                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-            {#                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
-            {#                    </a>#}
-            {#                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">#}
-            {#                      <div class="dropdown-header">Dropdown Header:</div>#}
-            {#                      <a class="dropdown-item" href="#">Action</a>#}
-            {#                      <a class="dropdown-item" href="#">Another action</a>#}
-            {#                      <div class="dropdown-divider"></div>#}
-            {#                      <a class="dropdown-item" href="#">Something else here</a>#}
-            {#                    </div>#}
-            {#                  </div>#}
-            {#                    </div>#}
-            {#                    <!-- Card Body -->#}
-            {#                    <div class="card-body">#}
-            {#                        <div class="chart-pie pt-4 pb-2">#}
-            {#                            <canvas id="myPieChart"></canvas>#}
-            {#                        </div>#}
-            {#                        <div class="mt-4 text-center small">#}
-            {#                    <span class="mr-2">#}
-            {#                      <i class="fas fa-circle text-primary"></i> Recovered#}
-            {#                    </span>#}
-            {#                            <span class="mr-2">#}
-            {#                      <i class="fas fa-circle text-success"></i> Death#}
-            {#                    </span>#}
-            {#                            <span class="mr-2">#}
-            {#                      <i class="fas fa-circle text-info"></i> Pending#}
-            {#                    </span>#}
-            {#                        </div>#}
-            {#                    </div>#}
-            {#                </div>#}
-            {#            </div>#}
-{#        </div>#}
-    </div>
+            <!-- Charts -->
+            <div class="col-xl-5 col-lg-5 py-3">
+                <!-- Geo Chart -->
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>
+                        {#                <div class="dropdown no-arrow">#}
+                        {#                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"#}
+                        {#                       aria-haspopup="true" aria-expanded="false">#}
+                        {#                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
+                        {#                    </a>#}
+                        {#                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"#}
+                        {#                         aria-labelledby="dropdownMenuLink">#}
+                        {#                        <div class="dropdown-header">Dropdown Header:</div>#}
+                        {#                        <a class="dropdown-item" href="#">Action</a>#}
+                        {#                        <a class="dropdown-item" href="#">Another action</a>#}
+                        {#                        <div class="dropdown-divider"></div>#}
+                        {#                        <a class="dropdown-item" href="#">Something else here</a>#}
+                        {#                    </div>#}
+                        {#                </div>#}
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div id="regions_div"></div>
 
-    </div>
-    </div>
-    <!-- More features comming soon -->
-    <div class="container-fluid select2-dropdown333  py-5">
-        <div class="card bg-secondary text-white shadow text-center">
-            <div class="card-body">
-                More Charts and Tables coming soon...
-                <div class="text-white-50 small">issue code #858796</div>
+
+                    </div>
+                </div>
+                <!-- Line Chart -->
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>
+                        <div class="dropdown no-arrow">
+                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown"
+                               aria-haspopup="true" aria-expanded="false">
+                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                 aria-labelledby="dropdownMenuLink">
+                                <div class="dropdown-header">Dropdown Header:</div>
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div id="linechart_material"></div>
+
+                    </div>
+
+
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {##}
+                    {#            <div class="col-xl-5 col-lg-5 py-3">#}
+                    {#                <div class="card shadow mb-4">#}
+                    {#                    <!-- Card Header - Dropdown -->#}
+                    {#                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">#}
+                    {#                        <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>#}
+                    {#                  <div class="dropdown no-arrow">#}
+                    {#                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
+                    {#                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
+                    {#                    </a>#}
+                    {#                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">#}
+                    {#                      <div class="dropdown-header">Dropdown Header:</div>#}
+                    {#                      <a class="dropdown-item" href="#">Action</a>#}
+                    {#                      <a class="dropdown-item" href="#">Another action</a>#}
+                    {#                      <div class="dropdown-divider"></div>#}
+                    {#                      <a class="dropdown-item" href="#">Something else here</a>#}
+                    {#                    </div>#}
+                    {#                  </div>#}
+                    {#                    </div>#}
+                    {#                    <!-- Card Body -->#}
+                    {#                    <div class="card-body">#}
+                    {#                        <div class="chart-pie pt-4 pb-2">#}
+                    {#                            <canvas id="myPieChart"></canvas>#}
+                    {#                        </div>#}
+                    {#                        <div class="mt-4 text-center small">#}
+                    {#                    <span class="mr-2">#}
+                    {#                      <i class="fas fa-circle text-primary"></i> Recovered#}
+                    {#                    </span>#}
+                    {#                            <span class="mr-2">#}
+                    {#                      <i class="fas fa-circle text-success"></i> Death#}
+                    {#                    </span>#}
+                    {#                            <span class="mr-2">#}
+                    {#                      <i class="fas fa-circle text-info"></i> Pending#}
+                    {#                    </span>#}
+                    {#                        </div>#}
+                    {#                    </div>#}
+                    {#                </div>#}
+                    {#            </div>#}
+                    {#        </div>#}
+                </div>
+
             </div>
         </div>
+        <!-- More features comming soon -->
+        <div class="container-fluid select2-dropdown333  py-5">
+            <div class="card bg-secondary text-white shadow text-center">
+                <div class="card-body">
+                    More Charts and Tables coming soon...
+                    <div class="text-white-50 small">issue code #858796</div>
+                </div>
+            </div>
 
-    </div>
+        </div>
 
     </div>
     <!-- /.container-fluid -->
@@ -381,7 +373,7 @@
 
 
     <!-- World Stats Ajax-->
-        <script>
+    <script>
 
         function number_format(number, decimals, dec_point, thousands_sep) {
             // *     example: number_format(1234.56, 2, ',', ' ');
@@ -408,9 +400,13 @@
             return s.join(dec);
         }
 
+        function percentage(a, b) {
+            var total = a+b;
+           return String(((100 * a) / total).toFixed(2));
+        }
 
         $('#region_selector').change(function () {
-            $("#spinner").show()
+            $("#spinner").show();
             loadWorldStats();
         });
 
@@ -444,6 +440,14 @@
                     document.getElementById("new_total_deaths").innerHTML =
                         '<i class="fas fa-long-arrow-alt-up text-danger"></i>' + ' ' + case_increase2;
 
+                    var death_percentage = percentage(data[0].deaths.total, data[0].cases.recovered)
+                    document.getElementById("deathpercentage1").innerHTML = death_percentage + '%';
+                    document.getElementById("deathpercentage2").style.width = death_percentage + '%';
+
+                    var recovered_percentage = percentage(data[0].cases.recovered, data[0].deaths.total)
+                    document.getElementById("recoveredpercentage1").innerHTML = recovered_percentage + '%';
+                    document.getElementById("recoveredpercentage2").style.width = recovered_percentage + '%';
+
                     document.getElementById("total_recovered").innerHTML = number_format(data[0].cases.recovered);
 
                     document.getElementById("total_active").innerHTML = number_format(data[0].cases.active);
@@ -456,10 +460,10 @@
                     console.log(error_data)
                 }
 
-            }).done(function() {
-               //on return, add here
-               $("#spinner").hide()
-          });
+            }).done(function () {
+                //on return, add here
+                $("#spinner").hide()
+            });
         }
 
         $(document).ready(function loadPage() {
@@ -467,70 +471,88 @@
         });
 
 
-    </script>
+            </script>
+        {##}
+        {#        <!-- Table SCRIPT -->#}
+        {##}
+        {#    <script>#}
+        {##}
+        {#        function loadTable() {#}
+        {##}
+        {#            var getNewsData = '/api/tabledata';#}
+        {##}
+        {#            $.ajax({#}
+        {#                methood: "GET",#}
+        {#                url: getNewsData,#}
+        {#                data: {region: null},#}
+        {#                success: function (data) {#}
+        {#                    console.log(data)#}
+        {#                    var trHTML = '';#}
+        {#                    $.each(data, function (i, item) {#}
+        {#                        trHTML += '<tr><td>' + item.country + '</td><td>' + item.cases.total + '</td><td>' + item.cases.new + '</td><td>' + item.deaths.total + '</td><td>' + item.deaths.new + '</td><td>' + item.cases.recovered + '</td></tr>';#}
+        {#                    });#}
+        {#                    $('#dataTable').append(trHTML);#}
+        {#                },#}
+        {#                error: function (error_data) {#}
+        {#                    console.log("error");#}
+        {#                    console.log(error_data)#}
+        {#                }#}
+        {##}
+        {#            }).done(function () {#}
+        {#                //on return, add here#}
+        {#                $("#spinner").hide()#}
+        {#            });#}
+        {#        }#}
+        {#    $(document).ready(function () {#}
+        {#                loadTable();#}
+        {#                $('#dataTable').DataTable(#}
+        {#                    {#}
+        {#                        order: [1, 'desc'],#}
+        {#                        "pagingType": "full"#}
+        {#                    }#}
+        {#                );#}
+        {#            });#}
+        {##}
+        {#    </script>#}
+        {##}
 
-{#        <!-- Table SCRIPT -->#}
-{##}
-{#    <script>#}
-{##}
-{#        function loadTable() {#}
-{##}
-{#            var getNewsData = '/api/tabledata';#}
-{##}
-{#            $.ajax({#}
-{#                methood: "GET",#}
-{#                url: getNewsData,#}
-{#                success: function (data) {#}
-{#                    console.log(data)#}
-{#                    for (var article in data) {#}
-{#                        $("#latest_news").append(#}
-{#                            '<a class="dropdown-item d-flex align-items-center" target="_blank" href=' + data[article].url + '>' +#}
-{#                            '<div class="mr-3">' +#}
-{#                            '<div class="icon-circle bg-primary">' +#}
-{#                            '<img class="rounded-circle img-thumbnail" width="100px" height="100px" src="' + data[article].urlToImage + '">' +#}
-{#                            '</div>' +#}
-{#                            '</div>' +#}
-{#                            '<div>' +#}
-{#                            '<div class="small text-gray-500">From: ' + data[article].source.name + ' </div>' +#}
-{#                            '<span class="font-weight-bold">' + data[article].title +'</span>' +#}
-{#                            '</div>' +#}
-{#                            '</a>'#}
-{#                        );#}
-{#                    }#}
-{#                },#}
-{#                error: function (error_data) {#}
-{#                    console.log("error");#}
-{#                    console.log(error_data)#}
-{#                }#}
-{##}
-{#            }).done(function () {#}
-{#                //on return, add here#}
-{#                $("#spinner").hide()#}
-{#            });#}
-{#        }#}
-{##}
-{#        $(document).ready(function loadPage() {#}
-{#        loadTable();#}
-{#        });#}
-{##}
-{#    </script>#}
+        <!-- api/news SCRIPT -->
 
+        <script >
 
-    <!-- api/news SCRIPT -->
-
-    <script>
-
-        $("#news_button").click(function(){
+        $("#news_button").click(function () {
             $("#latest_news").empty()
             $("#spinner").show()
             loadNews();
-         });
+        });
 
         $('#region_selector').change(function () {
             $("#latest_news").empty()
             $("#spinner").show()
             loadNews();
         });
+
+        function get_time(time) {
+            var time_start = new Date()
+            var time_end = new Date(time)
+
+            var Difference_In_Time = time_start.getTime() - time_end.getTime().toFixed(0);
+            var Difference_In_Minute = Difference_In_Time / (1000 * 3600);
+            var Difference_In_Days = Math.trunc(Difference_In_Time / (1000 * 3600 * 24));
+
+            var difference
+
+            if (Difference_In_Days >= 1) {
+              difference = Difference_In_Days +' days ago'
+            } else if (Difference_In_Minute >=1 ) {
+                difference = Math.trunc(Difference_In_Minute) +' hrs ago'
+            }
+            else {
+
+                difference = Math.trunc(Difference_In_Minute*100) +' mins ago'
+            }
+            return String(difference)
+        }
 
         function loadNews() {
             var region_name = document.getElementById('region_selector').value;
@@ -549,7 +571,6 @@
                 url: getNewsData,
                 data: {'region': region_name},
                 success: function (data) {
-                    console.log(data)
                     for (var article in data) {
                         $("#latest_news").append(
                             '<a class="dropdown-item d-flex align-items-center" target="_blank" href=' + data[article].url + '>' +
@@ -559,8 +580,8 @@
                             '</div>' +
                             '</div>' +
                             '<div>' +
-                            '<div class="small text-gray-500">From: ' + data[article].source.name + ' </div>' +
-                            '<span class="font-weight-bold">' + data[article].title +'</span>' +
+                            '<div class="small text-gray-500">From: ' + data[article].source.name + ' : '+ get_time(data[article].publishedAt) +' </div>' +
+                            '<span class="font-weight-bold">' + data[article].title + '</span>' +
                             '</div>' +
                             '</a>'
                         );
@@ -594,11 +615,10 @@
 
         function drawRegionsMap() {
             var data_geochart = $.ajax({
-              url: "/api/geochart",
-              dataType: "json",
-              async: false
-              }).responseJSON;
-            console.log(data_geochart)
+                url: "/api/geochart",
+                dataType: "json",
+                async: false
+            }).responseJSON;
 
             var data = google.visualization.arrayToDataTable(data_geochart);
 
@@ -606,7 +626,7 @@
                 legend: 'none',
                 colorAxis: {
                     {#Custom scale and colour https://www.colorhexa.com/2e4585 #}
-                    values:[3000, 10000, 30000, 50000, 100000, 150000, 200000, 1000000],
+                    values: [3000, 10000, 30000, 50000, 100000, 150000, 200000, 1000000],
                     colors: ['#d5dcf1', '#c7d0eb', '#b8c4e6', '#9bacdc', '#7e94d2', '#617cc8', '#3d5cb1', '#334d94'],
                     {#Set Scale#}
                     {#colors: ['#C9D5F5', '#2E4585']#}
@@ -619,11 +639,13 @@
                 {#region: 'US'#}
 
             };
-            function resize () {
+
+            function resize() {
                 var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
                 chart.draw(data, options);
             }
+
             window.onload = resize;
             window.onresize = resize;
             {#window.addEventListener('resize', drawRegionsMap, false);#}
@@ -635,20 +657,20 @@
 
 
 
-        <!-- GOOGLE Geo CHART STYLING -->
-{#    <style>#}
-{#        path {#}
-            {#fill: #ffac;#}
-{#            stroke: #fff;#}
-{#            stroke-width: 0.5;#}
-{#        }#}
-{##}
-{#        :hover {#}
-            {#fill: #fcafff;#}
-{#            stroke: #000;#}
-{#        }#}
-{#    </style>#}
-{##}
+    <!-- GOOGLE Geo CHART STYLING -->
+    {#    <style>#}
+    {#        path {#}
+    {#fill: #ffac;#}
+    {#            stroke: #fff;#}
+    {#            stroke-width: 0.5;#}
+    {#        }#}
+    {##}
+    {#        :hover {#}
+    {#fill: #fcafff;#}
+    {#            stroke: #000;#}
+    {#        }#}
+    {#    </style>#}
+    {##}
 
 
     <script>
@@ -658,10 +680,10 @@
 
         function drawChart() {
             var data_linechart = $.ajax({
-              url: "/api/linechart",
-              dataType: "json",
-              async: false
-              }).responseJSON;
+                url: "/api/linechart",
+                dataType: "json",
+                async: false
+            }).responseJSON;
 
             var data = new google.visualization.DataTable();
 
@@ -683,6 +705,7 @@
             chart.draw(data, google.charts.Line.convertOptions(options));
 
         }
+
         window.addEventListener('resize', drawChart, false);
     </script>
 
@@ -693,8 +716,8 @@
 {% block js %}
 
     <!-- select2 -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-{#    <script src="{% static 'js/select2.min.js' %}"></script>#}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    {#    <script src="{% static 'js/select2.min.js' %}"></script>#}
 
     {#      <script>#}
     {#      $(function () {#}
@@ -717,16 +740,16 @@
     <script src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
     {#    <script src="{% static 'datatables/datatables-demo.js' %}"></script>#}
 
-    <script>
-        // Call the dataTables jQuery plugin
-        $(document).ready(function () {
-            $('#dataTable').DataTable(
-                {
-                    order: [1, 'desc'],
-                    "pagingType": "full"
-                }
-            );
-        });
-    </script>
+        <script>
+            // Call the dataTables jQuery plugin
+            $(document).ready(function () {
+                $('#dataTable').DataTable(
+                    {
+                        order: [1, 'desc'],
+                        "pagingType": "full"
+                    }
+                );
+            });
+        </script>
 
 {% endblock %}

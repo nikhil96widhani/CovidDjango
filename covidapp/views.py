@@ -9,21 +9,6 @@ import json
 # Create your views here.
 
 def indexView(request):
-    selected_region = 'All'
-
-    if request.method == "GET":
-        # print(request.POST.get("region"))
-        # Filter restaurants by selected region, but only on a POST
-        selected_region = request.GET.get("region")
-        if selected_region is None:
-            selected_region = 'All'
-        elif selected_region == '':
-            selected_region = 'All'
-        elif selected_region == 'World':
-            selected_region = 'All'
-        else:
-            pass
-
     world_data = get_country_data(None)
 
     continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
