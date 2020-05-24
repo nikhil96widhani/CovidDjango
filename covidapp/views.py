@@ -9,46 +9,16 @@ import json
 # Create your views here.
 
 def indexView(request):
-    selected_region = 'All'
-
-    if request.method == "GET":
-        # print(request.POST.get("region"))
-        # Filter restaurants by selected region, but only on a POST
-        selected_region = request.GET.get("region")
-        if selected_region is None:
-            selected_region = 'All'
-        elif selected_region == '':
-            selected_region = 'All'
-        elif selected_region == 'World':
-            selected_region = 'All'
-        else:
-            pass
-
-    regional_data = get_country_data(selected_region)
-
     world_data = get_country_data(None)
 
     continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
                        'All']
 
-    news = GetNews(selected_region, 6)
-    news.get_articles()
-
-    data_google = choropleth_data(world_data)
-
-    if selected_region == "All":
-        selected_region = 'World'
-    else:
-        pass
 
     data = {
         'regions': get_country_names(),
-        'selected_region': selected_region,
-        'regional_data': regional_data,
         'world_data': world_data,
         'continents_list': continents_list,
-        'data_google': json.dumps(data_google),
-        'news': news.get_articles()
     }
 
     return render(request, 'index.html', data)

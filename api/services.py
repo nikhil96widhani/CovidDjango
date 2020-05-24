@@ -42,11 +42,11 @@ def get_country_names():
     return data
 
 
-def choropleth_data(world_data):
+def choropleth_data():
+    world_data = get_country_data(None)
     continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
                        'All']
-    # country_to_fix = ['USA', 'Saudi-Arabia', 'UK', 'South-Africa', 'DRC', 'South-Sudan', 'Papua-New-Guinea',
-    #                   'New-Zealand', 'Sri-Lanka']
+
     country_fix = {"USA": "United States", "Saudi-Arabia": "Saudi Arabia", "UK": "United Kingdom",
                    "South-Africa": "South Africa", "DRC": "CD", "South-Sudan": "SS", "Papua-New-Guinea": "PG",
                    "New-Zealand": "New Zealand", "Sri-Lanka": "Sri Lanka"}
@@ -63,45 +63,45 @@ def choropleth_data(world_data):
     return data
 
 
-# class GetNews:
-#     def __init__(self, country, no_of_articles):
-#         self.country = country.lower()
-#         self.no_of_articles = no_of_articles
-#         self.get_country_code()
-#
-#     def get_country_code(self):
-#         try:
-#             for x in country_codes:
-#                 try:
-#                     if x['name'].lower() == self.country:
-#                         self.country_code = x['alpha2code'].lower()
-#                 except:
-#                     self.country_code = ''
-#         except:
-#             self.country_code = ''
-#
-#     def get_articles(self):
-#         try:
-#             top_headlines = newsapi.get_top_headlines(q='Covid-19',
-#                                                       # language='en',
-#                                                       country=self.country_code
-#                                                       )
-#             news_headlines = top_headlines['articles'][:self.no_of_articles]
-#
-#             if news_headlines:
-#                 return news_headlines
-#             else:
-#                 top_headlines = newsapi.get_everything(q='Covid-19 {}'.format(self.country),
-#                                                        # language='en',
-#                                                        # country=country_code
-#                                                        )
-#                 return top_headlines['articles'][:self.no_of_articles]
-#         except:
-#             top_headlines = newsapi.get_everything(q='Covid-19 {}'.format(self.country),
-#                                                    # language='en',
-#                                                    # country=country_code
-#                                                    )
-#             return top_headlines['articles'][:self.no_of_articles]
+class GetNews:
+    def __init__(self, country, no_of_articles):
+        self.country = country.lower()
+        self.no_of_articles = no_of_articles
+        self.get_country_code()
+
+    def get_country_code(self):
+        try:
+            for x in country_codes:
+                try:
+                    if x['name'].lower() == self.country:
+                        self.country_code = x['alpha2code'].lower()
+                except:
+                    self.country_code = ''
+        except:
+            self.country_code = ''
+
+    def get_articles(self):
+        try:
+            top_headlines = newsapi.get_top_headlines(q='Covid-19',
+                                                      # language='en',
+                                                      country=self.country_code
+                                                      )
+            news_headlines = top_headlines['articles'][:self.no_of_articles]
+
+            if news_headlines:
+                return news_headlines
+            else:
+                top_headlines = newsapi.get_everything(q='Covid-19 {}'.format(self.country),
+                                                       # language='en',
+                                                       # country=country_code
+                                                       )
+                return top_headlines['articles'][:self.no_of_articles]
+        except:
+            top_headlines = newsapi.get_everything(q='Covid-19 {}'.format(self.country),
+                                                   # language='en',
+                                                   # country=country_code
+                                                   )
+            return top_headlines['articles'][:self.no_of_articles]
 
 def linechart_data():
     import requests
@@ -139,7 +139,6 @@ def linechart_data():
     df = df.dropna()
     del df['time']
     df_list = df.values.tolist()
-    print(df_list)
 
     return df_list
     # for entry in data:

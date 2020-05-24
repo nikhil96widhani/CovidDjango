@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load int_comma %}
+{% load static %}
+
+{% block css %}
+
+
+
+{% endblock %}
+
+
+
+
+{% block content %}
+    <!-- Begin Page Content -->
+
+    <h1 class="text-center"> API LINKS</h1>
+
+    <div class="container-fluid text-center py-5">
+        <a href="{% url 'worldstats' %}">World Stats Data |</a>
+        <a href="{% url 'news' %}">News Data |</a>
+        <a href="{% url 'geochart' %}">Geo Chart Data |</a>
+        <a href="{% url 'linechart' %}">Line Chart Data |</a>
+        <a href="{% url 'tabledata' %}">DataTable Data |</a>
+    </div>
+
+
+{% endblock %}
+
+
+
+{% block js %}
+
+
+{% endblock %}
