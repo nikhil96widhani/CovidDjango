@@ -29,7 +29,6 @@ function percentage(a, b) {
 }
 
 $('#region_selector').change(function () {
-    $("#spinner").show();
     loadWorldStats();
 });
 
@@ -85,7 +84,7 @@ function loadWorldStats() {
 
     }).done(function () {
         //on return, add here
-        $("#spinner").hide();
+
     });
 }
 
