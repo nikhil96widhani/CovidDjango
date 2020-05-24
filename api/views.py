@@ -17,20 +17,6 @@ class api_testView(View):
         return render(request, 'api-test.html', {})
 
 
-# def world_statsView(request, *args, **kwargs):
-#     data = {'name': 'Vineet',
-#             'college': 'MANIT'}
-#     data = {'name': [
-#         ['2020-03-21', 304900, 94793, 13001],
-#         ['2020-03-22', 306677, 94798, 13017],
-#         ['2020-03-23', 336068, 97636, 14613],
-#         ['2020-03-24', 378492, 101608, 16495],
-#         ['2020-03-25', 421187, 108328, 18804],
-#         ['2020-03-26', 468299, 113812, 21180],
-#         ['2020-03-27', 529614, 123380, 23976]
-#         ]}
-#     return JsonResponse(data)
-
 class world_statsView(APIView):
     authentication_classes = []
     permission_classes = []

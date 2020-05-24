@@ -5,9 +5,7 @@
 {% block css %}
 
     <!-- bootstrap SELECT 2 -->
-    {#    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />#}
-    <link href="{% static 'css/select2.min.css' %}" rel="stylesheet"/>
-    {#    <link href="https://raw.githack.com/ttskch/select2-bootstrap4-theme/master/dist/select2-bootstrap4.css" rel="stylesheet">#}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link href="{% static 'css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>
     <!-- bootstrap END SELECT 2 -->
     <link href="{% static 'datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
@@ -148,7 +146,8 @@
                                     <div class="col ml-4">
                                         <div id="recoveredpercentage1" class="text-xs text-success"></div>
                                         <div class="progress progress-sm mr-2">
-                                            <div id="recoveredpercentage2" class="progress-bar bg-success" role="progressbar"
+                                            <div id="recoveredpercentage2" class="progress-bar bg-success"
+                                                 role="progressbar"
                                                  aria-valuemin="0" aria-valuemax="100"></div>
                                         </div>
                                     </div>
@@ -273,86 +272,32 @@
                     </div>
                 </div>
                 <!-- Line Chart -->
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>
-                        <div class="dropdown no-arrow">
-                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                               data-toggle="dropdown"
-                               aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                 aria-labelledby="dropdownMenuLink">
-                                <div class="dropdown-header">Dropdown Header:</div>
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body">
-                        <div id="linechart_material"></div>
-
-                    </div>
-
-
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {##}
-                    {#            <div class="col-xl-5 col-lg-5 py-3">#}
-                    {#                <div class="card shadow mb-4">#}
-                    {#                    <!-- Card Header - Dropdown -->#}
-                    {#                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">#}
-                    {#                        <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>#}
-                    {#                  <div class="dropdown no-arrow">#}
-                    {#                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">#}
-                    {#                      <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
-                    {#                    </a>#}
-                    {#                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">#}
-                    {#                      <div class="dropdown-header">Dropdown Header:</div>#}
-                    {#                      <a class="dropdown-item" href="#">Action</a>#}
-                    {#                      <a class="dropdown-item" href="#">Another action</a>#}
-                    {#                      <div class="dropdown-divider"></div>#}
-                    {#                      <a class="dropdown-item" href="#">Something else here</a>#}
-                    {#                    </div>#}
-                    {#                  </div>#}
-                    {#                    </div>#}
-                    {#                    <!-- Card Body -->#}
-                    {#                    <div class="card-body">#}
-                    {#                        <div class="chart-pie pt-4 pb-2">#}
-                    {#                            <canvas id="myPieChart"></canvas>#}
-                    {#                        </div>#}
-                    {#                        <div class="mt-4 text-center small">#}
-                    {#                    <span class="mr-2">#}
-                    {#                      <i class="fas fa-circle text-primary"></i> Recovered#}
-                    {#                    </span>#}
-                    {#                            <span class="mr-2">#}
-                    {#                      <i class="fas fa-circle text-success"></i> Death#}
-                    {#                    </span>#}
-                    {#                            <span class="mr-2">#}
-                    {#                      <i class="fas fa-circle text-info"></i> Pending#}
-                    {#                    </span>#}
-                    {#                        </div>#}
-                    {#                    </div>#}
-                    {#                </div>#}
-                    {#            </div>#}
-                    {#        </div>#}
-                </div>
+{#                <div class="card shadow mb-4">#}
+{#                    <!-- Card Header - Dropdown -->#}
+{#                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">#}
+{#                        <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>#}
+{#                        <div class="dropdown no-arrow">#}
+{#                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"#}
+{#                               data-toggle="dropdown"#}
+{#                               aria-haspopup="true" aria-expanded="false">#}
+{#                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
+{#                            </a>#}
+{#                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"#}
+{#                                 aria-labelledby="dropdownMenuLink">#}
+{#                                <div class="dropdown-header">Dropdown Header:</div>#}
+{#                                <a class="dropdown-item" href="#">Action</a>#}
+{#                                <a class="dropdown-item" href="#">Another action</a>#}
+{#                                <div class="dropdown-divider"></div>#}
+{#                                <a class="dropdown-item" href="#">Something else here</a>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                    <!-- Card Body -->#}
+{#                    <div class="card-body">#}
+{#                        <div id="linechart_material"></div>#}
+{##}
+{#                    </div>#}
+{##}
 
             </div>
         </div>
@@ -371,292 +316,6 @@
     <!-- /.container-fluid -->
 
 
-
-    <!-- World Stats Ajax-->
-    <script>
-
-        function number_format(number, decimals, dec_point, thousands_sep) {
-            // *     example: number_format(1234.56, 2, ',', ' ');
-            // *     return: '1 234,56'
-            number = (number + '').replace(',', '').replace(' ', '');
-            var n = !isFinite(+number) ? 0 : +number,
-                prec = !isFinite(+decimals) ? 0 : Math.abs(decimals),
-                sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
-                dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
-                s = '',
-                toFixedFix = function (n, prec) {
-                    var k = Math.pow(10, prec);
-                    return '' + Math.round(n * k) / k;
-                };
-            // Fix for IE parseFloat(0.55).toFixed(0) = 0;
-            s = (prec ? toFixedFix(n, prec) : '' + Math.round(n)).split('.');
-            if (s[0].length > 3) {
-                s[0] = s[0].replace(/\B(?=(?:\d{3})+(?!\d))/g, sep);
-            }
-            if ((s[1] || '').length < prec) {
-                s[1] = s[1] || '';
-                s[1] += new Array(prec - s[1].length + 1).join('0');
-            }
-            return s.join(dec);
-        }
-
-        function percentage(a, b) {
-            var total = a+b;
-           return String(((100 * a) / total).toFixed(2));
-        }
-
-        $('#region_selector').change(function () {
-            $("#spinner").show();
-            loadWorldStats();
-        });
-
-        function loadWorldStats() {
-            var region_name = document.getElementById('region_selector').value;
-
-            if (region_name === '') {
-                region_name = 'World'
-
-            } else {
-                //pass
-            }
-
-            var getworldstats = '/api/worldstats';
-
-            $.ajax({
-                methood: "GET",
-                url: getworldstats,
-                data: {'region': region_name},
-                success: function (data) {
-
-                    document.getElementById("total_cases").innerHTML = number_format(data[0].cases.total);
-                    var case_increase = number_format(data[0].cases.new);
-
-                    document.getElementById("new_total_cases").innerHTML =
-                        '<i class="fas fa-long-arrow-alt-up text-danger"></i>' + ' ' + case_increase;
-
-                    document.getElementById("total_deaths").innerHTML = number_format(data[0].deaths.total);
-                    var case_increase2 = number_format(data[0].deaths.new);
-
-                    document.getElementById("new_total_deaths").innerHTML =
-                        '<i class="fas fa-long-arrow-alt-up text-danger"></i>' + ' ' + case_increase2;
-
-                    var death_percentage = percentage(data[0].deaths.total, data[0].cases.recovered)
-                    document.getElementById("deathpercentage1").innerHTML = death_percentage + '%';
-                    document.getElementById("deathpercentage2").style.width = death_percentage + '%';
-
-                    var recovered_percentage = percentage(data[0].cases.recovered, data[0].deaths.total)
-                    document.getElementById("recoveredpercentage1").innerHTML = recovered_percentage + '%';
-                    document.getElementById("recoveredpercentage2").style.width = recovered_percentage + '%';
-
-                    document.getElementById("total_recovered").innerHTML = number_format(data[0].cases.recovered);
-
-                    document.getElementById("total_active").innerHTML = number_format(data[0].cases.active);
-
-                    document.getElementById("total_critical").innerHTML = number_format(data[0].cases.critical);
-
-                },
-                error: function (error_data) {
-                    console.log("error");
-                    console.log(error_data)
-                }
-
-            }).done(function () {
-                //on return, add here
-                $("#spinner").hide()
-            });
-        }
-
-        $(document).ready(function loadPage() {
-            loadWorldStats();
-        });
-
-
-            </script>
-        {##}
-        {#        <!-- Table SCRIPT -->#}
-        {##}
-        {#    <script>#}
-        {##}
-        {#        function loadTable() {#}
-        {##}
-        {#            var getNewsData = '/api/tabledata';#}
-        {##}
-        {#            $.ajax({#}
-        {#                methood: "GET",#}
-        {#                url: getNewsData,#}
-        {#                data: {region: null},#}
-        {#                success: function (data) {#}
-        {#                    console.log(data)#}
-        {#                    var trHTML = '';#}
-        {#                    $.each(data, function (i, item) {#}
-        {#                        trHTML += '<tr><td>' + item.country + '</td><td>' + item.cases.total + '</td><td>' + item.cases.new + '</td><td>' + item.deaths.total + '</td><td>' + item.deaths.new + '</td><td>' + item.cases.recovered + '</td></tr>';#}
-        {#                    });#}
-        {#                    $('#dataTable').append(trHTML);#}
-        {#                },#}
-        {#                error: function (error_data) {#}
-        {#                    console.log("error");#}
-        {#                    console.log(error_data)#}
-        {#                }#}
-        {##}
-        {#            }).done(function () {#}
-        {#                //on return, add here#}
-        {#                $("#spinner").hide()#}
-        {#            });#}
-        {#        }#}
-        {#    $(document).ready(function () {#}
-        {#                loadTable();#}
-        {#                $('#dataTable').DataTable(#}
-        {#                    {#}
-        {#                        order: [1, 'desc'],#}
-        {#                        "pagingType": "full"#}
-        {#                    }#}
-        {#                );#}
-        {#            });#}
-        {##}
-        {#    </script>#}
-        {##}
-
-        <!-- api/news SCRIPT -->
-
-        <script >
-
-        $("#news_button").click(function () {
-            $("#latest_news").empty()
-            $("#spinner").show()
-            loadNews();
-        });
-
-        $('#region_selector').change(function () {
-            $("#latest_news").empty()
-            $("#spinner").show()
-            loadNews();
-        });
-
-        function get_time(time) {
-            var time_start = new Date()
-            var time_end = new Date(time)
-
-            var Difference_In_Time = time_start.getTime() - time_end.getTime().toFixed(0);
-            var Difference_In_Minute = Difference_In_Time / (1000 * 3600);
-            var Difference_In_Days = Math.trunc(Difference_In_Time / (1000 * 3600 * 24));
-
-            var difference
-
-            if (Difference_In_Days >= 1) {
-              difference = Difference_In_Days +' days ago'
-            } else if (Difference_In_Minute >=1 ) {
-                difference = Math.trunc(Difference_In_Minute) +' hrs ago'
-            }
-            else {
-
-                difference = Math.trunc(Difference_In_Minute*100) +' mins ago'
-            }
-            return String(difference)
-        }
-
-        function loadNews() {
-            var region_name = document.getElementById('region_selector').value;
-
-            if (region_name === '') {
-                region_name = 'World'
-
-            } else {
-                //pass
-            }
-
-            var getNewsData = '/api/news';
-
-            $.ajax({
-                methood: "GET",
-                url: getNewsData,
-                data: {'region': region_name},
-                success: function (data) {
-                    for (var article in data) {
-                        $("#latest_news").append(
-                            '<a class="dropdown-item d-flex align-items-center" target="_blank" href=' + data[article].url + '>' +
-                            '<div class="mr-3">' +
-                            '<div class="icon-circle bg-primary">' +
-                            '<img class="rounded-circle img-thumbnail" width="100px" height="100px" src="' + data[article].urlToImage + '">' +
-                            '</div>' +
-                            '</div>' +
-                            '<div>' +
-                            '<div class="small text-gray-500">From: ' + data[article].source.name + ' : '+ get_time(data[article].publishedAt) +' </div>' +
-                            '<span class="font-weight-bold">' + data[article].title + '</span>' +
-                            '</div>' +
-                            '</a>'
-                        );
-                    }
-                },
-                error: function (error_data) {
-                    console.log("error");
-                    console.log(error_data)
-                }
-
-            }).done(function () {
-                //on return, add here
-                $("#spinner").hide()
-            });
-        }
-
-    </script>
-
-
-
-    <!-- GOOGLE CHART SCRIPT -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', {
-            'packages': ['geochart'],
-            // Note: you will need to get a mapsApiKey for your project.
-            // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-            'mapsApiKey': 'AIzaSyDm0d0NBkHGqE1Uy5eoH07z_cr6pCKAkaA'
-        });
-        google.charts.setOnLoadCallback(drawRegionsMap);
-
-        function drawRegionsMap() {
-            var data_geochart = $.ajax({
-                url: "/api/geochart",
-                dataType: "json",
-                async: false
-            }).responseJSON;
-
-            var data = google.visualization.arrayToDataTable(data_geochart);
-
-            var options = {
-                legend: 'none',
-                colorAxis: {
-                    {#Custom scale and colour https://www.colorhexa.com/2e4585 #}
-                    values: [3000, 10000, 30000, 50000, 100000, 150000, 200000, 1000000],
-                    colors: ['#d5dcf1', '#c7d0eb', '#b8c4e6', '#9bacdc', '#7e94d2', '#617cc8', '#3d5cb1', '#334d94'],
-                    {#Set Scale#}
-                    {#colors: ['#C9D5F5', '#2E4585']#}
-                },
-                datalessRegionColor: '#f8f8f8',
-                defaultColor: '#f8f8f8',
-
-
-                {#show region based on selection#}
-                {#region: 'US'#}
-
-            };
-
-            function resize() {
-                var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
-                chart.draw(data, options);
-            }
-
-            window.onload = resize;
-            window.onresize = resize;
-            {#window.addEventListener('resize', drawRegionsMap, false);#}
-
-        }
-
-
-    </script>
-
-
-
     <!-- GOOGLE Geo CHART STYLING -->
     {#    <style>#}
     {#        path {#}
@@ -673,83 +332,36 @@
     {##}
 
 
-    <script>
-        google.charts.load('current', {'packages': ['line']});
-        google.charts.setOnLoadCallback(drawChart);
-
-
-        function drawChart() {
-            var data_linechart = $.ajax({
-                url: "/api/linechart",
-                dataType: "json",
-                async: false
-            }).responseJSON;
-
-            var data = new google.visualization.DataTable();
-
-            data.addColumn('string', 'day');
-            data.addColumn('number', 'cases');
-            data.addColumn('number', 'recovered');
-            data.addColumn('number', 'deaths');
-
-            data.addRows(data_linechart);
-
-            var options = {
-                legend: {position: 'none'}
-
-
-            };
-
-            var chart = new google.charts.Line(document.getElementById('linechart_material'));
-
-            chart.draw(data, google.charts.Line.convertOptions(options));
-
-        }
-
-        window.addEventListener('resize', drawChart, false);
-    </script>
 
 
 {% endblock %}
 
 
 {% block js %}
+    <!-- PageLevel JS -->
 
-    <!-- select2 -->
+    <!-- WorldStats JS -->
+    <script type="text/javascript" src="{% static 'scripts/worldstats.js' %} " async></script>
+    <!-- NEWS JS -->
+    <script type="text/javascript" src="{% static 'scripts/news.js' %} " async></script>
+
+
+
+    <!-- GOOGLE CHARTS JS -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- GeoChart JS -->
+    <script type="text/javascript" src="{% static 'scripts/geochart.js' %} " async></script>
+{#    <!-- LineChart JS -->#}
+{#    <script type="text/javascript" src="{% static 'scripts/linechart.js' %} " async></script>#}
+
+    <!-- SELECT2 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    {#    <script src="{% static 'js/select2.min.js' %}"></script>#}
-
-    {#      <script>#}
-    {#      $(function () {#}
-    {#        $('select').each(function () {#}
-    {#          $(this).select2({#}
-    {#            theme: 'bootstrap4',#}
-    {#            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',#}
-    {#            placeholder: $(this).data('placeholder'),#}
-    {#            allowClear: Boolean($(this).data('allow-clear')),#}
-    {#          });#}
-    {#        });#}
-    {#      });#}
-    {#      </script>#}
-    <!-- SELECT 2 END -->
     <script src="{% static 'js/select2script.js' %}"></script>
 
-    <!-- Data Table START -->
-
+    <!-- DataTable JS -->
     <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
-    {#    <script src="{% static 'datatables/datatables-demo.js' %}"></script>#}
+    <script type="text/javascript" src="{% static 'scripts/datatable.js' %} "></script>
 
-        <script>
-            // Call the dataTables jQuery plugin
-            $(document).ready(function () {
-                $('#dataTable').DataTable(
-                    {
-                        order: [1, 'desc'],
-                        "pagingType": "full"
-                    }
-                );
-            });
-        </script>
 
 {% endblock %}
