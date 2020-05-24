@@ -13,6 +13,8 @@
 
     <title>Covid-19 World Tracker</title>
 
+    <link href="{% static 'css/pace-theme.css' %}" rel="stylesheet">
+
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="57x57" href="{% static '/favicon/apple-icon-57x57.png' %}">
     <link rel="apple-touch-icon" sizes="60x60" href="{% static '/favicon/apple-icon-60x60.png' %}">
@@ -36,7 +38,7 @@
     {% block css %}
 
     {% endblock %}
-
+    <script type="text/javascript" src="{% static 'js/pace.min.js' %}"></script>
 
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/ad14bd368c.js" crossorigin="anonymous"></script>
@@ -228,8 +230,10 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright 2020 &copy; Developed by: <a
-                            href="http://nikhilwidhani.com"> Nikhil Widhani</a></span>
+                    <span>Copyright 2020 &copy; Developed by:  
+                        <a target="_blank" href="http://nikhilwidhani.com">Nikhil Widhani</a></span>
+                         & 
+                        <a target="_blank" href="https://github.com/mohitdevda2797">Mohit Devda</a></span>
                 </div>
             </div>
         </footer>
