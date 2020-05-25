@@ -268,9 +268,7 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <div id="regions_div" ></div>
-
-
+                        <div id="regions_div"></div>
                     </div>
                 </div>
                 <!-- Line Chart -->
@@ -329,7 +327,7 @@
 
 
     <!-- GOOGLE Geo CHART STYLING -->
-    {#    <style>#}
+{#        <style>#}
     {#        path {#}
     {#fill: #ffac;#}
     {#            stroke: #fff;#}
@@ -341,7 +339,7 @@
     {#            stroke: #000;#}
     {#        }#}
     {#    </style>#}
-    {##}
+
     </div>
 
 
@@ -356,15 +354,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="{% static 'js/select2script.js' %}"></script>
 
-    <!-- WorldStats JS -->
-    <script type="text/javascript" src="{% static 'scripts/worldstats.js' %} " async></script>
-    <!-- NEWS JS -->
-    <script type="text/javascript" src="{% static 'scripts/news.js' %} " async></script>
-
     <!-- DataTable JS -->
     <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/datatable.js' %} "></script>
+
+    <!-- WorldStats JS -->
+    <script type="text/javascript" src="{% static 'scripts/worldstats.js' %} " async></script>
+
+    <!-- NEWS JS -->
+    <script type="text/javascript" src="{% static 'scripts/news.js' %} " async></script>
 
     <!-- GOOGLE CHARTS JS -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -372,4 +371,5 @@
     <script type="text/javascript" src="{% static 'scripts/geochart.js' %} " async></script>
     <!-- LineChart JS -->
     <script type="text/javascript" src="{% static 'scripts/linechart.js' %} " async></script>
+
 {% endblock %}
