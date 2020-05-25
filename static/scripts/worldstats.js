@@ -1,3 +1,13 @@
+$('#region_selector').change(function () {
+    loadWorldStats();
+});
+
+
+$(function() {
+    loadWorldStats();
+   });
+
+
 function number_format(number, decimals, dec_point, thousands_sep) {
     // *     example: number_format(1234.56, 2, ',', ' ');
     // *     return: '1 234,56'
@@ -27,10 +37,6 @@ function percentage(a, b) {
     var total = a + b;
     return String(((100 * a) / total).toFixed(2));
 }
-
-$('#region_selector').change(function () {
-    loadWorldStats();
-});
 
 function loadWorldStats() {
     var region_name = document.getElementById('region_selector').value;
@@ -88,9 +94,7 @@ function loadWorldStats() {
     });
 }
 
-$(function() {
-    loadWorldStats();
-   });
+
 // $(document).ready(function loadPage() {
 //     loadWorldStats();
 // });
