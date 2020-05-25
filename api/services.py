@@ -138,6 +138,7 @@ def linechart_data():
     df = df.drop_duplicates(subset='day', keep="first")
     df = df.dropna()
     del df['time']
+    df = df.iloc[-30:]
     df_list = df.values.tolist()
 
     return df_list

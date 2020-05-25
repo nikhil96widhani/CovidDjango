@@ -10,6 +10,7 @@
     <!-- bootstrap END SELECT 2 -->
     <link href="{% static 'datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
+
 {% endblock %}
 
 {% block news %}
@@ -249,7 +250,7 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">World Overview</h6>
                         {#                <div class="dropdown no-arrow">#}
                         {#                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"#}
                         {#                       aria-haspopup="true" aria-expanded="false">#}
@@ -267,16 +268,16 @@
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
-                        <div id="regions_div"></div>
+                        <div id="regions_div" ></div>
 
 
                     </div>
                 </div>
                 <!-- Line Chart -->
-{#                <div class="card shadow mb-4">#}
-{#                    <!-- Card Header - Dropdown -->#}
-{#                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">#}
-{#                        <h6 class="m-0 font-weight-bold text-primary">Case Outcomes</h6>#}
+                <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Cases since last month</h6>
 {#                        <div class="dropdown no-arrow">#}
 {#                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"#}
 {#                               data-toggle="dropdown"#}
@@ -292,13 +293,23 @@
 {#                                <a class="dropdown-item" href="#">Something else here</a>#}
 {#                            </div>#}
 {#                        </div>#}
-{#                    </div>#}
-{#                    <!-- Card Body -->#}
-{#                    <div class="card-body">#}
-{#                        <div id="linechart_material"></div>#}
-{##}
-{#                    </div>#}
-{##}
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body">
+                        <div id="linechart_div"></div>
+                        <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-primary"></i> Total Cases
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-danger"></i> Recoveries
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-warning"></i> Deaths
+                    </span>
+                  </div>
+                    </div>
+
 
             </div>
         </div>
@@ -331,7 +342,7 @@
     {#        }#}
     {#    </style>#}
     {##}
-
+    </div>
 
 
 
@@ -341,26 +352,24 @@
 {% block js %}
     <!-- PageLevel JS -->
 
+    <!-- SELECT2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="{% static 'js/select2script.js' %}"></script>
+
     <!-- WorldStats JS -->
     <script type="text/javascript" src="{% static 'scripts/worldstats.js' %} " async></script>
     <!-- NEWS JS -->
     <script type="text/javascript" src="{% static 'scripts/news.js' %} " async></script>
-
-    <!-- GOOGLE CHARTS JS -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <!-- GeoChart JS -->
-    <script type="text/javascript" src="{% static 'scripts/geochart.js' %} " async></script>
-{#    <!-- LineChart JS -->#}
-{#    <script type="text/javascript" src="{% static 'scripts/linechart.js' %} " async></script>#}
-
-    <!-- SELECT2 -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <script src="{% static 'js/select2script.js' %}"></script>
 
     <!-- DataTable JS -->
     <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/datatable.js' %} "></script>
 
-
+    <!-- GOOGLE CHARTS JS -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <!-- GeoChart JS -->
+    <script type="text/javascript" src="{% static 'scripts/geochart.js' %} " async></script>
+    <!-- LineChart JS -->
+    <script type="text/javascript" src="{% static 'scripts/linechart.js' %} " async></script>
 {% endblock %}

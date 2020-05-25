@@ -88,6 +88,9 @@ function loadWorldStats() {
     });
 }
 
-$(document).ready(function loadPage() {
+$(function() {
     loadWorldStats();
-});
+   });
+// $(document).ready(function loadPage() {
+//     loadWorldStats();
+// });
