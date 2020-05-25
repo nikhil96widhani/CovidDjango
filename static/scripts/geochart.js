@@ -1,19 +1,23 @@
 google.charts.load('current', {
     'packages': ['geochart'],
-    // Note: you will need to get a mapsApiKey for your project.
-    // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
     'mapsApiKey': 'AIzaSyDm0d0NBkHGqE1Uy5eoH07z_cr6pCKAkaA'
 });
-google.charts.setOnLoadCallback(drawRegionsMap);
 
-function drawRegionsMap() {
-    var data_geochart = $.ajax({
+google.charts.setOnLoadCallback(drawRegionsMap);
+$(window).resize(drawRegionsMap);
+
+var data_geochart = $.ajax({
         url: "/api/geochart",
         dataType: "json",
         async: false
     }).responseJSON;
 
+function drawRegionsMap() {
+
     var data = google.visualization.arrayToDataTable(data_geochart);
+
+    var width = document.getElementById("regions_div").offsetWidth;
+    var height = document.getElementById("regions_div").offsetHeight;
 
     var options = {
         legend: 'none',
@@ -26,19 +30,27 @@ function drawRegionsMap() {
         },
         datalessRegionColor: '#f8f8f8',
         defaultColor: '#f8f8f8',
+        width: width,
+        height: height,
         // show region based on selection
         // region: 'US'
 
     };
 
-    function resize() {
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+    var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
 
-        chart.draw(data, options);
-    }
+    chart.draw(data, options);
 
-    window.onload = resize;
-    window.onresize = resize;
-    // window.addEventListener('resize', drawRegionsMap, false);
+    // function resize() {
+    //     var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+    //
+    //     chart.draw(data, options);
+    // }
+    //
+    // window.onload = resize;
+    // window.onresize = resize;
 
 }
+
+
+
