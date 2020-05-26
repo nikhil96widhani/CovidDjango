@@ -44,9 +44,9 @@
 
         <div class="container-fluid select2-dropdown333  pt-2 pb-3">
             <div class="form-group">
-                <h1 class="h3 mb-0 text-gray-800 text-center p-2">Showing stats for</h1>
+{#                <h1 class="h3 mb-0 text-gray-800 text-center p-2">Showing stats for</h1>#}
 
-                <!-- <label>Corona Virus Stats for : WORLD</label> -->
+                <label class="text-gray-800 text-center">Showing Stats for</label>
                 <select id="region_selector" data-placeholder="Select a Country" data-allow-clear="1" name="region">
                     <option></option>
                     {% for region in regions %}
@@ -111,7 +111,7 @@
                                         </div>
                                     </div>
                                     <div class="col-auto">
-                                        <sub id="new_total_deaths" class="text-xs font-weight-bold text-grey-800 ml-1">
+                                        <sub id="new_total_deaths" class="text-s font-weight-bold text-gray-800">
                                         </sub>
                                     </div>
                                     <div class="col ml-3">
@@ -169,13 +169,12 @@
                     <div class="card-body">
                         <div class="row no-gutters align-items-center">
                             <div class="col">
-                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">Active Cases
+                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">Active
                                 </div>
                                 <div id="total_active" class="h4 mb-0 font-weight-bold text-gray-800"></div>
                             </div>
                             <div class="col">
                                 <div class="text-s font-weight-bold text-warning text-uppercase mb-1">Critical
-                                    Cases
                                 </div>
                                 <div id="total_critical" class="h4 mb-0 font-weight-bold text-gray-800"></div>
                             </div>

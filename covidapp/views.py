@@ -1,9 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
-from .services import *
+from api.services import get_country_data, get_country_names
 from django.views import View
-import requests
-import json
 
 
 # Create your views here.
@@ -14,7 +12,6 @@ def indexView(request):
     continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
                        'All']
 
-
     data = {
         'regions': get_country_names(),
         'world_data': world_data,
@@ -24,50 +21,11 @@ def indexView(request):
     return render(request, 'index.html', data)
 
 
-# class indexView(View):
-#     data_all = get_country_data('All')
-#
-#     selected_region = 'India'
-#
-#     template_name = 'index.html'
-#
-#     def get(self, request, *args, **kwargs):
-#         regional_data = get_country_data(self.selected_region)
-#
-#         data = {
-#             'regions': ['India', 'Canada', 'USA', 'Germany'],
-#             'selected_region': self.selected_region,
-#             'data_all': self.data_all,
-#             'regional_data': regional_data,
-#         }
-#         return render(request, self.template_name, data)
-#
-#     def post(self, request, *args, **kwargs):
-#         selected_region = request.POST.get("region")
-#         regional_data = get_country_data(selected_region)
-#         if regional_data:
-#             regional_data = get_country_data(selected_region)
-#
-#             data = {
-#                 'regions': ['India', 'Canada', 'USA', 'Germany'],
-#                 'selected_region': selected_region,
-#                 'data_all': self.data_all,
-#                 'regional_data': regional_data,
-#             }
-#
-#         return render(request, self.template_name, data)
-
-
 def test_View(request):
     selected_region = 'India'
 
     if request.method == "POST":
-        # Filter restaurants by selected region, but only on a POST
         selected_region = request.POST.get("region")
-    #     restaurants = restaurants.filter(region=selected_region)
-    #
-    #     # Get a list of all unique regions (group by region)
-    # regions = Restaurant.objects.order_by('region').values_list('region', flat=True)
 
     context = {
         'regions': ['usa', 'canada'],

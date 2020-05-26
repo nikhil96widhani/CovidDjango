@@ -71,7 +71,6 @@ function checkContainer () {
 //
 // }
 
-
 function drawRegionsMap() {
 
     var width = document.getElementById("regions_div").offsetWidth;

@@ -126,19 +126,23 @@ def linechart_data():
     for entry in data:
         x = {
             'day': entry['day'],
-            'time': entry['time'],
+            # 'time': entry['time'],
             'cases': entry['cases']['total'],
             'recovered': entry['cases']['recovered'],
             'deaths': entry['deaths']['total']
         }
         a.append(x)
     df = pd.DataFrame(a)
-    df['time'] = pd.to_datetime(df['time'])
-    df = df.sort_values(by='time', ascending=True)
+
+    #Removed Time Sort because data is in ascending format
+    # df['time'] = pd.to_datetime(df['time'])
+    # df = df.sort_values(by='time', ascending=True)
+
     df = df.drop_duplicates(subset='day', keep="first")
+    df = df.sort_values(by='day', ascending=True)
     df = df.dropna()
-    del df['time']
-    df = df.iloc[-30:]
+    # del df['time']
+    # df = df.iloc[-30:]
     df_list = df.values.tolist()
 
     return df_list
