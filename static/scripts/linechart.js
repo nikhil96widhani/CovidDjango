@@ -3,6 +3,8 @@ google.charts.load('current', {'packages': ['line']});
 // NEW CODE START
 jQuery(document).ready(checkContainer);
 
+
+
 function checkContainer () {
   if($('#regions_div').is(':visible')){ //if the container is visible on the page
     drawLineChart();  //Adds a grid to the html
@@ -29,7 +31,7 @@ function drawLineChart() {
             data.addColumn('number', 'deaths');
 
             data.addRows(data_l);
-
+            console.log(data)
             var options = {
                 legend: {position: 'none'},
                 width: width,
@@ -38,7 +40,7 @@ function drawLineChart() {
                          x: {
                              0: { side: 'bottom', label: ""}
                          }
-                    }
+                    },
 
             };
 
@@ -57,6 +59,8 @@ function drawLineChart() {
     });
 }
 // NEW CODE END
+
+
 
 
 
