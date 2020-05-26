@@ -4,13 +4,15 @@ from newsapi import NewsApiClient
 import datetime
 import pandas as pd
 
-newsapi = NewsApiClient(api_key='39970353050840afa44ca78302ff74c4')
+
+# Load Country Json
+with open('apikeys.json') as e:
+    apikeys = json.load(e)
+
+newsapi = NewsApiClient(api_key=apikeys['news_key'])
 
 API_URL = "https://covid-193.p.rapidapi.com/statistics"
-API_HEADERS = {
-    'x-rapidapi-host': "covid-193.p.rapidapi.com",
-    'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
-}
+API_HEADERS = apikeys['rapidhostapi']
 
 # Load Country Json
 with open('country_codes.json') as f:
