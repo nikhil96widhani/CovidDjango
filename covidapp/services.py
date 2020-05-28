@@ -4,12 +4,22 @@ from newsapi import NewsApiClient
 import datetime
 import pandas as pd
 
+# # Load APIKEYS Json
+# with open('apikeys.json') as e:
+#     apikeys = json.load(e)
+#
+# newsapi = NewsApiClient(api_key=apikeys['news_key'])
+#
+# API_URL = "https://covid-193.p.rapidapi.com/statistics"
+# API_HEADERS = apikeys['rapidhostapi']
+
+
 newsapi = NewsApiClient(api_key='39970353050840afa44ca78302ff74c4')
 
 API_URL = "https://covid-193.p.rapidapi.com/statistics"
 API_HEADERS = {
     'x-rapidapi-host': "covid-193.p.rapidapi.com",
-    'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
+    'x-rapidapi-key': "fb8f421233msh953fc9948591258p1cda27jsn49967ddef37d"
 }
 
 # Load Country Json
@@ -30,23 +40,18 @@ def get_country_data(country):
 def get_country_names():
     url = "https://covid-193.p.rapidapi.com/countries"
 
-    headers = {
-        'x-rapidapi-host': "covid-193.p.rapidapi.com",
-        'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
-    }
-
-    response = requests.request("GET", url, headers=headers)
+    response = requests.request("GET", url, headers=API_HEADERS)
     data = json.loads(response.text)['response']
     data.insert(0, 'World')
 
     return data
 
 
-def choropleth_data(world_data):
+def choropleth_data():
+    world_data = get_country_data(None)
     continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
                        'All']
-    # country_to_fix = ['USA', 'Saudi-Arabia', 'UK', 'South-Africa', 'DRC', 'South-Sudan', 'Papua-New-Guinea',
-    #                   'New-Zealand', 'Sri-Lanka']
+
     country_fix = {"USA": "United States", "Saudi-Arabia": "Saudi Arabia", "UK": "United Kingdom",
                    "South-Africa": "South Africa", "DRC": "CD", "South-Sudan": "SS", "Papua-New-Guinea": "PG",
                    "New-Zealand": "New Zealand", "Sri-Lanka": "Sri Lanka"}
@@ -63,45 +68,46 @@ def choropleth_data(world_data):
     return data
 
 
-# class GetNews:
-#     def __init__(self, country, no_of_articles):
-#         self.country = country.lower()
-#         self.no_of_articles = no_of_articles
-#         self.get_country_code()
-#
-#     def get_country_code(self):
-#         try:
-#             for x in country_codes:
-#                 try:
-#                     if x['name'].lower() == self.country:
-#                         self.country_code = x['alpha2code'].lower()
-#                 except:
-#                     self.country_code = ''
-#         except:
-#             self.country_code = ''
-#
-#     def get_articles(self):
-#         try:
-#             top_headlines = newsapi.get_top_headlines(q='Covid-19',
-#                                                       # language='en',
-#                                                       country=self.country_code
-#                                                       )
-#             news_headlines = top_headlines['articles'][:self.no_of_articles]
-#
-#             if news_headlines:
-#                 return news_headlines
-#             else:
-#                 top_headlines = newsapi.get_everything(q='Covid-19 {}'.format(self.country),
-#                                                        # language='en',
-#                                                        # country=country_code
-#                                                        )
-#                 return top_headlines['articles'][:self.no_of_articles]
-#         except:
-#             top_headlines = newsapi.get_everything(q='Covid-19 {}'.format(self.country),
-#                                                    # language='en',
-#                                                    # country=country_code
-#                                                    )
-#             return top_headlines['articles'][:self.no_of_articles]
+class GetNews:
+    def __init__(self, country, no_of_articles):
+        self.country = country.lower()
+        self.no_of_articles = no_of_articles
+        self.get_country_code()
+
+    def get_country_code(self):
+        try:
+            for x in country_codes:
+                try:
+                    if x['name'].lower() == self.country:
+                        self.country_code = x['alpha2code'].lower()
+                except:
+                    self.country_code = ''
+        except:
+            self.country_code = ''
+
+    def get_articles(self):
+        try:
+            top_headlines = newsapi.get_top_headlines(q='Covid-19',
+                                                      # language='en',
+                                                      country=self.country_code
+                                                      )
+            news_headlines = top_headlines['articles'][:self.no_of_articles]
+
+            if news_headlines:
+                return news_headlines
+            else:
+                top_headlines = newsapi.get_everything(q='Covid-19 {}'.format(self.country),
+                                                       # language='en',
+                                                       # country=country_code
+                                                       )
+                return top_headlines['articles'][:self.no_of_articles]
+        except:
+            top_headlines = newsapi.get_everything(q='Covid-19 {}'.format(self.country),
+                                                   # language='en',
+                                                   # country=country_code
+                                                   )
+            return top_headlines['articles'][:self.no_of_articles]
+
 
 def linechart_data():
     import requests
@@ -113,35 +119,33 @@ def linechart_data():
         "country": "All"
     }
 
-    headers = {
-        'x-rapidapi-host': "covid-193.p.rapidapi.com",
-        'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
-    }
-
-    response = requests.request("GET", url, headers=headers, params=querystring)
+    response = requests.request("GET", url, headers=API_HEADERS, params=querystring)
     data = json.loads(response.text)['response']
 
     # gen list
-    a=[]
+    a = []
     for entry in data:
         x = {
             'day': entry['day'],
-            'time': entry['time'],
+            # 'time': entry['time'],
             'cases': entry['cases']['total'],
             'recovered': entry['cases']['recovered'],
             'deaths': entry['deaths']['total']
         }
         a.append(x)
     df = pd.DataFrame(a)
-    df['time'] = pd.to_datetime(df['time'])
-    df = df.sort_values(by='time', ascending=True)
+
+    # Removed Time Sort because data is in ascending format
+    # df['time'] = pd.to_datetime(df['time'])
+    # df = df.sort_values(by='time', ascending=True)
+
     df = df.drop_duplicates(subset='day', keep="first")
+    df = df.sort_values(by='day', ascending=True)
     df = df.dropna()
-    del df['time']
+    # del df['time']
+    # df = df.iloc[-30:]
     df_list = df.values.tolist()
-    print(df_list)
 
     return df_list
     # for entry in data:
     #     print(entry['day'])
-

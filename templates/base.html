@@ -124,8 +124,7 @@
 
                 <!-- News Modal -->
                 <!--Call your modal-->
-                <!-- <a id="demo01" href="#animatedModal" class="nav-item dropdown no-arrow mx-1"><i class="fas fa-newspaper fa-fw"></i></a> -->
-                <li class="nav-item dropdown no-arrow mx-1">
+                <li id="news-button-2" class="nav-item dropdown no-arrow mx-1">
                     <a class="nav-link dropdown-toggle" href="#animatedModal" id="demo01" role="button">
                         <i class="fas fa-newspaper fa-fw"></i>
                         <!-- Counter - Alerts -->
@@ -136,8 +135,12 @@
                 <!--DEMO01-->
                 <div id="animatedModal">
                     <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
-                    <div id="closebt-container" class="close-animatedModal">
-                        <img class="closebt float-right mr-5 my-3" src="{% static 'img/closebt.svg' %}">
+                    <div class="row my-3">
+                        <div class="col-sm-4"></div>
+                        <div class="col-sm-4 news-heading h1 text-center text-white">News</div>
+                        <div id="closebt-container" class="col-sm-4 text-center close-animatedModal">
+                            <img class="closebt" src="{% static 'img/closebt.svg' %}">
+                        </div>
                     </div>
                         
                     <div class="modal-content">
@@ -321,7 +324,7 @@
         crossorigin="anonymous"></script>
 
 <!-- News Modal JS -->
-<script src="{% static 'js/animatedModal.min.js' %}"></script>
+<script src="{% static 'js/animatedModal.js' %}"></script>
 <script>
     $("#demo01").animatedModal();
 </script>
