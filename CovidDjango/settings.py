@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import sys
+
+TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -22,11 +25,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '2drrr$e*12%16b+ckyn^i0mnzk-n_=4gfat)*45zl$l_j9boyx'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+DEBUG_PROPAGATE_EXCEPTIONS = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['gocorona.io', 'gocorona.us-central1-a.c.covid-19-tracker-django.internal', '104.198.181.56',
-                 'covid.nikhilwidhani.com', 'covidworld.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['gocorona.io', 'gocorona.us-central1-a.c.covid-19-tracker-django.internal', '104.198.181.56', 'covid.nikhilwidhani.com', 'covidworld.herokuapp.com', '127.0.0.1']
 
 # Application definition
 
@@ -129,5 +133,10 @@ STATICFILES_DIRS = (
 )
 
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+STATICFILES_STORAGE = (
+    'django.contrib.staticfiles.storage.StaticFilesStorage'
+    if TESTING
+    else 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+)
