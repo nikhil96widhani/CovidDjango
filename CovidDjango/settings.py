@@ -136,7 +136,7 @@ STATICFILES_DIRS = (
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATICFILES_STORAGE = (
-    'django.contrib.staticfiles.storage.StaticFilesStorage'
+    'whitenoise.storage.CompressedManifestStaticFilesStorage'
     if TESTING
-    else 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    else 'django.contrib.staticfiles.storage.StaticFilesStorage'
 )
