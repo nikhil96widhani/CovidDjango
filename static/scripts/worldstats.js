@@ -38,6 +38,10 @@ function percentage(a, b) {
     return String(((100 * a) / total).toFixed(2));
 }
 
+function percentage_total(a, b) {
+    return String(((100 * a) / b).toFixed(2));
+}
+
 function loadWorldStats() {
     var region_name = document.getElementById('region_selector').value;
 
@@ -80,7 +84,9 @@ function loadWorldStats() {
 
             document.getElementById("total_active").innerHTML = number_format(data[0].cases.active);
 
-            document.getElementById("total_critical").innerHTML = number_format(data[0].cases.critical);
+            var activecase_percentage = percentage_total(data[0].cases.active, data[0].cases.total);
+            document.getElementById("activecasespercentage").style.width = activecase_percentage + '%';
+
 
         },
         error: function (error_data) {

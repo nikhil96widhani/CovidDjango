@@ -31,11 +31,12 @@ function drawLineChart() {
             data.addColumn('number', 'deaths');
 
             data.addRows(data_l);
-            console.log(data)
             var options = {
                 legend: {position: 'none'},
+                lineWidth: 50,
                 width: width,
                 height: height,
+                colors: ['#4e73df', '#e74a3b', '#f6c23e'],
                 axes: {
                          x: {
                              0: { side: 'bottom', label: ""}
