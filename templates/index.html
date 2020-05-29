@@ -50,34 +50,20 @@
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-warning shadow h-100 py-2">
                     <div class="card-body">
-                        <div class="row no-gutters align-items-center pb-1">
-                            <div class="col mr-2">
-                                <div class="text-s font-weight-bold text-warning text-uppercase mb-1">Select a Country
-                                </div>
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col">
-                                        <div class="select2-dropdown333">
-                                            <div class="form-group font-weight-bold">
-                                                <select id="region_selector" data-placeholder="Select a Country"
-                                                        data-allow-clear="1" name="region">
-                                                    <option></option>
-                                                    {% for region in regions %}
-                                                        <option
-                                                            value="{{ region }}"
-                                                            {% if region == 'World' %}
-                                                            selected="selected"
-                                                            {% endif %} >{{ region }}
-                                                        </option>
-                                                    {% endfor %}
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-globe fa-2x text-gray-300"></i>
-                            </div>
+                        <div class="text-s font-weight-bold text-warning text-uppercase mb-1">Select a Country</div>
+                        <div class="form-group font-weight-bold">
+                            <select id="region_selector" data-placeholder="Select a Country"
+                                    data-allow-clear="1" name="region">
+                                <option></option>
+                                {% for region in regions %}
+                                    <option
+                                            value="{{ region }}"
+                                            {% if region == 'World' %}
+                                            selected="selected"
+                                            {% endif %} >{{ region }}
+                                    </option>
+                                {% endfor %}
+                            </select>
                         </div>
                         <span class="small text-gray-800">Data Updated <span
                                 class="float-right">15 minutes ago</span></span>
