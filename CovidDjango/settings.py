@@ -11,26 +11,33 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import sys
+import json
 
-TESTING = len(sys.argv) > 1 and sys.argv[1] == 'test'
+
+# Load APIKEYS Json
+with open('apikeys.json') as e:
+    apikeys = json.load(e)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.contrib import staticfiles
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '2drrr$e*12%16b+ckyn^i0mnzk-n_=4gfat)*45zl$l_j9boyx'
+SECRET_KEY = apikeys['django_secret']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-DEBUG_PROPAGATE_EXCEPTIONS = True
+ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS = ['gocorona.io', 'gocorona.us-central1-a.c.covid-19-tracker-django.internal', '104.198.181.56', 'covid.nikhilwidhani.com', 'covidworld.herokuapp.com', '127.0.0.1']
 
-# ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['gocorona.io', 'gocorona.us-central1-a.c.covid-19-tracker-django.internal', '104.198.181.56', 'covid.nikhilwidhani.com', 'covidworld.herokuapp.com', '127.0.0.1']
+
+# redirect to https
+SECURE_SSL_REDIRECT = True
 
 # Application definition
 
@@ -47,7 +54,6 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -62,8 +68,7 @@ ROOT_URLCONF = 'CovidDjango.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -79,14 +84,58 @@ TEMPLATES = [
 WSGI_APPLICATION = 'CovidDjango.wsgi.application'
 
 # Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+# https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+
+'''Database LOCAL development'''
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
+
+# Install PyMySQL as mysqlclient/MySQLdb to use Django's mysqlclient adapter
+# See https://docs.djangoproject.com/en/2.1/ref/databases/#mysql-db-api-drivers
+# for more information
+import pymysql  # noqa: 402
+
+pymysql.version_info = (1, 4, 6, 'final', 0)  # change mysqlclient version
+pymysql.install_as_MySQLdb()
+
+# [START db_setup]
+if os.getenv('GAE_APPLICATION', None):
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': apikeys['sql_host'],
+            'USER': apikeys['sql_user'],
+            'PASSWORD': apikeys['sql_password'],
+            'NAME': apikeys['sql_name'],
+        }
     }
-}
+else:
+    # Running locally so connect to either a local MySQL instance or connect to
+    # Cloud SQL via the proxy. To start the proxy via command line:
+    #
+    #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
+    #
+    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'NAME': apikeys['sql_name'],
+            'USER': apikeys['sql_user'],
+            'PASSWORD': apikeys['sql_password'],
+        }
+    }
+# [END db_setup]
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -119,24 +168,16 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
 STATIC_URL = '/static/'
 
-# Extra places for collectstatic to find static files.
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
-
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-STATICFILES_STORAGE = (
-    'whitenoise.storage.CompressedManifestStaticFilesStorage'
-    if TESTING
-    else 'django.contrib.staticfiles.storage.StaticFilesStorage'
-)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')

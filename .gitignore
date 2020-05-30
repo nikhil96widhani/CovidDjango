@@ -1,4 +1,6 @@
 venv
 .idea
-__pycache__
+__pycache__/
 apikeys.json
+cloud_sql_proxy
+.gcloudignore
