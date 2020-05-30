@@ -1,12 +1,10 @@
 $("#news_button").click(function () {
     $("#latest_news").empty();
-    $("#spinner").show();
     loadNews();
 });
 
 $('#region_selector').change(function () {
     $("#latest_news").empty();
-    $("#spinner").show();
     loadNews();
 });
 

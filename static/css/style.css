@@ -1,0 +1,26 @@
+.closebt:hover {
+	transform:rotate(90deg);
+}
+
+.closebt {
+    -webkit-transition: all 0.2s;
+    -moz-transition: all 0.2s;
+    -ms-transition: all 0.2s;
+    -o-transition: all 0.2s;
+    transition: all 0.2s;
+    cursor: pointer;
+}
+
+.modal-content {
+    background: none;
+    border: none;
+}
+
+.fixed-close-btn{
+    position: fixed;
+    top: 2%;
+    right: 0;
+    left: 80%;
+    z-index: 1030;
+}
+

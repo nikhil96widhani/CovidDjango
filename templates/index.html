@@ -13,7 +13,7 @@
 
 {% endblock %}
 
-{% block news %}
+<!-- {% block news %}
     <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
          aria-labelledby="alertsDropdown">
         <h6 class="dropdown-header">
@@ -23,11 +23,16 @@
             <div class="spinner-border text-primary" role="status"></div>
         </div>
         <div id="latest_news">
-            <!-- News will be filled here -->
         </div>
         <a class="dropdown-item text-center small text-gray-500" href="#">Show All News</a>
     </div>
-{% endblock %}
+{% endblock %} -->
+
+{% block modal-news %}
+<div id="latest-news-2" class="container-fluid col-sm-6">
+
+</div>
+{% endblock modal-news %}
 
 
 {% block content %}
@@ -160,7 +165,7 @@
                             </div>
                         </div>
                         <span class="small text-gray-800">Recovery Rate<span id="recoveredpercentage1"
-                                                                              class="float-right"></span></span>
+                                                                             class="float-right"></span></span>
                         <div class="progress progress-sm">
                             <div id="recoveredpercentage2" class="progress-bar bg-success" role="progressbar"
                                  aria-valuemin="0" aria-valuemax="100"></div>
@@ -300,8 +305,8 @@
 
 
         </div>
-    <div class="row">
-                    <!-- More features comming soon -->
+        <div class="row">
+            <!-- More features comming soon -->
             <div class="container-fluid select2-dropdown333  py-5">
                 <div class="card bg-secondary text-white shadow text-center">
                     <div class="card-body">
@@ -311,7 +316,7 @@
                 </div>
 
             </div>
-    </div>
+        </div>
 
         <!-- /.container-fluid -->
 
@@ -354,6 +359,7 @@
 
     <!-- NEWS JS -->
     <script type="text/javascript" src="{% static 'scripts/news.js' %} " async></script>
+    <script type="text/javascript" src="{% static 'scripts/news-2.js' %} " async></script>
 
     <!-- GOOGLE CHARTS JS -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>

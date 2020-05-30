@@ -1,13 +1,3 @@
-$('#region_selector').change(function () {
-    loadWorldStats();
-});
-
-
-$(function() {
-    loadWorldStats();
-   });
-
-
 function number_format(number, decimals, dec_point, thousands_sep) {
     // *     example: number_format(1234.56, 2, ',', ' ');
     // *     return: '1 234,56'
@@ -38,9 +28,9 @@ function percentage(a, b) {
     return String(((100 * a) / total).toFixed(2));
 }
 
-function percentage_total(a, b) {
-    return String(((100 * a) / b).toFixed(2));
-}
+$('#region_selector').change(function () {
+    loadWorldStats();
+});
 
 function loadWorldStats() {
     var region_name = document.getElementById('region_selector').value;
@@ -84,9 +74,7 @@ function loadWorldStats() {
 
             document.getElementById("total_active").innerHTML = number_format(data[0].cases.active);
 
-            var activecase_percentage = percentage_total(data[0].cases.active, data[0].cases.total);
-            document.getElementById("activecasespercentage").style.width = activecase_percentage + '%';
-
+            document.getElementById("total_critical").innerHTML = number_format(data[0].cases.critical);
 
         },
         error: function (error_data) {
@@ -96,11 +84,9 @@ function loadWorldStats() {
 
     }).done(function () {
         //on return, add here
-
     });
 }
 
-
-// $(document).ready(function loadPage() {
-//     loadWorldStats();
-// });
+$(document).ready(function loadPage() {
+    loadWorldStats();
+});
