@@ -9793,6 +9793,10 @@ a:focus {
   font-size: .7rem;
 }
 
+.text-sss {
+  font-size: .8rem;
+}
+
 .text-lg {
   font-size: 1.2rem;
 }
@@ -11060,12 +11064,4 @@ body.sidebar-toggled footer.sticky-footer {
    -ms-animation: fa-blink 2s linear infinite;
    -o-animation: fa-blink 2s linear infinite;
    animation: fa-blink 2s linear infinite;
-}
-.select2-dropdown333 {
-  max-width: 400px !important;
-}
-
-#regions_div svg>g>g>g>g>rect[stroke="#ffffff"][stroke-width="1"] {
-  stroke: black !important;
-  stroke-width: 2px !important;
 }

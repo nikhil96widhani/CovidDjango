@@ -1,12 +1,12 @@
-// $("#news-button-2").click(function () {
-//     $("#latest-news-2").empty();
-//     loadNews_new();
-// });
+$("#news-button-2").click(function () {
+    $("#latest-news-2").empty();
+    loadNews_new();
+});
 
-// $('#region_selector').change(function () {
-//     $("#latest-news-2").empty();
-//     loadNews_new();
-// });
+$('#region_selector').change(function () {
+    $("#latest-news-2").empty();
+    loadNews_new();
+});
 
 
 function loadNews_new() {

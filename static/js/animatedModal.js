@@ -72,9 +72,6 @@
         modal.click(function(event) {       
             event.preventDefault();
 
-            $("#latest-news-2").empty();
-            loadNews_new();
-
             $('body, html').css({'overflow':'hidden'});
             if (href == idConc) {
                 if (id.hasClass(settings.modalTarget+'-off')) {

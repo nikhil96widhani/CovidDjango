@@ -15,46 +15,29 @@
     
     
     <!-- Loading Bar -->
+    <!-- Favicon favicon.html -->
+    {% include 'favicon.html' %}
+
+
+    <!-- CSS-->
     <link href="{% static 'css/pace-theme.css' %}" rel="stylesheet">
-
-    <!-- Favicon -->
-    <link rel="apple-touch-icon" sizes="57x57" href="{% static '/favicon/apple-icon-57x57.png' %}">
-    <link rel="apple-touch-icon" sizes="60x60" href="{% static '/favicon/apple-icon-60x60.png' %}">
-    <link rel="apple-touch-icon" sizes="72x72" href="{% static '/favicon/apple-icon-72x72.png' %}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{% static '/favicon/apple-icon-76x76.png' %}">
-    <link rel="apple-touch-icon" sizes="114x114" href="{% static '/favicon/apple-icon-114x114.png' %}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{% static '/favicon/apple-icon-120x120.png' %}">
-    <link rel="apple-touch-icon" sizes="144x144" href="{% static '/favicon/apple-icon-144x144.png' %}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{% static '/favicon/apple-icon-152x152.png' %}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{% static '/favicon/apple-icon-180x180.png' %}">
-    <link rel="icon" type="image/png" sizes="192x192" href="{% static '/favicon/android-icon-192x192.png' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static '/favicon/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static '/favicon/favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static '/favicon/favicon-16x16.png' %}">
-    <link rel="manifest" href="{% static '/favicon/manifest.json' %}">
-    <meta name="msapplication-TileColor" content="#ffffff">
-    <meta name="msapplication-TileImage" content="{% static '/favicon/ms-icon-144x144.png' %}">
-    <meta name="theme-color" content="#ffffff">
-
     <!-- News Modal -->
     <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
 
-    {% block css %}
-
-    {% endblock %}
     <script type="text/javascript" src="{% static 'js/pace.min.js' %}"></script>
-    
-    <!-- Custom fonts for this template-->
+    <!-- FontAwsome Icons -->
     <script src="https://kit.fontawesome.com/ad14bd368c.js" crossorigin="anonymous"></script>
+    <!-- FONT -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
     
-    
-    <!-- Custom styles for this template-->
-    <link href="{% static 'css/sb-admin-2-modified.min.css' %}" rel="stylesheet">
+    <!-- Theme CSS-->
+    <link href="{% static 'css/sb-admin-2-modified.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     
+    {% block css %}
 
+    {% endblock %}
 
 </head>
 
@@ -108,18 +91,16 @@
                   </li> -->
 
                 <!-- Nav Item - Alerts -->
-                <li id="news_button" class="nav-item dropdown no-arrow mx-1">
+                <!-- <li id="news_button" class="nav-item dropdown no-arrow mx-1">
                     <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-newspaper fa-fw"></i>
-                        <!-- Counter - Alerts -->
                         <span class="badge badge-danger badge-counter">5+</span>
                     </a>
-                    <!-- Dropdown - Alerts -->
                     {% block news %}
                     
                     {% endblock %}
-                </li>
+                </li> -->
                 
 
                 <!-- News Modal -->
@@ -135,12 +116,9 @@
                 <!--DEMO01-->
                 <div id="animatedModal">
                     <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
-                    <div class="row my-3">
-                        <div class="col-sm-4"></div>
-                        <div class="col-sm-4 news-heading h1 text-center text-white">News</div>
-                        <div id="closebt-container" class="col-sm-4 text-center close-animatedModal">
-                            <img class="closebt" src="{% static 'img/closebt.svg' %}">
-                        </div>
+                    <div class="news-heading h1 text-center text-white my-3">News</div>
+                    <div id="closebt-container" class="fixed-close-btn close-animatedModal">
+                        <img class="closebt" src="{% static 'img/closebt.svg' %}">
                     </div>
                         
                     <div class="modal-content">
@@ -209,6 +187,7 @@
                     {##}
                     {#            <div class="topbar-divider d-none d-sm-block"></div>#}
 
+                    <div class="topbar-divider d-none d-sm-block"></div>
                     <!-- Nav Item - User Information -->
                     <li class="nav-item dropdown no-arrow">
                         <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
@@ -308,16 +287,16 @@
 
 
 <!-- Bootstrap core JavaScript-->
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+{#<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>#}
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.min.js"></script>
-<script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.compatibility.min.js"></script>#}
+{#<script src="{% static 'js/sb-admin-2.min.js' %}"></script>#}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
+{#<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"#}
+{#        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"#}
+{#        crossorigin="anonymous"></script>#}
         
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
