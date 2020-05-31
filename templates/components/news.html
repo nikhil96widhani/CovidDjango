@@ -1,0 +1,23 @@
+{% load static %}
+<li id="news_button" class="nav-item dropdown no-arrow mx-1">
+    <a class="nav-link dropdown-toggle" href="#animatedModal" id="demo01" role="button"
+       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-newspaper fa-fw"></i>
+        <span class="badge badge-danger badge-counter">5+</span>
+    </a>
+</li>
+
+<div id="animatedModal">
+    <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
+    <div class="news-heading h1 text-center text-white my-3">Latest News</div>
+    <div id="closebt-container" class="fixed-close-btn close-animatedModal">
+        <img class="closebt" src="{% static 'img/closebt.svg' %}">
+    </div>
+    <div id="spinner_news" class="text-center py-2">
+        <div class="spinner-border text-white" role="status"></div>
+    </div>
+    <div class="modal-content">
+        <div id="latest_news" class="container-fluid col-sm-6">
+        </div>
+    </div>
+</div>

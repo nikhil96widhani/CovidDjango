@@ -74,8 +74,6 @@ function loadWorldStats() {
 
             document.getElementById("total_active").innerHTML = number_format(data[0].cases.active);
 
-            document.getElementById("total_critical").innerHTML = number_format(data[0].cases.critical);
-
         },
         error: function (error_data) {
             console.log("error");
