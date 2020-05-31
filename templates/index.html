@@ -10,8 +10,12 @@
     <!-- bootstrap END SELECT 2 -->
     <link href="{% static 'datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
-
 {% endblock %}
+
+{% block pre-load-js %}
+    {# Apex Charts JS #}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+{% endblock pre-load-js %}
 
 <!-- {% block news %}
     <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -29,9 +33,9 @@
 {% endblock %} -->
 
 {% block modal-news %}
-<div id="latest-news-2" class="container-fluid col-sm-6">
+    <div id="latest-news-2" class="container-fluid col-sm-6">
 
-</div>
+    </div>
 {% endblock modal-news %}
 
 
@@ -176,9 +180,7 @@
 
         </div>
 
-
         <!-- Content Row -->
-
         <div class="row">
             <!-- Data table -->
             <div class="col-xl-7 col-lg-7 py-3">
@@ -199,7 +201,7 @@
                                     <th>Recovered</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="world-stats-table-body">
                                 <!-- CONTENT GOES HERE -->
                                 {% for countries in world_data %}
                                     {% if countries.country not in continents_list %}
@@ -298,13 +300,14 @@
                     </span>
                         </div>
                     </div>
-
-
                 </div>
             </div>
-
-
         </div>
+
+        <div class="row">
+            {% include 'charts-and-graphs/triple-line-chart.html' %}
+        </div>
+
         <div class="row">
             <!-- More features comming soon -->
             <div class="container-fluid select2-dropdown333  py-5">
@@ -314,7 +317,6 @@
                         <div class="text-white-50 small">issue code #858796</div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -337,8 +339,6 @@
 
     </div>
 
-
-
 {% endblock %}
 
 
@@ -358,8 +358,8 @@
     <script type="text/javascript" src="{% static 'scripts/worldstats.js' %} " async></script>
 
     <!-- NEWS JS -->
-    <script type="text/javascript" src="{% static 'scripts/news.js' %} " async></script>
     <script type="text/javascript" src="{% static 'scripts/news-2.js' %} " async></script>
+
 
     <!-- GOOGLE CHARTS JS -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
