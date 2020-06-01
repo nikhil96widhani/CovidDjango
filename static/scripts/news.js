@@ -69,6 +69,6 @@ function loadNews() {
 
     }).done(function () {
         //on return, add here
-        // $("#spinner_news").hide();
+        $("#spinner_news").hide();
     });
 }

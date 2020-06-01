@@ -111,6 +111,7 @@ function drawRegionsMap() {
         }
 
     }).done(function () {
+        $("#world_overview_spinner").hide()
         //on return, add here
     });
 }

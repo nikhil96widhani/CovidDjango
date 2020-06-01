@@ -94,8 +94,8 @@
                                              class="h4 mb-0 mr-3 font-weight-bold text-gray-800"></div>
                                     </div>
                                     <div class="col-auto">
-                          <sub id="new_total_deaths" class="text-s font-weight-bold text-gray-800">
-                          </sub>
+                                        <sub id="new_total_deaths" class="text-s font-weight-bold text-gray-800">
+                                        </sub>
                                     </div>
                                 </div>
                             </div>
@@ -150,14 +150,19 @@
         </div>
 
 
-        <!-- Content Row -->
 
+        <!-- Content Row table and geochart, line chart -->
         <div class="row">
             <!-- Data table -->
             <div class="col-xl-7 col-lg-7 py-3">
                 <div class="card shadow">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">DataTable: Cases by Country</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">DataTable: Cases by Country
+                            <div id="datatable_spinner" class="spinner-border spinner-border-sm float-right" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </h6>
+
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -166,40 +171,45 @@
                                 <tr>
                                     <th>Country</th>
                                     <th>Cases</th>
-                                    <th>New Cases</th>
+                                    <th>Cases Today</th>
                                     <th>Deaths</th>
-                                    <th>New Deaths</th>
+                                    <th>Deaths Today</th>
                                     <th>Recovered</th>
+                                    <th>Active Cases</th>
+                                    <th>Critical Cases</th>
+                                    <th>Cases/ 1M pop</th>
+                                    <th>Deaths/ 1M pop</th>
                                 </tr>
                                 </thead>
-                                <tbody>
+                                <tbody id="datatable-ajax">
                                 <!-- CONTENT GOES HERE -->
-                                {% for countries in world_data %}
-                                    {% if countries.country not in continents_list %}
-                                        <tr>
-                                            <td class="text-primary">{{ countries.country }}</td>
-                                            <td>{{ countries.cases.total|int_comma }}</td>
-                                            <td class="text-danger">+{{ countries.cases.new|int_comma }}</td>
-                                            <td>{{ countries.deaths.total|int_comma }}</td>
-                                            <td class="text-danger">+{{ countries.deaths.new|int_comma }}</td>
-                                            <td>{{ countries.cases.recovered|int_comma }}</td>
-                                        </tr>
-                                    {% endif %}
-                                {% endfor %}
+                                {#                                {% for countries in world_data %}#}
+                                {#                                    {% if countries.country not in continents_list %}#}
+                                {#                                        <tr>#}
+                                {#                                            <td class="text-primary">{{ countries.country }}</td>#}
+                                {#                                            <td>{{ countries.cases.total|int_comma }}</td>#}
+                                {#                                            <td class="text-danger">+{{ countries.cases.new|int_comma }}</td>#}
+                                {#                                            <td>{{ countries.deaths.total|int_comma }}</td>#}
+                                {#                                            <td class="text-danger">+{{ countries.deaths.new|int_comma }}</td>#}
+                                {#                                            <td>{{ countries.cases.recovered|int_comma }}</td>#}
+                                {#                                        </tr>#}
+                                {#                                    {% endif %}#}
+                                {#                                {% endfor %}#}
                                 </tbody>
-                                <tfoot>
-                                {% for countries in world_data %}
-                                    {% if countries.country == 'All' %}
-                                        <tr>
-                                            <th>Total</th>
-                                            <th>{{ countries.cases.total|int_comma }}</th>
-                                            <th>+{{ countries.cases.new|int_comma }}</th>
-                                            <th>{{ countries.deaths.total|int_comma }}</th>
-                                            <th>+{{ countries.deaths.new|int_comma }}</th>
-                                            <th>{{ countries.cases.recovered|int_comma }}</th>
-                                        </tr>
-                                    {% endif %}
-                                {% endfor %}
+                                <tfoot id="datatable-footer-ajax" class="font-weight-bold">
+                                {#                                {% for countries in world_data %}#}
+                                {#                                    {% if countries.country == 'All' %}#}
+                                {#                                        <tr>#}
+                                {#                                        <th></th>#}
+                                {#                                            <th>Total</th>#}
+                                {#                                            <th>{{ countries.cases.total|int_comma }}</th>#}
+                                {#                                            <th>+{{ countries.cases.new|int_comma }}</th>#}
+                                {#                                            <th>{{ countries.deaths.total|int_comma }}</th>#}
+                                {#                                            <th>+{{ countries.deaths.new|int_comma }}</th>#}
+                                {#                                            <th>{{ countries.cases.recovered|int_comma }}</th>#}
+                                {#                                        </tr>#}
+                                {#                                    {% endif %}#}
+                                {#                                {% endfor %}#}
                                 </tfoot>
                             </table>
                         </div>
@@ -213,22 +223,13 @@
                 <!-- Geo Chart -->
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">World Overview</h6>
-                        {#                <div class="dropdown no-arrow">#}
-                        {#                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"#}
-                        {#                       aria-haspopup="true" aria-expanded="false">#}
-                        {#                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
-                        {#                    </a>#}
-                        {#                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"#}
-                        {#                         aria-labelledby="dropdownMenuLink">#}
-                        {#                        <div class="dropdown-header">Dropdown Header:</div>#}
-                        {#                        <a class="dropdown-item" href="#">Action</a>#}
-                        {#                        <a class="dropdown-item" href="#">Another action</a>#}
-                        {#                        <div class="dropdown-divider"></div>#}
-                        {#                        <a class="dropdown-item" href="#">Something else here</a>#}
-                        {#                    </div>#}
-                        {#                </div>#}
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">World Overview
+                            <div id="world_overview_spinner" class="spinner-border spinner-border-sm float-right"
+                                 role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body">
@@ -238,8 +239,14 @@
                 <!-- Line Chart -->
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Case Trends</h6>
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Case Trends
+                            <div id="linechart_spinner" class="spinner-border spinner-border-sm float-right"
+                                 role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </h6>
+
                         {#                        <div class="dropdown no-arrow">#}
                         {#                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"#}
                         {#                               data-toggle="dropdown"#}
@@ -278,18 +285,25 @@
 
 
         </div>
-{#        <div class="row">#}
-{#            <!-- More features comming soon -->#}
-{#            <div class="container-fluid select2-dropdown333  py-5">#}
-{#                <div class="card bg-secondary text-white shadow text-center">#}
-{#                    <div class="card-body">#}
-{#                        More Charts and Tables coming soon...#}
-{#                        <div class="text-white-50 small">issue code #858796</div>#}
+
+            <!-- Content Row bar chart -->
+        <div class="row">
+            {% include 'charts-and-graphs/barchart7days.html' %}
+        </div>
+
+
+{#                <div class="row">#}
+{#                    <!-- More features comming soon -->#}
+{#                    <div class="container-fluid select2-dropdown333  py-5">#}
+{#                        <div class="card bg-secondary text-white shadow text-center">#}
+{#                            <div class="card-body">#}
+{#                                More Charts and Tables coming soon...#}
+{#                                <div class="text-white-50 small">issue code #858796</div>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
 {#                    </div>#}
 {#                </div>#}
-{##}
-{#            </div>#}
-{#        </div>#}
 
         <!-- /.container-fluid -->
 
@@ -322,22 +336,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
     <script src="{% static 'js/select2script.js' %}"></script>
 
-    <!-- DataTable JS -->
+
+    <!-- NumberFormat JS -->
+    <script src="{% static 'scripts/numberformat.js' %}"></script>
+
+    <!-- WorldStats JS -->
+    <script type="text/javascript" src="{% static 'scripts/worldstats.js' %} "></script>
+
+     <!-- DataTable JS -->
     <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/datatable.js' %} "></script>
 
-    <!-- WorldStats JS -->
-    <script type="text/javascript" src="{% static 'scripts/worldstats.js' %} " async></script>
-
     <!-- NEWS JS -->
-    <script type="text/javascript" src="{% static 'scripts/news.js' %} " async></script>
+    <script type="text/javascript" src="{% static 'scripts/news.js' %} "></script>
+
+    <!-- Apex Charts CHARTS JS -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script type="text/javascript" src="{% static 'scripts/barchart7days.js' %} "></script>
 
     <!-- GOOGLE CHARTS JS -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- GeoChart JS -->
-    <script type="text/javascript" src="{% static 'scripts/geochart.js' %} " async></script>
+    <script type="text/javascript" src="{% static 'scripts/geochart.js' %} "></script>
     <!-- LineChart JS -->
-    <script type="text/javascript" src="{% static 'scripts/linechart.js' %} " async></script>
+    <script type="text/javascript" src="{% static 'scripts/linechart.js' %} "></script>
+
+    <!-- Loading functions JS -->
+{#    <script src="{% static 'scripts/loading_order.js' %}"></script>#}
 
 {% endblock %}

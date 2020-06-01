@@ -9,14 +9,19 @@
 
 <div id="animatedModal">
     <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
-    <div class="news-heading h1 text-center text-white my-3">Latest News</div>
-    <div id="closebt-container" class="fixed-close-btn close-animatedModal">
-        <img class="closebt" src="{% static 'img/closebt.svg' %}">
+    <div class="py-4">
+        <h6 class="news-heading h3 text-center text-white">Latest News
+            <div id="closebt-container" class="fixed-close-btn close-animatedModal float-right">
+                <img class="closebt" src="{% static 'img/closebt.svg' %}">
+            </div>
+        </h6>
     </div>
+
     <div id="spinner_news" class="text-center py-2">
         <div class="spinner-border text-white" role="status"></div>
     </div>
-    <div class="modal-content">
+
+    <div class="modal-content pt-2">
         <div id="latest_news" class="container-fluid col-sm-6">
         </div>
     </div>

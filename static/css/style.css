@@ -27,3 +27,8 @@
 .text-medium-size {
   font-size: 90%;
 }
+
+
+.country-flag-size {
+    width: 20px !important;
+}
