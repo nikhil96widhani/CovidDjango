@@ -3,31 +3,36 @@ import json
 import threading
 import time
 
-API_URL = "https://covid-193.p.rapidapi.com/statistics"
-API_HEADERS = {
-    'x-rapidapi-host': "covid-193.p.rapidapi.com",
-    'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
-}
+# API_URL = "https://covid-193.p.rapidapi.com/statistics"
+# API_HEADERS = {
+#     'x-rapidapi-host': "covid-193.p.rapidapi.com",
+#     'x-rapidapi-key': "e0d880658amsh5707d8639e35fc3p1e7243jsn0bc77771acc8"
+# }
+#
+#
+# class Data:
+#     def __init__(self, api_url, api_headers):
+#         self.api_url = api_url
+#         self.api_headers = api_headers
+#
+#     def get_data(self):
+#         querystring = {}
+#         response = requests.request("GET", self.api_url, headers=self.api_headers, params=querystring)
+#         data = json.loads(response.text)
+#         return data
+#
+#     def get_total_cases(self):
+#         querystring = {"country": "All"}
+#         response = requests.request("GET", self.api_url, headers=self.api_headers, params=querystring)
+#         data = json.loads(response.text)
+#         for content in data:
+#             if content['name'] == "cases":
+#                 return str(content['name'])
 
 
-class Data:
-    def __init__(self, api_url, api_headers):
-        self.api_url = api_url
-        self.api_headers = api_headers
 
-    def get_data(self):
-        querystring = {}
-        response = requests.request("GET", self.api_url, headers=self.api_headers, params=querystring)
-        data = json.loads(response.text)
-        return data
 
-    def get_total_cases(self):
-        querystring = {"country": "All"}
-        response = requests.request("GET", self.api_url, headers=self.api_headers, params=querystring)
-        data = json.loads(response.text)
-        for content in data:
-            if content['name'] == "cases":
-                return str(content['name'])
+
         # return data
         # print(data)
         # for content in data:
@@ -80,8 +85,8 @@ class Data:
 
 
 # %%
-data1 = Data(API_URL, API_HEADERS)
-print(data1.get_total_cases())
+# data1 = Data(API_URL, API_HEADERS)
+# print(data1.get_total_cases())
 
 # %%
 #
