@@ -101,10 +101,10 @@ WSGI_APPLICATION = 'CovidDjango.wsgi.application'
 # See https://docs.djangoproject.com/en/2.1/ref/databases/#mysql-db-api-drivers
 # for more information
 # import pymysql  # noqa: 402
-
+#
 # pymysql.version_info = (1, 4, 6, 'final', 0)  # change mysqlclient version
 # pymysql.install_as_MySQLdb()
-
+#
 # # [START db_setup]
 # if os.getenv('GAE_APPLICATION', None):
 #     # Running on production App Engine, so connect to Google Cloud SQL using

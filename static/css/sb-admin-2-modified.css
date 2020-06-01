@@ -142,10 +142,11 @@ small {
   font-size: 80%;
 }
 
+
 sub,
 sup {
   position: relative;
-  font-size: 75%;
+  font-size: 80%;
   line-height: 0;
   vertical-align: baseline;
 }
@@ -584,7 +585,7 @@ pre code {
 }
 
 .container-fluid {
-  width: 80%;
+  width: 100%;
   padding-right: 0.75rem;
   padding-left: 0.75rem;
   margin-right: auto;
@@ -4037,13 +4038,6 @@ input[type="button"].btn-block {
 }
 
 @media (max-width: 575.98px) {
-  .container-fluid {
-    width: 100%;
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
-    margin-right: auto;
-    margin-left: auto;
-  }
   .navbar-expand-sm > .container,
   .navbar-expand-sm > .container-fluid {
     padding-right: 0;
@@ -4080,13 +4074,6 @@ input[type="button"].btn-block {
 }
 
 @media (max-width: 767.98px) {
-  .container-fluid {
-    width: 100%;
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
-    margin-right: auto;
-    margin-left: auto;
-  }
   .navbar-expand-md > .container,
   .navbar-expand-md > .container-fluid {
     padding-right: 0;
@@ -4123,13 +4110,6 @@ input[type="button"].btn-block {
 }
 
 @media (max-width: 991.98px) {
-  .container-fluid {
-    width: 100%;
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
-    margin-right: auto;
-    margin-left: auto;
-  }
   .navbar-expand-lg > .container,
   .navbar-expand-lg > .container-fluid {
     padding-right: 0;
@@ -4166,13 +4146,6 @@ input[type="button"].btn-block {
 }
 
 @media (max-width: 1199.98px) {
-  .container-fluid {
-    width: 100%;
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
-    margin-right: auto;
-    margin-left: auto;
-  }
   .navbar-expand-xl > .container,
   .navbar-expand-xl > .container-fluid {
     padding-right: 0;
@@ -4181,6 +4154,43 @@ input[type="button"].btn-block {
 }
 
 @media (min-width: 1200px) {
+  .navbar-expand-xl {
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+  }
+  .navbar-expand-xl .navbar-nav {
+    flex-direction: row;
+  }
+  .navbar-expand-xl .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+  .navbar-expand-xl .navbar-nav .nav-link {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+  }
+  .navbar-expand-xl > .container,
+  .navbar-expand-xl > .container-fluid {
+    flex-wrap: nowrap;
+  }
+  .navbar-expand-xl .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+  .navbar-expand-xl .navbar-toggler {
+    display: none;
+  }
+}
+
+@media (min-width: 1440px) {
+
+  .container-fluid {
+    width: 80%;
+    padding-right: 0.75rem;
+    padding-left: 0.75rem;
+    margin-right: auto;
+    margin-left: auto;
+  }
+
   .navbar-expand-xl {
     flex-flow: row nowrap;
     justify-content: flex-start;

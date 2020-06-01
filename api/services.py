@@ -149,3 +149,28 @@ def linechart_data():
     return df_list
     # for entry in data:
     #     print(entry['day'])
+
+
+def getBarChartData():
+    url = "https://disease.sh/v2/historical?lastdays=7"
+
+    response = requests.request("GET", url)
+    data = json.loads(response.text)
+
+    lista = []
+
+    for x in data:
+        a = {
+            "country": x['country'],
+            "last": list(x['timeline']['cases'].values())[-1],
+            "first": list(x['timeline']['cases'].values())[0]
+        }
+        lista.append(a)
+
+    df = pd.DataFrame(lista)
+    df = df.groupby(['country'], as_index=False).sum()
+    df['difference'] = df['last'] - df['first']
+    df = df.sort_values('difference', ascending=False)
+    df = df[:10]
+
+    return [df.country.tolist(), df.difference.tolist()]

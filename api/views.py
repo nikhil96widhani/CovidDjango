@@ -84,3 +84,16 @@ class geochartView(APIView):
         print('GEO ChartAPi Worked')
 
         return Response(choropleth_data())
+
+
+class barchartView(APIView):
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, format=None):
+
+        print('BarChartAPi Worked')
+
+        return Response(getBarChartData())
+
+
