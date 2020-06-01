@@ -11,5 +11,6 @@ urlpatterns = [
     path('news/', newsView.as_view(), name='news'),
     path('linechart/', lineChartView.as_view(), name='linechart'),
     path('geochart/', geochartView.as_view(), name='geochart'),
+    path('barchart/', barchartView.as_view(), name='barchart'),
 
 ]

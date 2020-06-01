@@ -48,17 +48,17 @@ function loadNews() {
         success: function (data) {
             for (var article in data) {
                 $("#latest_news").append(
-                    '<a class="dropdown-item d-flex align-items-center" target="_blank" href=' + data[article].url + '>' +
-                    '<div class="mr-3">' +
-                    '<div class="icon-circle bg-primary">' +
-                    '<img class="rounded-circle img-thumbnail" width="100px" height="100px" src="' + data[article].urlToImage + '">' +
-                    '</div>' +
-                    '</div>' +
-                    '<div>' +
-                    '<div class="small text-gray-500">From: ' + data[article].source.name + ' : ' + get_time(data[article].publishedAt) + ' </div>' +
-                    '<span class="font-weight-bold">' + data[article].title + '</span>' +
-                    '</div>' +
-                    '</a>'
+                    '<div class="row"><div class="card shadow mb-3"><div class="card-body"><div class="row no-gutters align-items-center">'
+                    +
+                    '<div class="col-sm-3"><img class="img-fluid img-rounded" src="' + data[article].urlToImage + '"alt=""></div>'
+                    +
+                    '<span class="col-sm-8 mx-auto my-2"><a target="_blank" rel="nofollow" href="' + data[article].url + '"><div class="text-primary lead font-weight-bold">' + data[article].title + '</div></a>'
+                    +
+                    '<span class="small text-gray-500">From: ' + data[article].source.name + ' , ' + get_time(data[article].publishedAt) + ' </span>'
+                    +
+                    '<div class="mt-2 text-medium-size text-gray-800">' + data[article].description + '.... <a target="_blank" rel="nofollow" href="' + data[article].url + '"> read more</a></p>'
+                    +
+                    '</div></div></div></div></div>'
                 );
             }
         },
@@ -69,6 +69,6 @@ function loadNews() {
 
     }).done(function () {
         //on return, add here
-        $("#spinner").hide();
+        $("#spinner_news").hide();
     });
 }

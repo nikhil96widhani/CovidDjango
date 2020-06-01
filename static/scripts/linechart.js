@@ -3,8 +3,6 @@ google.charts.load('current', {'packages': ['line']});
 // NEW CODE START
 jQuery(document).ready(checkContainer);
 
-
-
 function checkContainer () {
   if($('#regions_div').is(':visible')){ //if the container is visible on the page
     drawLineChart();  //Adds a grid to the html
@@ -57,6 +55,7 @@ function drawLineChart() {
 
     }).done(function () {
         //on return, add here
+        $("#linechart_spinner").hide()
     });
 }
 // NEW CODE END

@@ -7,15 +7,15 @@ from django.views import View
 # Create your views here.
 
 def indexView(request):
-    world_data = get_country_data(None)
+    # world_data = get_country_data(None)
 
-    continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
-                       'All']
+    # continents_list = ['Asia', 'Europe', 'Africa', 'North-America', 'South-America', 'Antarctica', 'Oceania',
+    #                    'All']
 
     data = {
         'regions': get_country_names(),
-        'world_data': world_data,
-        'continents_list': continents_list,
+        # 'world_data': world_data,
+        # 'continents_list': continents_list,
     }
 
     return render(request, 'index.html', data)
@@ -33,3 +33,4 @@ def test_View(request):
     }
 
     return render(request, 'test.html', context)
+
