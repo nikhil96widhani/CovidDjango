@@ -9,7 +9,7 @@ urlpatterns = [
     path('worldstats/', world_statsView.as_view(), name='worldstats'),
     path('tabledata/', tablesView.as_view(), name='tabledata'),
     path('news/', newsView.as_view(), name='news'),
-    path('linechart/', lineChartView.as_view(), name='linechart'),
+    path('linechart/', LineChartView.as_view(), name='linechart'),
     path('geochart/', geochartView.as_view(), name='geochart'),
     path('barchart/', barchartView.as_view(), name='barchart'),
 
