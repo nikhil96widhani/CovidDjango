@@ -63,17 +63,20 @@ class newsView(APIView):
         return Response(news.get_articles())
 
 
-class lineChartView(APIView):
+class LineChartView(APIView):
     authentication_classes = []
     permission_classes = []
 
     def get(self, request, format=None):
+        region_name = request.GET.get("region_name")
+        days = request.GET.get("days")
+        if region_name == 'World' or region_name is None:
+            region_name = 'all'
 
         print('Line ChartAPi Worked')
+        line_chart_data = triple_line_chart_data(region_name, days)
+        return Response(line_chart_data)
 
-        data_line_chart = linechart_data()
-
-        return Response(data_line_chart)
 
 class geochartView(APIView):
     authentication_classes = []

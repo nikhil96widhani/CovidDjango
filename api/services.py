@@ -3,6 +3,7 @@ import json
 from newsapi import NewsApiClient
 import datetime
 import pandas as pd
+from collections import OrderedDict
 
 # Load APIKEYS Json
 with open('apikeys.json') as e:
@@ -12,7 +13,6 @@ newsapi = NewsApiClient(api_key=apikeys['news_key'])
 
 API_URL = "https://covid-193.p.rapidapi.com/statistics"
 API_HEADERS = apikeys['rapidhostapi']
-
 
 # newsapi = NewsApiClient(api_key='39970353050840afa44ca78302ff74c4')
 #
@@ -149,6 +149,29 @@ def linechart_data():
     return df_list
     # for entry in data:
     #     print(entry['day'])
+
+
+def triple_line_chart_data(region_name, days):
+
+    url = f"https://disease.sh/v2/historical/{region_name}?lastdays={days}"
+
+    response = requests.request("GET", url)
+    data = json.loads(response.text)
+
+    try:
+        ordered_cases = OrderedDict(data['cases'])
+    except KeyError:
+        data = data['timeline']
+        ordered_cases = OrderedDict(data['cases'])
+
+    dates = list(ordered_cases.keys())
+    total = list(ordered_cases.values())
+
+    recovered = list(OrderedDict(data['recovered']).values())
+    deaths = list(OrderedDict(data['deaths']).values())
+
+    chart_data = {'dates': dates, 'total': total, 'recovered': recovered, 'deaths': deaths}
+    return chart_data
 
 
 def getBarChartData():

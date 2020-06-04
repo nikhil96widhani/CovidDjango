@@ -147,14 +147,43 @@
 
         </div>
 
-        <!-- Content Row table and geochart, line chart -->
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="card shadow">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Cases Overview</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body p-0">
+                        <div id="radial-bars-div">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="card shadow">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Case Trends</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body p-0">
+                        <div id="triple-line-chart-div"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Content Row bar chart -->
         <div class="row">
             <!-- Data table -->
             <div class="col-xl-7 col-lg-7 py-3">
                 <div class="card shadow">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">DataTable: Cases by Country
-                            <div id="datatable_spinner" class="spinner-border spinner-border-sm float-right" role="status">
+                            <div id="datatable_spinner" class="spinner-border spinner-border-sm float-right"
+                                 role="status">
                                 <span class="sr-only">Loading...</span>
                             </div>
                         </h6>
@@ -232,71 +261,35 @@
                         <div id="regions_div"></div>
                     </div>
                 </div>
-                <!-- Line Chart -->
-                <div class="card shadow mb-4">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Case Trends
-                            <div id="linechart_spinner" class="spinner-border spinner-border-sm float-right"
-                                 role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </h6>
 
-                        {#                        <div class="dropdown no-arrow">#}
-                        {#                            <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"#}
-                        {#                               data-toggle="dropdown"#}
-                        {#                               aria-haspopup="true" aria-expanded="false">#}
-                        {#                                <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>#}
-                        {#                            </a>#}
-                        {#                            <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"#}
-                        {#                                 aria-labelledby="dropdownMenuLink">#}
-                        {#                                <div class="dropdown-header">Dropdown Header:</div>#}
-                        {#                                <a class="dropdown-item" href="#">Action</a>#}
-                        {#                                <a class="dropdown-item" href="#">Another action</a>#}
-                        {#                                <div class="dropdown-divider"></div>#}
-                        {#                                <a class="dropdown-item" href="#">Something else here</a>#}
-                        {#                            </div>#}
-                        {#                        </div>#}
+                <!--Bar Chart -->
+                <div class="card shadow">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Countries with most cases within last 7 days</h6>
                     </div>
                     <!-- Card Body -->
-                    <div class="card-body">
-                        <div id="linechart_div"></div>
-                        <div class="mt-4 text-center small">
-                    <span class="mr-2">
-                      <i class="fas fa-circle text-primary"></i> Total Cases
-                    </span>
-                            <span class="mr-2">
-                      <i class="fas fa-circle text-danger"></i> Recoveries
-                    </span>
-                            <span class="mr-2">
-                      <i class="fas fa-circle text-warning"></i> Deaths
-                    </span>
+                    <div class="card-body p-0">
+                        <div id="barchart_7days">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-            <!-- Content Row bar chart -->
-        <div class="row">
-            {% include 'charts-and-graphs/triple-line-chart.html' %}
-            {% include 'charts-and-graphs/barchart7days.html' %}
-        </div>
 
-
-{#                <div class="row">#}
-{#                    <!-- More features comming soon -->#}
-{#                    <div class="container-fluid select2-dropdown333  py-5">#}
-{#                        <div class="card bg-secondary text-white shadow text-center">#}
-{#                            <div class="card-body">#}
-{#                                More Charts and Tables coming soon...#}
-{#                                <div class="text-white-50 small">issue code #858796</div>#}
-{#                            </div>#}
-{#                        </div>#}
-{##}
-{#                    </div>#}
-{#                </div>#}
+        {#                <div class="row">#}
+        {#                    <!-- More features comming soon -->#}
+        {#                    <div class="container-fluid select2-dropdown333  py-5">#}
+        {#                        <div class="card bg-secondary text-white shadow text-center">#}
+        {#                            <div class="card-body">#}
+        {#                                More Charts and Tables coming soon...#}
+        {#                                <div class="text-white-50 small">issue code #858796</div>#}
+        {#                            </div>#}
+        {#                        </div>#}
+        {##}
+        {#                    </div>#}
+        {#                </div>#}
 
         <!-- /.container-fluid -->
 
@@ -334,7 +327,7 @@
     <!-- WorldStats JS -->
     <script type="text/javascript" src="{% static 'scripts/worldstats.js' %} "></script>
 
-     <!-- DataTable JS -->
+    <!-- DataTable JS -->
     <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
     <script src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
     <script type="text/javascript" src="{% static 'scripts/datatable.js' %} "></script>
@@ -344,8 +337,9 @@
 
     <!-- Apex Charts CHARTS JS -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script type="text/javascript" src="{% static 'scripts/barchart7days.js' %} "></script>
+    <script type="text/javascript" src="{% static 'scripts/charts-and-graphs/barchart7days.js' %} "></script>
     <script type="text/javascript" src="{% static 'scripts/charts-and-graphs/triple-line-chart.js' %} "></script>
+    <script type="text/javascript" src="{% static 'scripts/charts-and-graphs/radial-bars.js' %} "></script>
 
     <!-- GOOGLE CHARTS JS -->
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -355,6 +349,6 @@
     <script type="text/javascript" src="{% static 'scripts/linechart.js' %} "></script>
 
     <!-- Loading functions JS -->
-{#    <script src="{% static 'scripts/loading_order.js' %}"></script>#}
+    {#    <script src="{% static 'scripts/loading_order.js' %}"></script>#}
 
 {% endblock %}
