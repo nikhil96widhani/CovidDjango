@@ -24,6 +24,13 @@ let line_chart_options = {
     xaxis: {
         type: 'datetime'
     },
+    yaxis: {
+      labels: {
+        formatter: function (value) {
+          return kmbtFormatter(value);
+        }
+      },
+    },
     markers: {
         size: 0.3,
         hover: {
