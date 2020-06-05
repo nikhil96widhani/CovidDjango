@@ -41,14 +41,22 @@ function drawBarchart7days() {
                 },
                 dataLabels: {
                     enabled: true,
-                    offsetX: -6,
+                    offsetX: 40,
                     style: {
                         fontSize: '12px',
-                        colors: ['#fff']
+                        colors: ['#595959']
+                    },
+                    formatter: function (value) {
+                      return kmbtFormatter(value);
                     }
                 },
                 xaxis: {
                     categories: data[0],
+                    labels: {
+                    formatter: function (value) {
+                      return kmbtFormatter(value);
+                    }
+                  }
                 }
             };
 

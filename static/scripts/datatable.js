@@ -1,4 +1,4 @@
-// uses numberformat.js
+// uses formatting_functions.js
 
 
 function DataTableFormat(){
