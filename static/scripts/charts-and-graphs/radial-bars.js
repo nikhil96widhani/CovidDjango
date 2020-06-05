@@ -6,40 +6,20 @@ let radial_bars_options = {
     chart: {
         height: 315,
         type: 'radialBar',
-        // animations: {
-        //     enabled: true,
-        //     easing: 'easeinout',
-        //     speed: 800,
-        //     animateGradually: {
-        //         enabled: true,
-        //         delay: 150
-        //     },
-        //     dynamicAnimation: {
-        //         enabled: true,
-        //         speed: 350
-        //     }
-        // }
+        animations: {
+            enabled: true,
+            easing: 'easeinout',
+            speed: 800,
+            animateGradually: {
+                enabled: true,
+                delay: 150
+            },
+            dynamicAnimation: {
+                enabled: true,
+                speed: 350
+            }
+        }
     },
-    // plotOptions: {
-    //     radialBar: {
-    //         dataLabels: {
-    //             name: {
-    //                 fontSize: '22px',
-    //             },
-    //             value: {
-    //                 fontSize: '16px',
-    //             },
-    //             // total: {
-    //             //     show: true,
-    //             //     label: 'Total',
-    //             //     formatter: function (w) {
-    //             //         // By default this function returns the average of all series. The below is just an example to show the use of custom formatter function
-    //             //         return current_total
-    //             //     }
-    //             // }
-    //         }
-    //     }
-    // },
     labels: ['Active', 'Recovered', 'Deaths'],
 };
 
