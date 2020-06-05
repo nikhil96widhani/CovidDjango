@@ -125,10 +125,10 @@
                                         <div id="total_recovered"
                                              class="h4 mb-0 mr-3 font-weight-bold text-gray-800"></div>
                                     </div>
-                                    {#                        <div class="col-auto">#}
-                                    {#                          <span id="new_total_recovered" class="text-s font-weight-bold text-gray-800">#}
-                                    {#                          </span>#}
-                                    {#                        </div>#}
+                                    <div class="col-auto">
+                                        <sub id="new_total_recovered" class="text-s font-weight-bold text-gray-800">
+                                        </sub>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-auto">
@@ -147,8 +147,10 @@
 
         </div>
 
-        <div class="row">
-            <div class="col-sm-5">
+
+            <div class="row">
+            <!-- Radial Chart -->
+            <div class="col-xl-5 col-lg-5 py-3">
                 <div class="card shadow">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -161,8 +163,11 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-7">
-                <div class="card shadow">
+
+            <!-- Charts -->
+            <div class="col-xl-7 col-lg-7 py-3">
+                    <!--LineChart Chart -->
+                    <div class="card shadow">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Case Trends</h6>
@@ -172,6 +177,8 @@
                         <div id="triple-line-chart-div"></div>
                     </div>
                 </div>
+
+
             </div>
         </div>
 
@@ -207,34 +214,8 @@
                                 </tr>
                                 </thead>
                                 <tbody id="datatable-ajax">
-                                <!-- CONTENT GOES HERE -->
-                                {#                                {% for countries in world_data %}#}
-                                {#                                    {% if countries.country not in continents_list %}#}
-                                {#                                        <tr>#}
-                                {#                                            <td class="text-primary">{{ countries.country }}</td>#}
-                                {#                                            <td>{{ countries.cases.total|int_comma }}</td>#}
-                                {#                                            <td class="text-danger">+{{ countries.cases.new|int_comma }}</td>#}
-                                {#                                            <td>{{ countries.deaths.total|int_comma }}</td>#}
-                                {#                                            <td class="text-danger">+{{ countries.deaths.new|int_comma }}</td>#}
-                                {#                                            <td>{{ countries.cases.recovered|int_comma }}</td>#}
-                                {#                                        </tr>#}
-                                {#                                    {% endif %}#}
-                                {#                                {% endfor %}#}
                                 </tbody>
                                 <tfoot id="datatable-footer-ajax" class="font-weight-bold">
-                                {#                                {% for countries in world_data %}#}
-                                {#                                    {% if countries.country == 'All' %}#}
-                                {#                                        <tr>#}
-                                {#                                        <th></th>#}
-                                {#                                            <th>Total</th>#}
-                                {#                                            <th>{{ countries.cases.total|int_comma }}</th>#}
-                                {#                                            <th>+{{ countries.cases.new|int_comma }}</th>#}
-                                {#                                            <th>{{ countries.deaths.total|int_comma }}</th>#}
-                                {#                                            <th>+{{ countries.deaths.new|int_comma }}</th>#}
-                                {#                                            <th>{{ countries.cases.recovered|int_comma }}</th>#}
-                                {#                                        </tr>#}
-                                {#                                    {% endif %}#}
-                                {#                                {% endfor %}#}
                                 </tfoot>
                             </table>
                         </div>
@@ -245,6 +226,18 @@
 
             <!-- Charts -->
             <div class="col-xl-5 col-lg-5 py-3">
+                    <!--Bar Chart -->
+                    <div class="card shadow mb-4">
+                    <!-- Card Header - Dropdown -->
+                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Top Countries with new cases in 7 days</h6>
+                    </div>
+                    <!-- Card Body -->
+                    <div class="card-body p-0">
+                        <div id="barchart_7days">
+                        </div>
+                    </div>
+                </div>
                 <!-- Geo Chart -->
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
@@ -256,24 +249,14 @@
                             </div>
                         </h6>
                     </div>
+
                     <!-- Card Body -->
                     <div class="card-body">
                         <div id="regions_div"></div>
                     </div>
                 </div>
 
-                <!--Bar Chart -->
-                <div class="card shadow">
-                    <!-- Card Header - Dropdown -->
-                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Countries with most cases within last 7 days</h6>
-                    </div>
-                    <!-- Card Body -->
-                    <div class="card-body p-0">
-                        <div id="barchart_7days">
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
 
@@ -321,11 +304,11 @@
     <script src="{% static 'js/select2script.js' %}"></script>
 
 
-    <!-- NumberFormat JS -->
-    <script src="{% static 'scripts/numberformat.js' %}"></script>
+    <!-- FormattingFunctions JS -->
+    <script src="{% static 'scripts/formatting_functions.js' %}"></script>
 
     <!-- WorldStats JS -->
-    <script type="text/javascript" src="{% static 'scripts/worldstats.js' %} "></script>
+    <script type="text/javascript" src="{% static 'scripts/worldstats.js' %}" async></script>
 
     <!-- DataTable JS -->
     <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
@@ -345,8 +328,6 @@
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- GeoChart JS -->
     <script type="text/javascript" src="{% static 'scripts/geochart.js' %} "></script>
-    <!-- LineChart JS -->
-    <script type="text/javascript" src="{% static 'scripts/linechart.js' %} "></script>
 
     <!-- Loading functions JS -->
     {#    <script src="{% static 'scripts/loading_order.js' %}"></script>#}
