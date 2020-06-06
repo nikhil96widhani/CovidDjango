@@ -85,16 +85,16 @@ function load_footer() {
 }
 
 
-jQuery(document).ready(checkContainer);
+// jQuery(document).ready(checkContainer);
 
-function checkContainer () {
-  if($('#total_recovered').is(':visible')){ //if the container is visible on the page
-      loadTable();
-      load_footer();  //Adds a grid to the html
-  } else {
-    setTimeout(checkContainer, 50); //wait 50 ms, then try again
-  }
-}
+// function checkContainer () {
+//   if($('#total_recovered').is(':visible')){ //if the container is visible on the page
+//       loadTable();
+//       load_footer();  //Adds a grid to the html
+//   } else {
+//     setTimeout(checkContainer, 50); //wait 50 ms, then try again
+//   }
+// }
 
 
 

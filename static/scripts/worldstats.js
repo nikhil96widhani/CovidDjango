@@ -1,7 +1,7 @@
 function loadWorldStats() {
     var region_name = document.getElementById('region_selector').value;
 
-    var getworldstats
+    var getworldstats;
 
     if (region_name === 'World') {
         getworldstats = 'https://disease.sh/v2/all?yesterday=false&allowNull=false';
@@ -53,7 +53,11 @@ function loadWorldStats() {
             document.getElementById("recoveredpercentage1").innerHTML = recovered_percentage + '%';
             document.getElementById("recoveredpercentage2").style.width = recovered_percentage + '%';
 
+            let current_total = data.cases;
+            let current_recovered = data.recovered;
+            let current_deaths = data.deaths;
 
+            radialBarsFill(current_total, current_recovered, current_deaths);
         },
         error: function (error_data) {
             console.log("error");

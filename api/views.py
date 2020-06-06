@@ -70,7 +70,7 @@ class LineChartView(APIView):
     def get(self, request, format=None):
         region_name = request.GET.get("region_name")
         days = request.GET.get("days")
-        if region_name == 'World' or region_name is None:
+        if region_name == 'World' or region_name == '':
             region_name = 'all'
 
         print('Line ChartAPi Worked')
