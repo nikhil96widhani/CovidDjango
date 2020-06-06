@@ -101,7 +101,7 @@
                                 <i class="fas fa-frown fa-2x text-gray-300"></i>
                             </div>
                         </div>
-                        <span class="small text-gray-800">Mortality Rate<span id="deathpercentage1"
+                        <span class="small text-gray-800">Chances of Death<span id="deathpercentage1"
                                                                               class="float-right"></span></span>
                         <div class="progress progress-sm">
                             <div id="deathpercentage2" class="progress-bar bg-danger" role="progressbar"
@@ -135,7 +135,7 @@
                                 <i class="fas fa-shield-virus fa-2x text-gray-300"></i>
                             </div>
                         </div>
-                        <span class="small text-gray-800">Recovery Rate<span id="recoveredpercentage1"
+                        <span class="small text-gray-800">Recovery Chances<span id="recoveredpercentage1"
                                                                              class="float-right"></span></span>
                         <div class="progress progress-sm">
                             <div id="recoveredpercentage2" class="progress-bar bg-success" role="progressbar"
@@ -188,7 +188,7 @@
             <div class="col-xl-7 col-lg-7 py-3">
                 <div class="card shadow">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">DataTable: Cases by Country
+                        <h6 class="m-0 font-weight-bold text-primary">Cases by Country
                             <div id="datatable_spinner" class="spinner-border spinner-border-sm float-right"
                                  role="status">
                                 <span class="sr-only">Loading...</span>
@@ -242,17 +242,14 @@
                 <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">World Overview
-                            <div id="world_overview_spinner" class="spinner-border spinner-border-sm float-right"
-                                 role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div>
-                        </h6>
+                        <h6 class="m-0 font-weight-bold text-primary">World Overview</h6>
                     </div>
 
                     <!-- Card Body -->
                     <div class="card-body">
-                        <div id="regions_div"></div>
+                        <div id="regions_div" class="text-center">
+                            Coming Soon!
+                        </div>
                     </div>
                 </div>
 
@@ -308,7 +305,9 @@
     <script src="{% static 'scripts/formatting_functions.js' %}"></script>
 
     <!-- WorldStats JS -->
-    <script type="text/javascript" src="{% static 'scripts/worldstats.js' %}" async></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script type="text/javascript" src="{% static 'scripts/charts-and-graphs/radial-bars.js' %} "></script>
+    <script type="text/javascript" src="{% static 'scripts/worldstats.js' %}"></script>
 
     <!-- DataTable JS -->
     <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
@@ -319,17 +318,15 @@
     <script type="text/javascript" src="{% static 'scripts/news.js' %} "></script>
 
     <!-- Apex Charts CHARTS JS -->
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script type="text/javascript" src="{% static 'scripts/charts-and-graphs/barchart7days.js' %} "></script>
     <script type="text/javascript" src="{% static 'scripts/charts-and-graphs/triple-line-chart.js' %} "></script>
-    <script type="text/javascript" src="{% static 'scripts/charts-and-graphs/radial-bars.js' %} "></script>
 
     <!-- GOOGLE CHARTS JS -->
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{#    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>#}
     <!-- GeoChart JS -->
-    <script type="text/javascript" src="{% static 'scripts/geochart.js' %} "></script>
+{#    <script type="text/javascript" src="{% static 'scripts/geochart.js' %} "></script>#}
 
     <!-- Loading functions JS -->
-    {#    <script src="{% static 'scripts/loading_order.js' %}"></script>#}
+    <script src="{% static 'scripts/loading_order.js' %}"></script>
 
 {% endblock %}

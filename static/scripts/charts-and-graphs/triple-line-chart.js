@@ -39,10 +39,11 @@ let line_chart_options = {
     },
     grid: {
         borderColor: '#f1f1f1',
-    }
+    },
+    // colors: ['rgba(0,143,251,0.85)', 'rgba(0, 227, 150, 0.85)', 'rgba(255,47,47,0.85)'],
+    colors: ['rgba(78, 115, 223, 1)', 'rgba(28, 200, 138, 1)', 'rgba(231, 74, 59, 1)'],
+    // colors: ['#4e73df', '#1cc88a', '#e74a3b'],
 };
-
-var current_total, current_recovered, current_deaths;
 
 let triple_line_chart = new ApexCharts(document.querySelector("#triple-line-chart-div"), line_chart_options);
 triple_line_chart.render();
@@ -74,9 +75,9 @@ function lineChartDataFill() {
     });
 }
 
-$(document).ready(function () {
-    lineChartDataFill();
-});
+// $(document).ready(function () {
+//     lineChartDataFill();
+// });
 
 $('#region_selector').change(function () {
     lineChartDataFill();
