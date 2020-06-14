@@ -34,3 +34,10 @@ def test_View(request):
 
     return render(request, 'test.html', context)
 
+
+def mohit_test_view(request):
+    context = {
+        'regions': get_country_names(include_world=False),
+    }
+    return render(request, 'mohit-test.html', context)
+

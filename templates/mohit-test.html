@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load int_comma %}
+{% load static %}
+
+{% block css %}
+
+    <!-- bootstrap SELECT 2 -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+    <link href="{% static 'css/select2-bootstrap4.min.css' %}" rel="stylesheet"/>
+    <!-- bootstrap END SELECT 2 -->
+    <link href="{% static 'datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+    <!-- Begin Page Content -->
+    <div class="container-fluid">
+
+        {% include 'components/stat-cards.html' %}
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 py-3">
+                <div class="card">
+                    <div class="card-body" style="position: relative;">
+
+                        <h4 class="header-title mb-1">Total Cases Trends</h4>
+
+                        <div id="line-chart-div"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-lg-6 py-3">
+                <div class="card">
+                    <div class="card-body" style="position: relative;">
+
+                        <h4 class="header-title mb-1">Daily Cases Trends</h4>
+
+                        <div id="bar-chart-div"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 py-3">
+                <div class="card">
+                    <div class="card-body" style="position: relative;">
+
+                        <h4 class="header-title mb-1">Countries Cases Comparison</h4>
+
+                        <div class="row mt-3">
+                            <div class="form-group col-sm-6">
+                                <select id="compare-country-1" class="form-control" data-placeholder="Select Country">
+                                    {% for region in regions %}
+                                        <option value="{{ region }}"
+                                                {% if region == 'India' %}
+                                                selected="selected"
+                                                {% endif %} >{{ region }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <select id="compare-country-2" class="form-control" placeholder="Select Country">
+                                    {% for region in regions %}
+                                        <option value="{{ region }}"
+                                                {% if region == 'USA' %}
+                                                selected="selected"
+                                                {% endif %} >{{ region }}
+                                        </option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 float-left">
+                                <button id="country-compare-button" class="btn btn-primary mb-2">Compare</button>
+                            </div>
+                            <div class="col-sm-6 float-right">
+                                <select id="cases-selection" class="form-control" data-placeholder="Please Select">
+                                    <option value="total" selected>Total Cases</option>
+                                    <option value="recovered">Recovered Cases</option>
+                                    <option value="active">Active Cases</option>
+                                    <option value="deaths">Deaths</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="country-comparison-chart-div"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
+
+
+{% block js %}
+    <!-- PageLevel JS -->
+
+    <!-- SELECT2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="{% static 'js/select2script.js' %}"></script>
+
+
+    <!-- FormattingFunctions JS -->
+    <script src="{% static 'scripts/formatting_functions.js' %}"></script>
+
+    <!-- WorldStats JS -->
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="{% static 'scripts/charts-and-graphs/synched-charts.js' %}"></script>
+    <script src="{% static 'scripts/charts-and-graphs/card-graphs.js' %}"></script>
+    <script src="{% static 'scripts/charts-and-graphs/extra-graphs.js' %}"></script>
+    <script src="{% static 'scripts/synched-data-fetch.js' %}"></script>
+
+    <!-- NEWS JS -->
+    <script type="text/javascript" src="{% static 'scripts/news.js' %} "></script>
+
+{% endblock %}

@@ -17,11 +17,8 @@
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
-
         <!-- Content Row -->
         <div class="row pt-4">
-
-
             <!-- Country Select Card -->
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card shadow h-100 py-2">
@@ -41,8 +38,9 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <span class="small text-gray-800">Data Updated <span
-                                class="float-right">15 minutes ago</span></span>
+                        <span class="small text-gray-800">Data Updated
+                            <span class="float-right">15 minutes ago</span>
+                        </span>
                     </div>
                 </div>
             </div>
@@ -102,7 +100,7 @@
                             </div>
                         </div>
                         <span class="small text-gray-800">Chances of Death<span id="deathpercentage1"
-                                                                              class="float-right"></span></span>
+                                                                                class="float-right"></span></span>
                         <div class="progress progress-sm">
                             <div id="deathpercentage2" class="progress-bar bg-danger" role="progressbar"
                                  aria-valuemin="0" aria-valuemax="100"></div>
@@ -136,7 +134,7 @@
                             </div>
                         </div>
                         <span class="small text-gray-800">Recovery Chances<span id="recoveredpercentage1"
-                                                                             class="float-right"></span></span>
+                                                                                class="float-right"></span></span>
                         <div class="progress progress-sm">
                             <div id="recoveredpercentage2" class="progress-bar bg-success" role="progressbar"
                                  aria-valuemin="0" aria-valuemax="100"></div>
@@ -148,7 +146,7 @@
         </div>
 
 
-            <div class="row">
+        <div class="row">
             <!-- Radial Chart -->
             <div class="col-xl-5 col-lg-5 py-3">
                 <div class="card shadow">
@@ -166,15 +164,15 @@
 
             <!-- Charts -->
             <div class="col-xl-7 col-lg-7 py-3">
-                    <!--LineChart Chart -->
-                    <div class="card shadow">
+                <!--LineChart Chart -->
+                <div class="card shadow">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Case Trends</h6>
                     </div>
                     <!-- Card Body -->
                     <div class="card-body p-0">
-                        <div id="triple-line-chart-div"></div>
+                        <div id="line-chart-div"></div>
                     </div>
                 </div>
 
@@ -226,8 +224,8 @@
 
             <!-- Charts -->
             <div class="col-xl-5 col-lg-5 py-3">
-                    <!--Bar Chart -->
-                    <div class="card shadow mb-4">
+                <!--Bar Chart -->
+                <div class="card shadow mb-4">
                     <!-- Card Header - Dropdown -->
                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Top Countries with new cases in 7 days</h6>
@@ -319,12 +317,12 @@
 
     <!-- Apex Charts CHARTS JS -->
     <script type="text/javascript" src="{% static 'scripts/charts-and-graphs/barchart7days.js' %} "></script>
-    <script type="text/javascript" src="{% static 'scripts/charts-and-graphs/triple-line-chart.js' %} "></script>
+    <script type="text/javascript" src="{% static 'scripts/charts-and-graphs/line-chart.js' %} "></script>
 
     <!-- GOOGLE CHARTS JS -->
-{#    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>#}
+    {#    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>#}
     <!-- GeoChart JS -->
-{#    <script type="text/javascript" src="{% static 'scripts/geochart.js' %} "></script>#}
+    {#    <script type="text/javascript" src="{% static 'scripts/geochart.js' %} "></script>#}
 
     <!-- Loading functions JS -->
     <script src="{% static 'scripts/loading_order.js' %}"></script>

@@ -37,12 +37,13 @@ def get_country_data(country):
     return data
 
 
-def get_country_names():
+def get_country_names(include_world=True):
     url = "https://covid-193.p.rapidapi.com/countries"
 
     response = requests.request("GET", url, headers=API_HEADERS)
     data = json.loads(response.text)['response']
-    data.insert(0, 'World')
+    if include_world:
+        data.insert(0, 'World')
 
     return data
 
@@ -152,7 +153,6 @@ def linechart_data():
 
 
 def triple_line_chart_data(region_name, days):
-
     url = f"https://disease.sh/v2/historical/{region_name}?lastdays={days}"
 
     response = requests.request("GET", url)
@@ -170,8 +170,31 @@ def triple_line_chart_data(region_name, days):
     recovered = list(OrderedDict(data['recovered']).values())
     deaths = list(OrderedDict(data['deaths']).values())
 
-    chart_data = {'dates': dates, 'total': total, 'recovered': recovered, 'deaths': deaths}
-    return chart_data
+    active = [t - (r + d) for (t, r, d) in zip(total, recovered, deaths)]
+
+    last_date = datetime.datetime.strptime(dates[-1], "%m/%d/%y")
+    new_date = last_date + datetime.timedelta(days=1)
+    new_date_string = datetime.datetime.strftime(new_date, "%m/%d/%y")
+
+    # Appended a new date due to a issue with the Apex Line Chart
+    del dates[0]
+    dates.append(new_date_string)
+
+    total_days = int(days)
+    days_for_bar_chart = 14
+    daily_cases, daily_recovered, daily_deaths = [], [], []
+    for x in range(total_days - days_for_bar_chart, total_days):
+        daily_cases.append(total[x] - total[x - 1])
+        daily_recovered.append(recovered[x] - recovered[x - 1])
+        daily_deaths.append(deaths[x] - deaths[x - 1])
+    # daily_active = [t - (r + d) for (t, r, d) in zip(total, recovered, deaths)]
+
+    line_chart_data = {'dates': dates, 'total': total, 'active': active, 'recovered': recovered, 'deaths': deaths}
+    bar_chart_data = {'dates': dates[-days_for_bar_chart:], 'daily_cases': daily_cases,
+                      'daily_recovered': daily_recovered, 'daily_deaths': daily_deaths}
+
+    charts_data = {'line_chart_data': line_chart_data, 'bar_chart_data': bar_chart_data}
+    return charts_data
 
 
 def getBarChartData():

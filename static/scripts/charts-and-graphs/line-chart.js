@@ -45,8 +45,8 @@ let line_chart_options = {
     // colors: ['#4e73df', '#1cc88a', '#e74a3b'],
 };
 
-let triple_line_chart = new ApexCharts(document.querySelector("#triple-line-chart-div"), line_chart_options);
-triple_line_chart.render();
+let line_chart = new ApexCharts(document.querySelector("#line-chart-div"), line_chart_options);
+line_chart.render();
 
 function lineChartDataFill() {
     let region_name = document.getElementById('region_selector').value;
@@ -54,23 +54,23 @@ function lineChartDataFill() {
     let data = {'region_name': region_name, 'days':60}
 
     $.getJSON(url, data, function (response) {
-        triple_line_chart.updateSeries([
+        line_chart.updateSeries([
             {
                 name: "Total Cases",
-                data: response.total
+                data: response.line_chart_data.total
             },
             {
                 name: "Recovered",
-                data: response.recovered
+                data: response.line_chart_data.recovered
             },
             {
                 name: 'Deaths',
-                data: response.deaths
+                data: response.line_chart_data.deaths
             },
         ])
-        triple_line_chart.updateOptions({
+        line_chart.updateOptions({
             // labels: response.dates,
-            labels: response.dates,
+            labels: response.line_chart_data.dates,
         })
     });
 }
