@@ -50,8 +50,8 @@ line_chart.render();
 
 function lineChartDataFill() {
     let region_name = document.getElementById('region_selector').value;
-    let url = '/api/linechart';
-    let data = {'region_name': region_name, 'days':60}
+    let url = '/api/historical/';
+    let data = {'region_name': region_name}
 
     $.getJSON(url, data, function (response) {
         line_chart.updateSeries([

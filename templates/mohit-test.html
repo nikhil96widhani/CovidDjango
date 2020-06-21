@@ -12,29 +12,97 @@
 
 {% endblock %}
 
+{% block country-selection %}
+{#    <select id="region-selector-nav" class="form-control" data-placeholder="Select Country">#}
+{#        <option value="World">World</option>#}
+{#        {% for region in regions %}#}
+{#            <option value="{{ region }}">{{ region }}</option>#}
+{#        {% endfor %}#}
+{#    </select>#}
+{% endblock %}
+
 {% block content %}
 
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
-        {% include 'components/stat-cards.html' %}
+        <div class="form-row mt-4 mb-2 text-dark text-center text-sm-left">
+            <div class="col-12 col-sm-auto h4 lead my-auto">Showing results for</div>
+            <div class="col-sm-2 col mt-sm-0 mt-2 pl-1">
+                <select id="region-selector" class="form-control" data-placeholder="Select Country">
+                    <option value="World" selected>World</option>
+                    {% for region in regions %}
+                        <option value="{{ region }}">{{ region }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
 
         <div class="row">
-            <div class="col-xl-6 col-lg-6 py-3">
+            <div class="col-lg-6 py-3">
                 <div class="card">
-                    <div class="card-body" style="position: relative;">
+                    <div class="card-body text-gray-900" style="position: relative;">
+                        <div class="row">
+                            <div class="col">
+                                <div class="h5 text-uppercase text-gray-700">Total Cases</div>
+                                <div>
+                                    <span id="current-total-value" class="h3 text-primary my-3 font-weight-bold">
+                                        ...
+                                    </span>
+                                    <sub id="total-cases-change-value"></sub>
+                                </div>
+                            </div>
+                            <div class="col-auto">
+                                <div class="text-right" style="position: relative;">
+                                    <div id="recovery-chances-death-chances-chart-div" style="min-height: 60px;"></div>
+                                </div>
+                            </div>
+                        </div>
 
-                        <h4 class="header-title mb-1">Total Cases Trends</h4>
-
-                        <div id="line-chart-div"></div>
+                        <div class="py-4 mt-1">
+                            <div class="progress">
+                                <div id="progress-active-percentage" class="progress-bar bg-warning"
+                                     role="progressbar"></div>
+                                <div id="progress-recovered-percentage" class="progress-bar bg-success"
+                                     role="progressbar"></div>
+                                <div id="progress-deaths-percentage" class="progress-bar bg-danger"
+                                     role="progressbar"></div>
+                            </div>
+                        </div>
+                        <ul class="list-group py-1 mb-2">
+                            <li class="list-group-item d-flex justify-content-between
+                            align-items-center border-left-warning py-3">
+                                <span class="text-uppercase text-truncate">Active Cases</span>
+                                <span>
+                                    <span id="current-active-value" class="font-weight-bold">...</span>
+                                    <sub id="active-cases-change-value"></sub>
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between
+                            align-items-center border-left-success py-3">
+                                <span class="text-uppercase text-truncate">Recovered Cases</span>
+                                <span>
+                                    <span id="current-recovered-value" class="font-weight-bold">...</span>
+                                    <sub id="recovered-cases-change-value"></sub>
+                                </span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between
+                            align-items-center border-left-danger py-3">
+                                <span class="text-uppercase text-truncate">Deaths</span>
+                                <span>
+                                    <span id="current-deaths-value" class="font-weight-bold">...</span>
+                                    <sub id="deaths-change-value"></sub>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-xl-6 col-lg-6 py-3">
+            <div class="col-lg-6 py-3">
                 <div class="card">
                     <div class="card-body" style="position: relative;">
 
-                        <h4 class="header-title mb-1">Daily Cases Trends</h4>
+                        <div class="h5 text-uppercase text-gray-700">Daily Cases Trends</div>
 
                         <div id="bar-chart-div"></div>
                     </div>
@@ -45,12 +113,50 @@
         <div class="row">
             <div class="col-xl-6 col-lg-6 py-3">
                 <div class="card">
+                    <div class="card-body text-gray-900">
+                        <div class="h5 text-uppercase pb-3">Cases By Country</div>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable">
+                                <thead>
+                                <tr>
+                                    <th>Country</th>
+                                    <th>Cases</th>
+                                    <th>Cases Today</th>
+                                    <th>Deaths</th>
+                                    <th>Deaths Today</th>
+                                    <th>Recovered</th>
+                                    <th>Active Cases</th>
+                                    <th>Critical Cases</th>
+                                    <th>Cases/ 1M pop</th>
+                                    <th>Deaths/ 1M pop</th>
+                                </tr>
+                                </thead>
+                                <tbody id="datatable-ajax"></tbody>
+                                <tfoot id="datatable-footer-ajax" class="font-weight-bold">
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-6 col-lg-6 py-3">
+                <div class="card">
                     <div class="card-body" style="position: relative;">
 
-                        <h4 class="header-title mb-1">Countries Cases Comparison</h4>
+                        <div class="h5 text-uppercase text-gray-700">Total Cases Trends</div>
 
-                        <div class="row mt-3">
-                            <div class="form-group col-sm-6">
+                        <div id="line-chart-div"></div>
+                    </div>
+                </div>
+
+                <div class="card my-3">
+                    <div class="card-body" style="position: relative;">
+
+                        <div class="h5 text-uppercase text-gray-700">Countries Cases Comparison</div>
+
+                        <div class="form-row my-3">
+                            <div class="col-sm-5 mt-2">
                                 <select id="compare-country-1" class="form-control" data-placeholder="Select Country">
                                     {% for region in regions %}
                                         <option value="{{ region }}"
@@ -61,7 +167,7 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                            <div class="form-group col-sm-6">
+                            <div class="col-sm-5 mt-2">
                                 <select id="compare-country-2" class="form-control" placeholder="Select Country">
                                     {% for region in regions %}
                                         <option value="{{ region }}"
@@ -72,24 +178,45 @@
                                     {% endfor %}
                                 </select>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm-6 float-left">
-                                <button id="country-compare-button" class="btn btn-primary mb-2">Compare</button>
-                            </div>
-                            <div class="col-sm-6 float-right">
-                                <select id="cases-selection" class="form-control" data-placeholder="Please Select">
-                                    <option value="total" selected>Total Cases</option>
-                                    <option value="recovered">Recovered Cases</option>
-                                    <option value="active">Active Cases</option>
-                                    <option value="deaths">Deaths</option>
-                                </select>
+                            <div id="country-compare-button" class="col-sm-2 btn btn-outline-dark mt-2" type="button">
+                                Compare
                             </div>
                         </div>
-                        <div id="country-comparison-chart-div"></div>
+
+                        <div class="text-center mt-4">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input cases-radio-buttons" type="radio"
+                                       name="cases-radio-buttons" id="inlineRadio1" value="total" checked>
+                                <label class="form-check-label" for="inlineRadio1">Total Cases</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input cases-radio-buttons" type="radio"
+                                       name="cases-radio-buttons" id="inlineRadio2" value="active">
+                                <label class="form-check-label" for="inlineRadio2">Active Cases</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input cases-radio-buttons" type="radio"
+                                       name="cases-radio-buttons" id="inlineRadio3" value="recovered">
+                                <label class="form-check-label" for="inlineRadio3">Recovered Cases</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input cases-radio-buttons" type="radio"
+                                       name="cases-radio-buttons" id="inlineRadio4" value="deaths">
+                                <label class="form-check-label" for="inlineRadio4">Deaths</label>
+                            </div>
+                        </div>
+
+                        <div id="country-comparison-chart-div" class="mt-4"></div>
                     </div>
                 </div>
             </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-6 col-lg-6 py-3">
+
+            </div>
+
         </div>
 
     </div>
@@ -108,11 +235,17 @@
     <!-- FormattingFunctions JS -->
     <script src="{% static 'scripts/formatting_functions.js' %}"></script>
 
-    <!-- WorldStats JS -->
+    <!-- Synched Graphs and Data -->
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="{% static 'scripts/charts-and-graphs/synched-charts.js' %}"></script>
-    <script src="{% static 'scripts/charts-and-graphs/card-graphs.js' %}"></script>
     <script src="{% static 'scripts/charts-and-graphs/extra-graphs.js' %}"></script>
+
+    <!-- DataTable JS -->
+    <script src="{% static 'datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'datatables/dataTables.bootstrap4.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/datatable.js' %} "></script>
+
+    <!-- Data Fetch -->
     <script src="{% static 'scripts/synched-data-fetch.js' %}"></script>
 
     <!-- NEWS JS -->

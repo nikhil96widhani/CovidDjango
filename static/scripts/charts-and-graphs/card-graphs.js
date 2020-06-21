@@ -208,16 +208,20 @@ deaths_card_chart.render();
 //     }
 // };
 active_cases_card_chart_options = {
-    series: [],
+    series: [90, 10],
     chart: {
         type: 'donut',
-        width: 120,
-        height: 85,
+        width: 70,
+        height: 70,
         sparkline: {
             enabled: true
         }
     },
     colors: ['#1cc88a', '#e74a3b'],
+    fill: {
+        type: ['gradient', 'gradient'],
+    },
+    labels: ['Recovery Chances', 'Death Chances'],
     stroke: {
         width: 1
     },
